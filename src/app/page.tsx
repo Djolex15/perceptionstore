@@ -1,103 +1,439 @@
-import Image from "next/image";
+"use client"
 
-export default function Home() {
+import Link from "next/link"
+import Image from "next/image"
+import { ReferenceCarousel, type ReferenceItem } from "../components/reference-carousel"
+import { AnimatedCard } from "../components/animated-card"
+import { useEffect, useState } from "react"
+// Update the import for the header component
+import Header from "../components/header"
+
+export default function LandingPage() {
+  const [isMobile, setIsMobile] = useState(false)
+
+  // Check if device is mobile on client side
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    // Initial check
+    checkIfMobile()
+
+    // Add event listener for window resize
+    window.addEventListener("resize", checkIfMobile)
+
+    // Cleanup
+    return () => window.removeEventListener("resize", checkIfMobile)
+  }, [])
+
+  // Define references data with all client logos
+  const references: ReferenceItem[] = [
+    {
+      src: "/client-logos/king.png",
+      alt: "Kings College Hospital London",
+      width: 160,
+      height: 80,
+    },
+    {
+      src: "/client-logos/aviv.png",
+      alt: "Aviv Clinics",
+      width: 160,
+      height: 80,
+    },
+    {
+      src: "/client-logos/intesa.png",
+      alt: "Intesa Sanpaolo",
+      width: 160,
+      height: 80,
+    },
+    {
+      src: "/client-logos/ptd.png",
+      alt: "PTD Fitness",
+      width: 160,
+      height: 80,
+    },
+    {
+      src: "/client-logos/mcd.png",
+      alt: "MCD Fitness",
+      width: 160,
+      height: 80,
+    },
+    {
+      src: "/client-logos/basicball.png",
+      alt: "Basic Ball Academy",
+      width: 160,
+      height: 80,
+    },
+    {
+      src: "/client-logos/elite.png",
+      alt: "Elite Athlete",
+      width: 160,
+      height: 80,
+    },
+    {
+      src: "/client-logos/nexus.png",
+      alt: "Nexus",
+      width: 160,
+      height: 80,
+    },
+    {
+      src: "/client-logos/360kids.png",
+      alt: "360 Kids",
+      width: 160,
+      height: 80,
+    },
+    {
+      src: "/client-logos/aerify.png",
+      alt: "Aerify",
+      width: 160,
+      height: 80,
+    },
+    {
+      src: "/client-logos/exxentric.png",
+      alt: "Exxentric",
+      width: 160,
+      height: 80,
+    },
+    {
+      src: "/client-logos/flydigital.png",
+      alt: "Fly Digital",
+      width: 160,
+      height: 80,
+    },
+    {
+      src: "/client-logos/flywheel.png",
+      alt: "Flywheel",
+      width: 160,
+      height: 80,
+    },
+    {
+      src: "/client-logos/reshape.png",
+      alt: "Reshape",
+      width: 160,
+      height: 80,
+    },
+    {
+      src: "/client-logos/youskilled.png",
+      alt: "YouSkilled",
+      width: 160,
+      height: 80,
+    },
+  ]
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-[#01131F] text-[#fffae5] relative">
+      {/* Background texture overlay */}
+      <div
+        className="absolute inset-0 z-0 opacity-10"
+        style={{
+          backgroundImage: "",
+          backgroundRepeat: "repeat",
+          mixBlendMode: "overlay",
+        }}
+      />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      <div className="relative z-10">
+        <Header />
+        {/* Main Content - Adjusted to account for fixed navbar */}
+        <main className="container mx-auto px-4 pt-20 md:pt-32">
+          {/* Hero Section */}
+          <section className="w-full md:w-4/5 mx-auto py-4 md:py-12 text-center">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-wide leading-tight">
+              <span className="text-[#B96944]">BUY</span> YOURSELF & YOUR BUSINESS{" "}
+              <span className="text-[#B96944]">TIME!</span>
+            </h2>
+          </section>
+
+          {/* Pricing Cards - Using the new AnimatedCard component */}
+          <section className="w-full md:w-[80%] lg:w-[60%] mx-auto py-1">
+            <div className="flex flex-col md:flex-row gap-6 md:gap-[4.036vw] justify-center">
+              {/* Startup Growth Package */}
+              <AnimatedCard
+                href="/startup-growth"
+                title="Startup Growth"
+                subtitle="Package"
+                buttonText="START NOW"
+                description="PERFECT FOR STARTUPS AND ENTREPRENEURS LOOKING TO ESTABLISH OR SCALE THEIR BRAND"
+                highlightType="shimmer"
+              >
+                <div className="flex flex-col justify-center mx-auto space-y-2 md:space-y-4">
+                  <div className="flex items-center group-hover:translate-x-1 transition-transform duration-500 ease-in-out">
+                    <span className="text-[#B96944] mr-2 text-sm sm:text-base md:text-[1.385vw]">•</span>
+                    <span className="text-[#B96944] uppercase font-bold text-sm sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw]">
+                      FRESH
+                    </span>
+                    <span className="uppercase font-bold text-[#01131F] text-sm sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] ml-1">
+                      LOGO
+                    </span>
+                  </div>
+                  <div className="flex items-center group-hover:translate-x-1 transition-transform duration-500 ease-in-out delay-75">
+                    <span className="text-[#B96944] mr-2 text-sm sm:text-base md:text-[1.385vw]">•</span>
+                    <span className="text-[#B96944] uppercase font-bold text-sm sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw]">
+                      FRESH
+                    </span>
+                    <span className="uppercase font-bold text-[#01131F] text-sm sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] ml-1">
+                      BRANDING
+                    </span>
+                  </div>
+                  <div className="flex items-center group-hover:translate-x-1 transition-transform duration-500 ease-in-out delay-100">
+                    <span className="text-[#B96944] mr-2 text-sm sm:text-base md:text-[1.385vw]">•</span>
+                    <span className="text-[#B96944] uppercase font-bold text-sm sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw]">
+                      FRESH
+                    </span>
+                    <span className="uppercase font-bold text-[#01131F] text-sm sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] ml-1">
+                      WEBSITE
+                    </span>
+                  </div>
+                  <div className="flex items-center group-hover:translate-x-1 transition-transform duration-500 ease-in-out delay-150">
+                    <span className="text-[#B96944] mr-2 text-sm sm:text-base md:text-[1.385vw]">•</span>
+                    <span className="text-[#B96944] uppercase font-bold text-sm sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw]">
+                      FRESH
+                    </span>
+                    <span className="uppercase font-bold text-[#01131F] text-sm sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] ml-1">
+                      SOCIALS
+                    </span>
+                  </div>
+                  <div className="flex items-center group-hover:translate-x-1 transition-transform duration-500 ease-in-out delay-200">
+                    <span className="text-[#B96944] mr-2 text-sm sm:text-base md:text-[1.385vw]">•</span>
+                    <span className="text-[#B96944] uppercase font-bold text-sm sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw]">
+                      FRESH
+                    </span>
+                    <span className="uppercase font-bold text-[#01131F] text-sm sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] ml-1">
+                      STRATEGY
+                    </span>
+                  </div>
+                </div>
+
+                <div className="text-center w-full mt-3 md:mt-6 mb-3 md:mb-6">
+                  <h4 className="text-xl sm:text-2xl md:text-[2.5vw] leading-tight md:leading-[2.5vw] font-bold text-[#01131F]">
+                    5,999€
+                  </h4>
+                  <p className="uppercase text-xs sm:text-sm md:text-[1.3vw] leading-tight md:leading-[1.3vw] mt-1 md:mt-[0.5vw] text-[#01131F] font-bold">
+                    ONE TIME PAYMENT
+                  </p>
+                </div>
+              </AnimatedCard>
+
+              {/* A La Carte Options */}
+              <AnimatedCard
+                href="/a-la-carte"
+                title="A La Carte"
+                subtitle="Options"
+                buttonText="START NOW"
+                description="PERFECT FOR ESTABLISHED BUSINESSES LOOKING TO ADDRESS SPECIFIC CREATIVE NEEDS WITHOUT OVERCOMMITTING"
+                highlightType="shimmer"
+              >
+                <div className="flex flex-col justify-center flex-1 mb-3 md:mb-6">
+                  <div className="flex flex-col space-y-4 sm:space-y-6 md:space-y-9.5 w-full h-auto">
+                    <div className="uppercase font-bold text-center text-sm sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
+                      VIDEO PRODUCTION
+                    </div>
+                    <div className="uppercase font-bold text-center text-sm sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
+                      WEB DESIGN{" "}
+                      <span className="text-[#B96944] hover:text-[#01131F] transition-colors duration-300 ease-in-out">
+                        &
+                      </span>{" "}
+                      DEVELOPMENT
+                    </div>
+                    <div className="uppercase font-bold text-center text-sm sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
+                      GRAPHIC DESIGN{" "}
+                      <span className="text-[#B96944] hover:text-[#01131F] transition-colors duration-300 ease-in-out">
+                        &
+                      </span>{" "}
+                      DEVELOPMENT
+                    </div>
+                    <div className="uppercase font-bold text-center text-sm sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
+                      APP DESIGN{" "}
+                      <span className="text-[#B96944] hover:text-[#01131F] transition-colors duration-300 ease-in-out">
+                        &
+                      </span>{" "}
+                      DEVELOPMENT
+                    </div>
+                    <div className="uppercase font-bold text-center text-sm sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
+                      MARKETING CONSULTING
+                    </div>
+                    <div className="uppercase font-bold text-center text-sm sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
+                      PAID ADS MANAGEMENT
+                    </div>
+                  </div>
+                </div>
+              </AnimatedCard>
+            </div>
+          </section>
+
+          {/* Divider */}
+          <div className="w-full md:w-4/5 mx-auto flex justify-center py-4 md:py-8">
+            <div className="flex space-x-3 md:space-x-4">
+              <Image
+                src="/stars/pca-star-light.png?height=24&width=24"
+                alt="Divider star"
+                width={20}
+                height={20}
+                className="w-5 h-5 md:w-6 md:h-6"
+              />
+              <Image
+                src="/stars/pca-star-light.png?height=24&width=24"
+                alt="Divider star"
+                width={20}
+                height={20}
+                className="w-5 h-5 md:w-6 md:h-6"
+              />
+              <Image
+                src="/stars/pca-star-light.png?height=24&width=24"
+                alt="Divider star"
+                width={20}
+                height={20}
+                className="w-5 h-5 md:w-6 md:h-6"
+              />
+            </div>
+          </div>
+
+          {/* Results Section */}
+          <section className="w-full md:w-4/5 mx-auto py-4 md:py-8 text-center">
+            <h2 className="text-xl sm:text-2xl md:text-4xl font-bold uppercase mb-4 md:mb-12">Results in 2024</h2>
+
+            <div className="grid grid-cols-1 gap-4 md:gap-12 mb-6 md:mb-12">
+              <div>
+                <h3 className="text-3xl sm:text-4xl md:text-6xl font-bold">200K+</h3>
+                <p className="text-[#B96944] uppercase text-sm sm:text-base">Followers on Socials</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 mb-6 md:mb-12">
+              <div>
+                <h3 className="text-3xl sm:text-4xl md:text-6xl font-bold">€52,5M</h3>
+                <p className="text-[#B96944] uppercase text-sm sm:text-base">Client Growth Revenue</p>
+              </div>
+              <div>
+                <h3 className="text-3xl sm:text-4xl md:text-6xl font-bold">20+</h3>
+                <p className="text-[#B96944] uppercase text-sm sm:text-base">Happy Clients Worldwide</p>
+              </div>
+            </div>
+
+            <button className="bg-[#fffae5] text-[#01131F] uppercase font-bold py-1.5 sm:py-2 px-4 sm:px-6 rounded-full btn-secondary text-sm sm:text-base">
+              Check Our Full Portfolio
+            </button>
+          </section>
+
+          {/* Divider */}
+          <div className="w-full md:w-4/5 mx-auto flex justify-center py-4 md:py-8">
+            <div className="flex space-x-3 md:space-x-4">
+              <Image
+                src="/stars/pca-star-light.png?height=24&width=24"
+                alt="Divider star"
+                width={20}
+                height={20}
+                className="w-5 h-5 md:w-6 md:h-6"
+              />
+              <Image
+                src="/stars/pca-star-light.png?height=24&width=24"
+                alt="Divider star"
+                width={20}
+                height={20}
+                className="w-5 h-5 md:w-6 md:h-6"
+              />
+              <Image
+                src="/stars/pca-star-light.png?height=24&width=24"
+                alt="Divider star"
+                width={20}
+                height={20}
+                className="w-5 h-5 md:w-6 md:h-6"
+              />
+            </div>
+          </div>
+
+          {/* References Section */}
+          <section className="w-full md:w-4/5 mx-auto py-4 md:py-8 text-center">
+            <h2 className="text-xl sm:text-2xl md:text-4xl font-bold uppercase mb-4 md:mb-12">Our References</h2>
+
+            {/* Using the new ReferenceCarousel component with matching background */}
+            <div className="bg-[#01131f] rounded-xl overflow-hidden">
+              <ReferenceCarousel references={references} className="mb-6 md:mb-12" />
+            </div>
+
+            <button className="bg-[#fffae5] text-[#01131F] uppercase font-bold py-1.5 sm:py-2 px-4 sm:px-6 rounded-full btn-secondary text-sm sm:text-base">
+              Check Our Portfolio
+            </button>
+          </section>
+
+          {/* Divider */}
+          <div className="w-full md:w-4/5 mx-auto flex justify-center py-4 md:py-8">
+            <div className="flex items-center justify-center">
+              <Image
+                src="/stars/pca-star-light.png?height=24&width=24"
+                alt="Divider star"
+                width={20}
+                height={20}
+                className="w-5 h-5 md:w-6 md:h-6"
+              />
+            </div>
+          </div>
+        </main>
+
+        {/* Footer Section - Completely restructured for mobile */}
+        <footer className="relative container mx-auto px-4 py-6 md:py-8 border-t border-[#fffae5] border-opacity-20">
+          <div className="flex flex-col md:flex-row justify-between items-start w-full">
+            {/* Left Side - Contact & Privacy */}
+            <div className="w-full md:w-auto text-left mb-6 md:mb-0 order-2 md:order-1">
+              <Link
+                href="#"
+                className="text-xs sm:text-sm hover:text-[#B96944] transition-colors duration-300 block md:inline"
+              >
+                <p>PERCEPTION.UAE@GMAIL.COM</p>
+              </Link>
+              <Link
+                href="#"
+                className="text-xs sm:text-sm hover:text-[#B96944] transition-colors duration-300 block md:inline md:ml-2 mt-2 md:mt-0"
+              >
+                PRIVACY POLICY
+              </Link>
+            </div>
+
+            {/* Center - Social Media Icons */}
+            <div
+              className={`flex space-x-6 mb-6 md:mb-0 order-1 md:order-2 ${
+                isMobile ? "w-full justify-center" : "absolute left-1/2 transform -translate-x-1/2"
+              }`}
+            >
+              <Link href="#" className="hover:text-[#B96944] transition-transform duration-300 hover:scale-110">
+                <Image
+                  src="/social-media/instagram-light.png?height=24&width=24"
+                  alt="Instagram"
+                  width={24}
+                  height={24}
+                  className="w-6 h-6"
+                />
+              </Link>
+              <Link href="#" className="hover:text-[#B96944] transition-transform duration-300 hover:scale-110">
+                <Image
+                  src="/social-media/whatsup-light.png?height=24&width=24"
+                  alt="WhatsApp"
+                  width={24}
+                  height={24}
+                  className="w-6 h-6"
+                />
+              </Link>
+              <Link href="#" className="hover:text-[#B96944] transition-transform duration-300 hover:scale-110">
+                <Image
+                  src="/social-media/linkedin-light.png?height=24&width=24"
+                  alt="LinkedIn"
+                  width={24}
+                  height={24}
+                  className="w-6 h-6"
+                />
+              </Link>
+            </div>
+
+            {/* Right Side - Copyright */}
+            <div className="w-full md:w-auto text-right order-3 mt-4 md:mt-0">
+              <p className="text-xs sm:text-sm">ALL RIGHTS RESERVED</p>
+              <p className="text-xs sm:text-sm">COPYRIGHT©2024 PERCEPTION CREATIVE AGENCY</p>
+            </div>
+          </div>
+        </footer>
+      </div>
     </div>
-  );
+  )
 }
+
