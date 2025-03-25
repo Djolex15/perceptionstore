@@ -7,6 +7,7 @@ import { AnimatedCard } from "../components/animated-card"
 import { useEffect, useState } from "react"
 // Update the import for the header component
 import Header from "../components/header"
+import Footer from "../components/footer"
 
 export default function LandingPage() {
   const [isMobile, setIsMobile] = useState(false)
@@ -122,23 +123,20 @@ export default function LandingPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-[#01131F] text-[#fffae5] relative">
+    <div className="min-h-screen bg-transparent text-[#fffae5] relative" style={{
+      backgroundImage: "url('/backgrounds/pca-dark-background.png')",
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+      backgroundAttachment: "fixed",
+      backgroundPosition: "center",
+    }}>
       {/* Background texture overlay */}
-      <div
-        className="absolute inset-0 z-0 opacity-10"
-        style={{
-          backgroundImage: "",
-          backgroundRepeat: "repeat",
-          mixBlendMode: "overlay",
-        }}
-      />
-
       <div className="relative z-10">
-        <Header />
+        <Header darkMode = {false}/>
         {/* Main Content - Adjusted to account for fixed navbar */}
-        <main className="container mx-auto px-4 pt-20 md:pt-32">
+        <main className="container mx-auto px-4 pt-26 md:pt-32">
           {/* Hero Section */}
-          <section className="w-full md:w-4/5 mx-auto py-4 md:py-12 text-center">
+          <section className="w-full md:w-4/5 mx-auto py-8 md:py-8 text-center">
             <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-wide leading-tight">
               <span className="text-[#B96944]">BUY</span> YOURSELF & YOUR BUSINESS{" "}
               <span className="text-[#B96944]">TIME!</span>
@@ -159,57 +157,57 @@ export default function LandingPage() {
               >
                 <div className="flex flex-col justify-center mx-auto space-y-2 md:space-y-4">
                   <div className="flex items-center group-hover:translate-x-1 transition-transform duration-500 ease-in-out">
-                    <span className="text-[#B96944] mr-2 text-sm sm:text-base md:text-[1.385vw]">•</span>
-                    <span className="text-[#B96944] uppercase font-bold text-sm sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw]">
+                    <span className="text-[#B96944] mr-2 text-[5vw] sm:text-base md:text-[1.385vw]">•</span>
+                    <span className="text-[#B96944] uppercase font-bold text-[5vw] sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw]">
                       FRESH
                     </span>
-                    <span className="uppercase font-bold text-[#01131F] text-sm sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] ml-1">
+                    <span className="uppercase font-bold text-[#01131F] text-[5vw] sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] ml-1">
                       LOGO
                     </span>
                   </div>
                   <div className="flex items-center group-hover:translate-x-1 transition-transform duration-500 ease-in-out delay-75">
-                    <span className="text-[#B96944] mr-2 text-sm sm:text-base md:text-[1.385vw]">•</span>
-                    <span className="text-[#B96944] uppercase font-bold text-sm sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw]">
+                    <span className="text-[#B96944] mr-2 text-[5vw] sm:text-base md:text-[1.385vw]">•</span>
+                    <span className="text-[#B96944] uppercase font-bold text-[5vw] sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw]">
                       FRESH
                     </span>
-                    <span className="uppercase font-bold text-[#01131F] text-sm sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] ml-1">
+                    <span className="uppercase font-bold text-[#01131F] text-[5vw] sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] ml-1">
                       BRANDING
                     </span>
                   </div>
                   <div className="flex items-center group-hover:translate-x-1 transition-transform duration-500 ease-in-out delay-100">
-                    <span className="text-[#B96944] mr-2 text-sm sm:text-base md:text-[1.385vw]">•</span>
-                    <span className="text-[#B96944] uppercase font-bold text-sm sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw]">
+                    <span className="text-[#B96944] mr-2 text-[5vw] sm:text-base md:text-[1.385vw]">•</span>
+                    <span className="text-[#B96944] uppercase font-bold text-[5vw] sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw]">
                       FRESH
                     </span>
-                    <span className="uppercase font-bold text-[#01131F] text-sm sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] ml-1">
+                    <span className="uppercase font-bold text-[#01131F] text-[5vw] sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] ml-1">
                       WEBSITE
                     </span>
                   </div>
                   <div className="flex items-center group-hover:translate-x-1 transition-transform duration-500 ease-in-out delay-150">
-                    <span className="text-[#B96944] mr-2 text-sm sm:text-base md:text-[1.385vw]">•</span>
-                    <span className="text-[#B96944] uppercase font-bold text-sm sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw]">
+                    <span className="text-[#B96944] mr-2 text-[5vw] sm:text-base md:text-[1.385vw]">•</span>
+                    <span className="text-[#B96944] uppercase font-bold text-[5vw] sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw]">
                       FRESH
                     </span>
-                    <span className="uppercase font-bold text-[#01131F] text-sm sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] ml-1">
+                    <span className="uppercase font-bold text-[#01131F] text-[5vw] sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] ml-1">
                       SOCIALS
                     </span>
                   </div>
                   <div className="flex items-center group-hover:translate-x-1 transition-transform duration-500 ease-in-out delay-200">
-                    <span className="text-[#B96944] mr-2 text-sm sm:text-base md:text-[1.385vw]">•</span>
-                    <span className="text-[#B96944] uppercase font-bold text-sm sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw]">
+                    <span className="text-[#B96944] mr-2 text-[5vw] sm:text-base md:text-[1.385vw]">•</span>
+                    <span className="text-[#B96944] uppercase font-bold text-[5vw] sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw]">
                       FRESH
                     </span>
-                    <span className="uppercase font-bold text-[#01131F] text-sm sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] ml-1">
+                    <span className="uppercase font-bold text-[#01131F] text-[5vw] sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] ml-1">
                       STRATEGY
                     </span>
                   </div>
                 </div>
 
                 <div className="text-center w-full mt-3 md:mt-6 mb-3 md:mb-6">
-                  <h4 className="text-xl sm:text-2xl md:text-[2.5vw] leading-tight md:leading-[2.5vw] font-bold text-[#01131F]">
+                  <h4 className="text-[10vw] sm:text-2xl md:text-[2.5vw] leading-tight md:leading-[2.5vw] font-bold text-[#01131F]">
                     5,999€
                   </h4>
-                  <p className="uppercase text-xs sm:text-sm md:text-[1.3vw] leading-tight md:leading-[1.3vw] mt-1 md:mt-[0.5vw] text-[#01131F] font-bold">
+                  <p className="uppercase text-[4vw] sm:text-sm md:text-[1.3vw] leading-tight md:leading-[1.3vw] mt-1 md:mt-[0.5vw] text-[#01131F] font-bold">
                     ONE TIME PAYMENT
                   </p>
                 </div>
@@ -225,35 +223,35 @@ export default function LandingPage() {
                 highlightType="shimmer"
               >
                 <div className="flex flex-col justify-center flex-1 mb-3 md:mb-6">
-                  <div className="flex flex-col space-y-4 sm:space-y-6 md:space-y-9.5 w-full h-auto">
-                    <div className="uppercase font-bold text-center text-sm sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
+                  <div className="flex flex-col space-y-3.5 sm:space-y-6 md:space-y-8.5 w-full h-auto">
+                    <div className="uppercase font-bold text-center text-[4.5vw] sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
                       VIDEO PRODUCTION
                     </div>
-                    <div className="uppercase font-bold text-center text-sm sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
+                    <div className="uppercase font-bold text-center text-[4.5vw] sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
                       WEB DESIGN{" "}
                       <span className="text-[#B96944] hover:text-[#01131F] transition-colors duration-300 ease-in-out">
                         &
                       </span>{" "}
                       DEVELOPMENT
                     </div>
-                    <div className="uppercase font-bold text-center text-sm sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
+                    <div className="uppercase font-bold text-center text-[4.5vw] sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
                       GRAPHIC DESIGN{" "}
                       <span className="text-[#B96944] hover:text-[#01131F] transition-colors duration-300 ease-in-out">
                         &
                       </span>{" "}
                       DEVELOPMENT
                     </div>
-                    <div className="uppercase font-bold text-center text-sm sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
+                    <div className="uppercase font-bold text-center text-[4.5vw] sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
                       APP DESIGN{" "}
                       <span className="text-[#B96944] hover:text-[#01131F] transition-colors duration-300 ease-in-out">
                         &
                       </span>{" "}
                       DEVELOPMENT
                     </div>
-                    <div className="uppercase font-bold text-center text-sm sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
+                    <div className="uppercase font-bold text-center text-[4.5vw] sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
                       MARKETING CONSULTING
                     </div>
-                    <div className="uppercase font-bold text-center text-sm sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
+                    <div className="uppercase font-bold text-center text-[4.5vw] sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
                       PAID ADS MANAGEMENT
                     </div>
                   </div>
@@ -311,9 +309,9 @@ export default function LandingPage() {
               </div>
             </div>
 
-            <button className="bg-[#fffae5] text-[#01131F] uppercase font-bold py-1.5 sm:py-2 px-4 sm:px-6 rounded-full btn-secondary text-sm sm:text-base">
-              Check Our Full Portfolio
-            </button>
+            <Link href={"https://www.perceptionuae.com"} target="_blank" className="bg-[#fffae5] text-[#01131F] uppercase font-bold py-1.5 sm:py-2 px-4 sm:px-6 rounded-full btn-secondary text-sm sm:text-base">
+              Check Our Perception
+            </Link>
           </section>
 
           {/* Divider */}
@@ -348,13 +346,13 @@ export default function LandingPage() {
             <h2 className="text-xl sm:text-2xl md:text-4xl font-bold uppercase mb-4 md:mb-12">Our References</h2>
 
             {/* Using the new ReferenceCarousel component with matching background */}
-            <div className="bg-[#01131f] rounded-xl overflow-hidden">
+            <div className="bg-transparent rounded-xl overflow-hidden">
               <ReferenceCarousel references={references} className="mb-6 md:mb-12" />
             </div>
 
-            <button className="bg-[#fffae5] text-[#01131F] uppercase font-bold py-1.5 sm:py-2 px-4 sm:px-6 rounded-full btn-secondary text-sm sm:text-base">
+            <Link href={"https://www.perceptionuae.com/our-work"} target="_blank" className="bg-[#fffae5] text-[#01131F] uppercase font-bold py-1.5 sm:py-2 px-4 sm:px-6 rounded-full btn-secondary text-sm sm:text-base">
               Check Our Portfolio
-            </button>
+            </Link>
           </section>
 
           {/* Divider */}
@@ -372,66 +370,7 @@ export default function LandingPage() {
         </main>
 
         {/* Footer Section - Completely restructured for mobile */}
-        <footer className="relative container mx-auto px-4 py-6 md:py-8 border-t border-[#fffae5] border-opacity-20">
-          <div className="flex flex-col md:flex-row justify-between items-start w-full">
-            {/* Left Side - Contact & Privacy */}
-            <div className="w-full md:w-auto text-left mb-6 md:mb-0 order-2 md:order-1">
-              <Link
-                href="#"
-                className="text-xs sm:text-sm hover:text-[#B96944] transition-colors duration-300 block md:inline"
-              >
-                <p>PERCEPTION.UAE@GMAIL.COM</p>
-              </Link>
-              <Link
-                href="#"
-                className="text-xs sm:text-sm hover:text-[#B96944] transition-colors duration-300 block md:inline md:ml-2 mt-2 md:mt-0"
-              >
-                PRIVACY POLICY
-              </Link>
-            </div>
-
-            {/* Center - Social Media Icons */}
-            <div
-              className={`flex space-x-6 mb-6 md:mb-0 order-1 md:order-2 ${
-                isMobile ? "w-full justify-center" : "absolute left-1/2 transform -translate-x-1/2"
-              }`}
-            >
-              <Link href="#" className="hover:text-[#B96944] transition-transform duration-300 hover:scale-110">
-                <Image
-                  src="/social-media/instagram-light.png?height=24&width=24"
-                  alt="Instagram"
-                  width={24}
-                  height={24}
-                  className="w-6 h-6"
-                />
-              </Link>
-              <Link href="#" className="hover:text-[#B96944] transition-transform duration-300 hover:scale-110">
-                <Image
-                  src="/social-media/whatsup-light.png?height=24&width=24"
-                  alt="WhatsApp"
-                  width={24}
-                  height={24}
-                  className="w-6 h-6"
-                />
-              </Link>
-              <Link href="#" className="hover:text-[#B96944] transition-transform duration-300 hover:scale-110">
-                <Image
-                  src="/social-media/linkedin-light.png?height=24&width=24"
-                  alt="LinkedIn"
-                  width={24}
-                  height={24}
-                  className="w-6 h-6"
-                />
-              </Link>
-            </div>
-
-            {/* Right Side - Copyright */}
-            <div className="w-full md:w-auto text-right order-3 mt-4 md:mt-0">
-              <p className="text-xs sm:text-sm">ALL RIGHTS RESERVED</p>
-              <p className="text-xs sm:text-sm">COPYRIGHT©2024 PERCEPTION CREATIVE AGENCY</p>
-            </div>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </div>
   )

@@ -1,7 +1,7 @@
 import type React from "react"
 import "./globals.css"
 import { Inter } from "next/font/google"
-import Header from "../components/header"
+import AnimatedScrollTracker from "../components/animated-scroll-tracker"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -18,8 +18,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Header />
-        <div className="pt-20">{children}</div>
+        <AnimatedScrollTracker className="bg-[#B96944]" />
+        <div>{children}</div>
       </body>
     </html>
   )

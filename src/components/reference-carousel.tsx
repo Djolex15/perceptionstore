@@ -18,7 +18,7 @@ interface ReferenceCarouselProps {
 
 export function ReferenceCarousel({ references, className = "" }: ReferenceCarouselProps) {
   return (
-    <div className={`relative w-full overflow-hidden h-64 bg-[#01131f] ${className}`}>
+    <div className={`relative w-full overflow-hidden h-64 bg-transparent ${className}`}>
       <div className="references-carousel">
         <div className="references-track">
           {references.map((reference, index) => (
