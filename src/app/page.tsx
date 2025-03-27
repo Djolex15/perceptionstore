@@ -136,7 +136,7 @@ export default function LandingPage() {
         {/* Main Content - Adjusted to account for fixed navbar */}
         <main className="container mx-auto px-4 pt-26 md:pt-32">
           {/* Hero Section */}
-          <section className="w-full md:w-4/5 mx-auto py-8 md:py-8 text-center">
+          <section className="w-full md:w-full mx-auto py-8 md:py-8 text-center">
             <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-wide leading-tight">
               <span className="text-[#B96944]">BUY</span> YOURSELF & YOUR BUSINESS{" "}
               <span className="text-[#B96944]">TIME!</span>

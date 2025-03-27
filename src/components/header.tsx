@@ -56,10 +56,15 @@ export default function Header({ darkMode }: { darkMode?: boolean }) {
           {isMobile && (
             <div className="w-full flex items-center justify-between">
               <div className="flex items-center">
-                <h1 className={`text-base font-bold uppercase ${textColor}`}>
-                  <span className={accentTextColor}>"</span>IT'S ALL A MATTER <br /> OF PERCEPTION
-                  <span className={accentTextColor}>"</span>
-                </h1>
+              <Link href="/" className="absolute left-1/2 transform -translate-x-1/2">
+                <Image
+                  src={logoSrc || "/placeholder.svg"}
+                  width={100}
+                  height={100}
+                  alt="Perception Creative Agency"
+                  className="transition-transform duration-300 hover:scale-110"
+                />
+              </Link>
               </div>
               <button
                 onClick={() => setIsMenuOpen(true)}
@@ -162,7 +167,7 @@ export default function Header({ darkMode }: { darkMode?: boolean }) {
             </div>
 
             <div className="p-6 text-center">
-              <p className={`text-sm ${textColor} opacity-70`}>PERCEPTION.UAE@GMAIL.COM</p>
+              <a href="mailto:INFO@PERCEPTIONUAE.COM" className={`text-sm ${textColor} opacity-70`}>INFO@PERCEPTIONUAE.COM</a>
             </div>
           </div>
         </div>

@@ -125,7 +125,7 @@ export function AnimatedCard({
           </div>
         </div>
       </Link>
-      <div className="text-[10px] xs:text-xs md:text-[0.8vw] text-center mt-1 md:mt-1 w-[80vw] md:w-[26vw] text-[#fffae5] uppercase">
+      <div className="text-[10px] xs:text-xs md:text-[0.79vw] text-center mt-1 md:mt-1 w-[80vw] md:w-[26vw] text-[#fffae5] uppercase">
         {description}
       </div>
     </div>

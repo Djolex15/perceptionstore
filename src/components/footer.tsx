@@ -27,13 +27,13 @@ export default function Footer({ darkMode }: { darkMode?: boolean }) {
       <div className="flex flex-col md:flex-row justify-between items-start w-full font-medium">
         <div className="w-full md:w-auto text-left mb-6 md:mb-0 order-2 md:order-1">
           <Link
-            href="#"
+            href="mailto:INFO@PERCEPTIONUAE.COM"
             className={`text-xs sm:text-sm ${textColor} ${hoverColor} transition-colors duration-300 block`}
           >
-            <p>PERCEPTION.UAE@GMAIL.COM</p>
+            <p>INFO@PERCEPTIONUAE.COM</p>
           </Link>
           <Link
-            href="#"
+            href="/privacy-policy"
             className={`text-xs sm:text-sm ${textColor} ${hoverColor} transition-colors duration-300 block mt-2`}
           >
             PRIVACY POLICY
