@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState, useRef, useEffect } from "react"
+import { useRef, useEffect } from "react"
 import Link from "next/link"
 
 interface AnimatedCardProps {
@@ -24,25 +24,7 @@ export function AnimatedCard({
   description,
   highlightType = "gradient-border",
 }: AnimatedCardProps) {
-  const [isHovered, setIsHovered] = useState(false)
   const cardRef = useRef<HTMLDivElement>(null)
-  const [isMobile, setIsMobile] = useState(false)
-
-  // Check if device is mobile on client side
-  useEffect(() => {
-    const checkIfMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-
-    // Initial check
-    checkIfMobile()
-
-    // Add event listener for window resize
-    window.addEventListener("resize", checkIfMobile)
-
-    // Cleanup
-    return () => window.removeEventListener("resize", checkIfMobile)
-  }, [])
 
   // Pre-load the animation to avoid first-hover jank
   useEffect(() => {
@@ -103,8 +85,6 @@ export function AnimatedCard({
             backgroundPosition: "center",
           }}
           className={`bg-gradient-to-br from-[#fffae5]/30 to-[#f0e8d0]/10 text-[#01131F] rounded-2xl sm:rounded-3xl p-8 sm:p-4 md:p-6 border-[3px] sm:border-[4px] md:border-[6px] border-[#B96944] flex flex-col w-full h-full cursor-pointer ${getHighlightClass()}` }
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
         >
           <div className="text-center mb-2 sm:mb-4 md:mb-8">
             <h1 className="text-[6vw] sm:text-xl md:text-[1.773vw] leading-tight md:leading-[1.773vw] font-bold uppercase text-[#01131F]">

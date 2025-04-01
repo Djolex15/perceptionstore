@@ -123,7 +123,7 @@ export default function ConfirmationPage() {
               )}
 
               <p className="mb-6">
-                We'll be in touch shortly to schedule your call. In the meantime, check your email for a confirmation
+                We&apos;ll be in touch shortly to schedule your call. In the meantime, check your email for a confirmation
                 message.
               </p>
 

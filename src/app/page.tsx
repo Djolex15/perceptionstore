@@ -4,29 +4,11 @@ import Link from "next/link"
 import Image from "next/image"
 import { ReferenceCarousel, type ReferenceItem } from "../components/reference-carousel"
 import { AnimatedCard } from "../components/animated-card"
-import { useEffect, useState } from "react"
 // Update the import for the header component
 import Header from "../components/header"
 import Footer from "../components/footer"
 
 export default function LandingPage() {
-  const [isMobile, setIsMobile] = useState(false)
-
-  // Check if device is mobile on client side
-  useEffect(() => {
-    const checkIfMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-
-    // Initial check
-    checkIfMobile()
-
-    // Add event listener for window resize
-    window.addEventListener("resize", checkIfMobile)
-
-    // Cleanup
-    return () => window.removeEventListener("resize", checkIfMobile)
-  }, [])
 
   // Define references data with all client logos
   const references: ReferenceItem[] = [

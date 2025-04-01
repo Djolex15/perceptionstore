@@ -13,28 +13,23 @@ type SelectedService = {
 type PriceCalculatorProps = {
   totalPrice: number
   selectedServices: SelectedService[]
-  footerHeight: number
-  bookCallRef: React.RefObject<HTMLDivElement | null>
 }
 
 export default function PriceCalculator({
   totalPrice,
   selectedServices,
-  footerHeight,
-  bookCallRef,
 }: PriceCalculatorProps) {
   const calculatorRef = useRef<HTMLDivElement>(null)
   const calculatorContainerRef = useRef<HTMLDivElement>(null)
   const [calculatorHeight, setCalculatorHeight] = useState(0)
   const [isStatic, setIsStatic] = useState(false)
-  const [bottomOffset, setBottomOffset] = useState("2rem")
-  const [isTransitioning, setIsTransitioning] = useState(false)
+  const [bottomOffset] = useState("2rem")
   const [widthScale, setWidthScale] = useState(1)
   const [isTooltipVisible, setIsTooltipVisible] = useState(false)
 
   // The exact position where the calculator should become static (91.8552036% from the top)
   const STATIC_POSITION_FROM_TOP = 90.8552036
-
+  
   // Measure the calculator height for positioning
   useEffect(() => {
     if (calculatorRef.current) {

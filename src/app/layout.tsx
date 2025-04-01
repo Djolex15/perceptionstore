@@ -7,7 +7,18 @@ const inter = Inter({ subsets: ["latin"] })
 
 const metadata = {
   title: "Perception Creative Agency Store",
-  description: "Store",
+  description:
+    "Buy yourself and your business time with expert branding, web development, and marketing strategies. Perception Creative Agency drives online growth for entrepreneurs and startups worldwide.",
+  keywords: "branding, web development, marketing, startups, entrepreneurs, online growth",
+  author: "Perception Creative Agency",
+  openGraph: {
+    type: "website",
+    url: "https://www.perceptionuae.store",
+    title: "Perception Creative Agency Store",
+    description:
+      "Buy yourself and your business time with expert branding, web development, and marketing strategies. Perception Creative Agency drives online growth for entrepreneurs and startups worldwide.",
+    image: "https://www.perceptionuae.store/open-graph/pca-open-graph.png",
+  }
 }
 
 export default function RootLayout({
@@ -17,6 +28,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
+      </head>
       <body className={inter.className}>
         <AnimatedScrollTracker className="bg-[#B96944]" />
         <div>{children}</div>

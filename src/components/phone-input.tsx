@@ -303,7 +303,7 @@ export default function PhoneInput({ value, onChange }: PhoneInputProps) {
       // Fallback to browser's navigator.language
       try {
         console.log("Falling back to browser language detection")
-        const browserLang = navigator.language || (navigator as any).userLanguage
+        const browserLang = navigator.language || (navigator as unknown as { userLanguage?: string }).userLanguage
         console.log("Browser language:", browserLang)
 
         if (browserLang) {

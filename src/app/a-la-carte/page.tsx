@@ -30,36 +30,10 @@ type ServiceCategory = {
   options: ServiceOption[]
 }
 
-type SelectedService = {
-  id: string
-  name: string
-  price: number
-}
-
 export default function ALaCartePage() {
   const router = useRouter()
   const bookCallRef = useRef<HTMLDivElement | null>(null)
   const footerRef = useRef<HTMLDivElement>(null)
-  const [footerHeight, setFooterHeight] = useState(0)
-
-  // Calculate footer height for calculator positioning
-  useEffect(() => {
-    const updateFooterHeight = () => {
-      if (footerRef.current) {
-        setFooterHeight(footerRef.current.offsetHeight)
-      }
-    }
-
-    // Initial measurement
-    updateFooterHeight()
-
-    // Set up resize observer for dynamic updates
-    if (footerRef.current) {
-      const resizeObserver = new ResizeObserver(updateFooterHeight)
-      resizeObserver.observe(footerRef.current)
-      return () => resizeObserver.disconnect()
-    }
-  }, [])
 
   // State for selected services and total price
   const [categories, setCategories] = useState<ServiceCategory[]>([
@@ -541,7 +515,7 @@ export default function ALaCartePage() {
             <div className="mb-12">
               <h2 className="text-2xl md:text-3xl font-bold text-[#01131F] mb-6">WHY IT WORKS:</h2>
               <p className="text-lg md:text-xl">
-                IF YOU'RE A BUSINESSES OWNER WITH SPECIFIC NEEDS & BUDGETS, WE MADE IT EASY FOR YOU TO PICK & CHOOSE
+                IF YOU&apos;RE A BUSINESSES OWNER WITH SPECIFIC NEEDS & BUDGETS, WE MADE IT EASY FOR YOU TO PICK & CHOOSE
                 WHAT YOU WANT WITHOUT COMMITTING TO BIG PACKAGE
               </p>
             </div>
@@ -550,8 +524,6 @@ export default function ALaCartePage() {
             <PriceCalculator
               totalPrice={totalPrice}
               selectedServices={selectedServices}
-              footerHeight={footerHeight}
-              bookCallRef={bookCallRef}
             />
 
             {/* Book a Call Button - Add ref here */}

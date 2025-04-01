@@ -82,8 +82,8 @@ export default function Header({ darkMode }: { darkMode?: boolean }) {
               {/* Left section with text */}
               <div className="flex text-center md:text-left">
                 <h1 className={`text-lg font-bold uppercase text-center ${textColor}`}>
-                  <span className={accentTextColor}>"</span>IT'S ALL A MATTER <br /> OF PERCEPTION
-                  <span className={accentTextColor}>"</span>
+                  <span className={accentTextColor}>&quot;</span>IT&apos;S ALL A MATTER <br /> OF PERCEPTION
+                  <span className={accentTextColor}>&quot;</span>
                 </h1>
               </div>
 
