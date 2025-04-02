@@ -17,7 +17,14 @@ const metadata = {
     title: "Perception Creative Agency Store",
     description:
       "Buy yourself and your business time with expert branding, web development, and marketing strategies. Perception Creative Agency drives online growth for entrepreneurs and startups worldwide.",
-    image: "https://www.perceptionuae.store/open-graph/pca-open-graph.png",
+    images:[
+      {
+        url: "https://www.perceptionuae.store/open-graph/pca-open-graph.png",
+        width: 1200,
+        height: 630,
+        alt: "Perception Creative Agency Store",
+      },
+    ],
   }
 }
 

@@ -1,5 +1,6 @@
 "use client"
 
+import Head from "next/head"
 import Link from "next/link"
 import Image from "next/image"
 import { ReferenceCarousel, type ReferenceItem } from "../components/reference-carousel"
@@ -105,6 +106,18 @@ export default function LandingPage() {
   ]
 
   return (
+    <>
+    <Head>
+        <title>Home | Perception Creative Agency Store</title>
+        <meta name="description" content="Buy yourself and your business time with expert branding, web development, and marketing strategies. Perception Creative Agency drives online growth for entrepreneurs and startups worldwide." />
+        <meta name="keywords" content="branding, web development, marketing, startups, entrepreneurs, online growth" />
+        <meta name="author" content="Perception Creative Agency" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.perceptionuae.store" />
+        <meta property="og:title" content="Perception Creative Agency Store" />
+        <meta property="og:description" content="Buy yourself and your business time with expert branding, web development, and marketing strategies. Perception Creative Agency drives online growth for entrepreneurs and startups worldwide." />
+        <meta property="og:image" content="https://www.perceptionuae.store/open-graph/pca-open-graph.png" />
+    </Head>
     <div className="min-h-screen bg-transparent text-[#fffae5] relative" style={{
       backgroundImage: "url('/backgrounds/pca-dark-background.png')",
       backgroundSize: "cover",
@@ -355,6 +368,7 @@ export default function LandingPage() {
         <Footer />
       </div>
     </div>
+    </>
   )
 }
 
