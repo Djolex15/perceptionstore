@@ -1,6 +1,8 @@
 "use client"
+
 import { useState, useEffect, useRef } from "react"
 import { Info } from "lucide-react"
+import PriceDisplay from "./price-display"
 
 type SelectedService = {
   id: string
@@ -87,7 +89,10 @@ export default function PriceCalculator({ totalPrice, selectedServices, discount
         <div className="flex items-center">
           <div>
             <h3 className="text-base md:text-lg font-bold">
-              TOTAL: <span className="text-xl md:text-2xl">{totalPrice}€</span>
+              TOTAL:{" "}
+              <span className="text-xl md:text-2xl">
+                <PriceDisplay amount={totalPrice} />
+              </span>
             </h3>
             {discounts && <span className="text-xs text-[#B96944] font-semibold">✨ Quantity discounts applied!</span>}
           </div>
@@ -112,7 +117,9 @@ export default function PriceCalculator({ totalPrice, selectedServices, discount
                       <span className={service.name.startsWith("-") ? "pl-2 text-[#fffae5]/70" : ""}>
                         {service.name}
                       </span>
-                      <span>{service.price}€</span>
+                      <span>
+                        <PriceDisplay amount={service.price} />
+                      </span>
                     </div>
                   ))}
                 </div>
