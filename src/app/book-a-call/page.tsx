@@ -160,7 +160,7 @@ export default function BookACallPage() {
     <div
       className="min-h-screen bg-[#fffae5] text-[#01131F] relative"
       style={{
-        backgroundImage: "url('/backgrounds/pca-light-background.png')",
+        backgroundImage: "url('/backgrounds/pca-light-background.jpg')",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundAttachment: "fixed",

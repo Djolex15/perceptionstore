@@ -74,7 +74,7 @@ export default function Footer({ darkMode }: { darkMode?: boolean }) {
 
         <div className={`w-full md:w-auto ${textColor} text-right order-3 mt-4 md:mt-0`}>
           <p className="text-xs sm:text-sm">ALL RIGHTS RESERVED</p>
-          <p className="text-xs sm:text-sm">COPYRIGHT©2024 PERCEPTION CREATIVE AGENCY</p>
+          <p className="text-xs sm:text-sm">COPYRIGHT©{new Date().getFullYear()} PERCEPTION CREATIVE AGENCY</p>
         </div>
       </div>
     </footer>

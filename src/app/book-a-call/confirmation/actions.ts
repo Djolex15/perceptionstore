@@ -24,13 +24,18 @@ type FormData = {
     name: string
     amount: number
   }>
+  currency?: {
+    code: string
+    symbol: string
+    exchangeRate: number
+  }
 }
 
 export async function sendBookingConfirmationEmail(formData: FormData) {
   try {
     // Send confirmation email to the customer
     const customerData = await resend.emails.send({
-      from: "Perception UAE <notifications@perceptionuae.com>",
+      from: "Perception Creative Agency <notifications@perceptionuae.store>",
       to: formData.email,
       subject: "Your Booking Confirmation",
       react: BookingConfirmationEmail({ formData }),
@@ -38,7 +43,7 @@ export async function sendBookingConfirmationEmail(formData: FormData) {
 
     // Send notification email to the admin
     const adminData = await resend.emails.send({
-      from: "Perception UAE <notifications@perceptionuae.com>",
+      from: "Perception Creative Agency <notifications@perceptionuae.store>",
       to: "info@perceptionuae.com",
       subject: `New Booking: ${formData.firstName} ${formData.lastName}`,
       react: AdminNotificationEmail({ formData }),

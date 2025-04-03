@@ -9,6 +9,7 @@ import Footer from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import PriceDisplay from "@/components/price-display"
 import { sendBookingConfirmationEmail } from "./actions"
+import { useCurrency } from "@/lib/currency-context"
 
 type FormData = {
   firstName: string
@@ -28,12 +29,18 @@ type FormData = {
     name: string
     amount: number
   }>
+  currency?: {
+    code: string
+    symbol: string
+    exchangeRate: number
+  }
 }
 
 export default function ConfirmationPage() {
   const [formData, setFormData] = useState<FormData | null>(null)
   const [emailSent, setEmailSent] = useState(false)
   const [emailError, setEmailError] = useState<string | null>(null)
+  const { currency } = useCurrency()
 
   useEffect(() => {
     // Load form data from cookies
@@ -42,12 +49,17 @@ export default function ConfirmationPage() {
     if (savedFormData) {
       try {
         const parsedData = JSON.parse(savedFormData)
+        // Add currency information to the form data
+        parsedData.currency = currency
         setFormData(parsedData)
+
+        // Update the cookie with currency information
+        Cookies.set("bookCallFormData", JSON.stringify(parsedData), { expires: 7 })
       } catch (error) {
         console.error("Error parsing saved form data:", error)
       }
     }
-  }, [])
+  }, [currency])
 
   useEffect(() => {
     // Send confirmation email when form data is loaded
@@ -76,7 +88,7 @@ export default function ConfirmationPage() {
     <div
       className="min-h-screen bg-[#fffae5] text-[#01131F] relative"
       style={{
-        backgroundImage: "url('/backgrounds/pca-light-background.png')",
+        backgroundImage: "url('/backgrounds/pca-light-background.jpg')",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundAttachment: "fixed",

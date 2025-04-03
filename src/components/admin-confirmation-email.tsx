@@ -18,6 +18,11 @@ type FormData = {
     name: string
     amount: number
   }>
+  currency?: {
+    code: string
+    symbol: string
+    exchangeRate: number
+  }
 }
 
 interface AdminNotificationEmailProps {
@@ -25,11 +30,20 @@ interface AdminNotificationEmailProps {
 }
 
 export default function AdminNotificationEmail({ formData }: AdminNotificationEmailProps) {
+  // Format price using the currency from formData
   const formatPrice = (amount: number) => {
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-    }).format(amount / 100)
+    // Default to AED if no currency is provided
+    const currency = formData.currency || { code: "AED", symbol: "AED", exchangeRate: 1 }
+
+    // Convert the amount using the exchange rate
+    const convertedAmount = amount * currency.exchangeRate
+
+    // Format based on currency code
+    if (currency.code === "AED") {
+      return `${convertedAmount} ${currency.symbol}`
+    } else {
+      return `${currency.symbol}${convertedAmount}`
+    }
   }
 
   return (
@@ -127,7 +141,7 @@ export default function AdminNotificationEmail({ formData }: AdminNotificationEm
 
           <Text style={paragraph}>Please contact this customer soon to schedule their call.</Text>
 
-          <Text style={footer}>© {new Date().getFullYear()} Perception UAE. All rights reserved.</Text>
+          <Text style={footer}>© {new Date().getFullYear()} Perception Creative Agency. All rights reserved.</Text>
         </Container>
       </Body>
     </Html>
@@ -136,9 +150,10 @@ export default function AdminNotificationEmail({ formData }: AdminNotificationEm
 
 // Styles
 const main = {
-  backgroundColor: "#ffffff",
+  backgroundColor: "#01131F",
   fontFamily:
     '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
+  color: "#fffae5",
 }
 
 const container = {
@@ -148,11 +163,12 @@ const container = {
 }
 
 const heading = {
-  fontSize: "24px",
+  fontSize: "28px",
   letterSpacing: "-0.5px",
   lineHeight: "1.3",
-  fontWeight: "400",
-  color: "#484848",
+  fontWeight: "700",
+  color: "#fffae5",
+  textAlign: "center" as const,
   padding: "17px 0 0",
 }
 
@@ -160,13 +176,15 @@ const paragraph = {
   margin: "0 0 15px",
   fontSize: "16px",
   lineHeight: "1.5",
-  color: "#484848",
+  color: "#fffae5",
+  textAlign: "center" as const,
 }
 
 const bookingDetails = {
   padding: "24px",
-  backgroundColor: "#f9f9f9",
-  borderRadius: "4px",
+  backgroundColor: "#01131F",
+  border: "1px solid #fffae520",
+  borderRadius: "8px",
   marginBottom: "24px",
 }
 
@@ -174,9 +192,10 @@ const subheading = {
   fontSize: "20px",
   fontWeight: "600",
   lineHeight: "1.3",
-  color: "#484848",
+  color: "#fffae5",
   marginTop: "0",
   marginBottom: "16px",
+  textAlign: "center" as const,
 }
 
 const row = {
@@ -186,12 +205,12 @@ const row = {
 const labelColumn = {
   width: "40%",
   fontWeight: "500",
-  color: "#484848",
+  color: "#fffae5",
 }
 
 const valueColumn = {
   width: "60%",
-  color: "#484848",
+  color: "#fffae5",
 }
 
 const serviceRow = {
@@ -201,13 +220,13 @@ const serviceRow = {
 
 const serviceNameColumn = {
   width: "70%",
-  color: "#484848",
+  color: "#fffae5",
 }
 
 const servicePriceColumn = {
   width: "30%",
   textAlign: "right" as const,
-  color: "#484848",
+  color: "#fffae5",
 }
 
 const discountRow = {
@@ -222,7 +241,7 @@ const discountPriceColumn = {
 }
 
 const divider = {
-  borderColor: "#e6ebf1",
+  borderColor: "#fffae520",
   margin: "16px 0",
 }
 
@@ -234,19 +253,20 @@ const totalRow = {
 const totalLabelColumn = {
   width: "40%",
   fontWeight: "600",
-  color: "#484848",
+  color: "#fffae5",
 }
 
 const totalValueColumn = {
   width: "60%",
   fontWeight: "600",
-  color: "#484848",
+  color: "#B96944",
+  textAlign: "right" as const,
 }
 
 const footer = {
   fontSize: "13px",
   lineHeight: "1.5",
-  color: "#9ca299",
+  color: "#fffae5",
   marginTop: "48px",
   textAlign: "center" as const,
 }
