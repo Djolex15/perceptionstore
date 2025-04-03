@@ -264,28 +264,30 @@ export default function LandingPage() {
             </section>
 
             {/* Divider */}
-            <div className="flex space-x-3 md:space-x-4">
-              <img
-                src="/stars/pca-star-light.png"
-                alt="Divider star"
-                width={20}
-                height={20}
-                className="w-5 h-5 md:w-6 md:h-6"
-              />
-              <img
-                src="/stars/pca-star-light.png"
-                alt="Divider star"
-                width={20}
-                height={20}
-                className="w-5 h-5 md:w-6 md:h-6"
-              />
-              <img
-                src="/stars/pca-star-light.png"
-                alt="Divider star"
-                width={20}
-                height={20}
-                className="w-5 h-5 md:w-6 md:h-6"
-              />
+            <div className="w-full md:w-4/5 mx-auto flex justify-center py-4 md:py-8">
+              <div className="flex space-x-3 md:space-x-4">
+                <Image
+                  src="/stars/pca-star-light.png"
+                  alt="Divider star"
+                  width={20}
+                  height={20}
+                  className="w-5 h-5 md:w-6 md:h-6"
+                />
+                <Image
+                  src="/stars/pca-star-light.png"
+                  alt="Divider star"
+                  width={20}
+                  height={20}
+                  className="w-5 h-5 md:w-6 md:h-6"
+                />
+                <Image
+                  src="/stars/pca-star-light.png"
+                  alt="Divider star"
+                  width={20}
+                  height={20}
+                  className="w-5 h-5 md:w-6 md:h-6"
+                />
+              </div>
             </div>
 
             {/* Results Section */}
@@ -322,28 +324,30 @@ export default function LandingPage() {
             </section>
 
             {/* Divider */}
-            <div className="flex space-x-3 md:space-x-4">
-              <img
-                src="/stars/pca-star-light.png"
-                alt="Divider star"
-                width={20}
-                height={20}
-                className="w-5 h-5 md:w-6 md:h-6"
-              />
-              <img
-                src="/stars/pca-star-light.png"
-                alt="Divider star"
-                width={20}
-                height={20}
-                className="w-5 h-5 md:w-6 md:h-6"
-              />
-              <img
-                src="/stars/pca-star-light.png"
-                alt="Divider star"
-                width={20}
-                height={20}
-                className="w-5 h-5 md:w-6 md:h-6"
-              />
+            <div className="w-full md:w-4/5 mx-auto flex justify-center py-4 md:py-8">
+              <div className="flex space-x-3 md:space-x-4">
+                <Image
+                  src="/stars/pca-star-light.png"
+                  alt="Divider star"
+                  width={20}
+                  height={20}
+                  className="w-5 h-5 md:w-6 md:h-6"
+                />
+                <Image
+                  src="/stars/pca-star-light.png"
+                  alt="Divider star"
+                  width={20}
+                  height={20}
+                  className="w-5 h-5 md:w-6 md:h-6"
+                />
+                <Image
+                  src="/stars/pca-star-light.png"
+                  alt="Divider star"
+                  width={20}
+                  height={20}
+                  className="w-5 h-5 md:w-6 md:h-6"
+                />
+              </div>
             </div>
 
             {/* References Section */}
@@ -368,7 +372,7 @@ export default function LandingPage() {
             <div className="w-full md:w-4/5 mx-auto flex justify-center py-4 md:py-8">
               <div className="flex items-center justify-center">
                 <Image
-                  src="/stars/pca-star-light.png?height=24&width=24"
+                  src="/stars/pca-star-light.png"
                   alt="Divider star"
                   width={20}
                   height={20}

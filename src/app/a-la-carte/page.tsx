@@ -8,7 +8,6 @@ import Header from "../../components/header"
 import Footer from "../../components/footer"
 import PriceCalculator from "../../components/price-calculator"
 import PriceDisplay from "@/components/price-display"
-import { useCurrency } from "@/lib/currency-context"
 
 // Define service types
 type ServiceOption = {
@@ -37,7 +36,6 @@ export default function ALaCartePage() {
   const router = useRouter()
   const bookCallRef = useRef<HTMLDivElement | null>(null)
   const footerRef = useRef<HTMLDivElement>(null)
-  const { convertPrice } = useCurrency()
 
   // State for selected services and total price
   const [categories, setCategories] = useState<ServiceCategory[]>([
@@ -674,7 +672,7 @@ export default function ALaCartePage() {
             {discounts.length > 0 && (
               <div className="bg-[#B96944]/10 p-4 rounded-lg mt-4 mb-6">
                 <h3 className="font-bold text-lg mb-2">Quantity Discounts Applied!</h3>
-                <p className="mb-2">You're saving money by ordering multiple services:</p>
+                <p className="mb-2">You&apos;re saving money by ordering multiple services:</p>
                 <ul className="list-disc pl-5 space-y-1">
                   {discounts.map((discount) => (
                     <li key={discount.id}>
