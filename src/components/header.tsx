@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
 import Image from "next/image"
+import CurrencySelector from "./currency-selector"
 
 export default function Header({ darkMode }: { darkMode?: boolean }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -55,7 +56,6 @@ export default function Header({ darkMode }: { darkMode?: boolean }) {
           {/* Mobile view */}
           {isMobile && (
             <div className="w-full flex items-center justify-between">
-              <div className="flex items-center">
               <Link href="/" className="absolute left-1/2 transform -translate-x-1/2">
                 <Image
                   src={logoSrc || "/placeholder.svg"}
@@ -65,7 +65,6 @@ export default function Header({ darkMode }: { darkMode?: boolean }) {
                   className="transition-transform duration-300 hover:scale-110"
                 />
               </Link>
-              </div>
               <button
                 onClick={() => setIsMenuOpen(true)}
                 className={`w-10 h-10 flex items-center justify-center ${textColor} ${hoverColor} transition-colors duration-300`}
@@ -118,6 +117,7 @@ export default function Header({ darkMode }: { darkMode?: boolean }) {
                 >
                   BOOK A CALL
                 </Link>
+                <CurrencySelector darkMode={darkMode} />
               </nav>
             </>
           )}
@@ -164,10 +164,15 @@ export default function Header({ darkMode }: { darkMode?: boolean }) {
               >
                 BOOK A CALL
               </Link>
+              <div className="mt-4">
+                <CurrencySelector darkMode={darkMode} />
+              </div>
             </div>
 
             <div className="p-6 text-center">
-              <a href="mailto:INFO@PERCEPTIONUAE.COM" className={`text-sm ${textColor} opacity-70`}>INFO@PERCEPTIONUAE.COM</a>
+              <a href="mailto:INFO@PERCEPTIONUAE.COM" className={`text-sm ${textColor} opacity-70`}>
+                INFO@PERCEPTIONUAE.COM
+              </a>
             </div>
           </div>
         </div>

@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import PriceDisplay from "@/components/price-display"
 
 // Define types for our form data
 type FormData = {
@@ -155,15 +156,6 @@ export default function BookACallPage() {
     }, 1500)
   }
 
-  // Calculate price based on service type and payment option
-  const getPrice = () => {
-    if (formData.serviceType === "startup-growth") {
-      return formData.paymentOption === "one-time" ? "5,999€" : "3 x 2,199€"
-    } else {
-      return formData.totalPrice ? `${formData.totalPrice}€` : "Custom pricing"
-    }
-  }
-
   return (
     <div
       className="min-h-screen bg-[#fffae5] text-[#01131F] relative"
@@ -268,7 +260,7 @@ export default function BookACallPage() {
                             className="w-4 h-4 text-[#B96944] focus:ring-[#B96944]"
                           />
                           <Label htmlFor="one-time" className="cursor-pointer">
-                            One-time Payment (5,999€)
+                            One-time Payment (<PriceDisplay amount={5999} />)
                           </Label>
                         </div>
 
@@ -283,7 +275,7 @@ export default function BookACallPage() {
                             className="w-4 h-4 text-[#B96944] focus:ring-[#B96944]"
                           />
                           <Label htmlFor="installments" className="cursor-pointer">
-                            Installments (3 x 2,199€)
+                            Installments (<PriceDisplay amount={5999} isInstallment={true} installmentCount={3} />)
                           </Label>
                         </div>
                       </div>
@@ -307,7 +299,9 @@ export default function BookACallPage() {
                     {formData.serviceType === "a-la-carte" && formData.selectedServices && (
                       <div className="ml-6 pl-4 border-l-2 border-[#01131F]/10">
                         <div className="flex items-center justify-between">
-                          <p className="font-medium">Total: {formData.totalPrice}€</p>
+                          <p className="font-medium">
+                            Total: <PriceDisplay amount={formData.totalPrice || 0} />
+                          </p>
 
                           <Popover open={showServiceDetails} onOpenChange={setShowServiceDetails}>
                             <PopoverTrigger asChild>
@@ -324,7 +318,9 @@ export default function BookACallPage() {
                                     <span className={service.name.startsWith("-") ? "pl-2 text-[#01131F]/70" : ""}>
                                       {service.name}
                                     </span>
-                                    <span>{service.price}€</span>
+                                    <span>
+                                      <PriceDisplay amount={service.price} />
+                                    </span>
                                   </div>
                                 ))}
                               </div>
@@ -353,7 +349,17 @@ export default function BookACallPage() {
                   )}
                   <div className="flex justify-between font-bold mt-2 pt-2 border-t border-[#fffae5]/20">
                     <span>Total:</span>
-                    <span>{getPrice()}</span>
+                    <span>
+                      {formData.serviceType === "startup-growth" ? (
+                        formData.paymentOption === "one-time" ? (
+                          <PriceDisplay amount={5999} />
+                        ) : (
+                          <PriceDisplay amount={5999} isInstallment={true} installmentCount={3} />
+                        )
+                      ) : (
+                        <PriceDisplay amount={formData.totalPrice || 0} />
+                      )}
+                    </span>
                   </div>
                 </div>
 

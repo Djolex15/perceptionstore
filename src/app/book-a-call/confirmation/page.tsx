@@ -7,6 +7,7 @@ import { CheckCircle } from "lucide-react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Button } from "@/components/ui/button"
+import PriceDisplay from "@/components/price-display"
 
 type FormData = {
   firstName: string
@@ -39,17 +40,6 @@ export default function ConfirmationPage() {
       }
     }
   }, [])
-
-  // Format price based on service type and payment option
-  const getPrice = () => {
-    if (!formData) return ""
-
-    if (formData.serviceType === "startup-growth") {
-      return formData.paymentOption === "one-time" ? "5,999€" : "3 x 2,199€"
-    } else {
-      return formData.totalPrice ? `${formData.totalPrice}€` : "Custom pricing"
-    }
-  }
 
   return (
     <div
@@ -116,27 +106,31 @@ export default function ConfirmationPage() {
 
                     <div>
                       <p className="font-semibold">Total Price:</p>
-                      <p>{getPrice()}</p>
+                      <p>
+                        {formData.serviceType === "startup-growth" ? (
+                          formData.paymentOption === "one-time" ? (
+                            <PriceDisplay amount={5999} />
+                          ) : (
+                            <PriceDisplay amount={5999} isInstallment={true} installmentCount={3} />
+                          )
+                        ) : (
+                          <PriceDisplay amount={formData.totalPrice || 0} />
+                        )}
+                      </p>
                     </div>
                   </div>
                 </div>
               )}
 
               <p className="mb-6">
-                We&apos;ll be in touch shortly to schedule your call. In the meantime, check your email for a confirmation
-                message.
+                We&apos;ll be in touch shortly to schedule your call. In the meantime, check your email for a
+                confirmation message.
               </p>
 
               <div className="flex flex-col sm:flex-row justify-center gap-4">
                 <Link href="/">
                   <Button variant="outline" className="w-full sm:w-auto">
                     Return to Home
-                  </Button>
-                </Link>
-
-                <Link href="/contact">
-                  <Button className="w-full sm:w-auto bg-[#B96944] hover:bg-[#B96944]/90 text-[#fffae5]">
-                    Contact Support
                   </Button>
                 </Link>
               </div>

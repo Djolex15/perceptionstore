@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation"
 import Cookies from "js-cookie"
 import Header from "../../components/header"
 import Footer from "../../components/footer"
+import PriceDisplay from "@/components/price-display"
 
 export default function StartupGrowthPage() {
   const router = useRouter()
@@ -44,7 +45,7 @@ export default function StartupGrowthPage() {
     <div
       className="min-h-screen bg-[#fffae5] text-[#01131F] relative"
       style={{
-        backgroundImage: "url('/backgrounds/pca-light-background.png')",
+        backgroundImage: "url('/backgrounds/pca-light-background.jpg')",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundAttachment: "fixed",
@@ -185,7 +186,9 @@ export default function StartupGrowthPage() {
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {/* One-time Payment */}
               <div className="bg-[#01131F] text-[#fffae5] p-8 rounded-3xl text-center flex flex-col items-center shadow-lg hover:shadow-xl hover:z-10 transition-shadow transform hover:scale-105 hover:rotate-1">
-                <h3 className="text-4xl md:text-5xl font-bold mb-2">5,999€</h3>
+                <h3 className="text-4xl md:text-5xl font-bold mb-2">
+                  <PriceDisplay amount={5999} />
+                </h3>
                 <p className="text-xl uppercase mb-6">ONE TIME PAYMENT</p>
                 <button
                   onClick={handleBookOneTime}
@@ -197,7 +200,9 @@ export default function StartupGrowthPage() {
 
               {/* Installments */}
               <div className="bg-[#01131F] text-[#fffae5] p-8 rounded-3xl text-center flex flex-col items-center shadow-lg hover:shadow-xl hover:z-10 transition-shadow transform hover:scale-105 hover:-rotate-1">
-                <h3 className="text-4xl md:text-5xl font-bold mb-2">3 x 2,199€</h3>
+                <h3 className="text-4xl md:text-5xl font-bold mb-2">
+                  <PriceDisplay amount={5999} isInstallment={true} installmentCount={3} />
+                </h3>
                 <p className="text-xl uppercase mb-6">PAY ON INSTALLMENTS</p>
                 <button
                   onClick={handleBookInstallments}

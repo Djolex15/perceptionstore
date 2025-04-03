@@ -78,7 +78,7 @@ export function AnimatedCard({
         <div
           ref={cardRef}
           style={{
-            backgroundImage: "url('/backgrounds/pca-light-background.png')",
+            backgroundImage: "url('/backgrounds/pca-light-background.jpg')",
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
             backgroundAttachment: "fixed",

@@ -2,6 +2,7 @@ import type React from "react"
 import "./globals.css"
 import { Inter } from "next/font/google"
 import AnimatedScrollTracker from "../components/animated-scroll-tracker"
+import { CurrencyProvider } from "@/lib/currency-context"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -17,7 +18,7 @@ const metadata = {
     title: "Perception Creative Agency Store",
     description:
       "Buy yourself and your business time with expert branding, web development, and marketing strategies. Perception Creative Agency drives online growth for entrepreneurs and startups worldwide.",
-    images:[
+    images: [
       {
         url: "https://www.perceptionuae.store/open-graph/pca-open-graph.png",
         width: 1200,
@@ -25,7 +26,7 @@ const metadata = {
         alt: "Perception Creative Agency Store",
       },
     ],
-  }
+  },
 }
 
 export default function RootLayout({
@@ -40,8 +41,10 @@ export default function RootLayout({
         <meta name="description" content={metadata.description} />
       </head>
       <body className={inter.className}>
-        <AnimatedScrollTracker className="bg-[#B96944]" />
-        <div>{children}</div>
+        <CurrencyProvider>
+          <AnimatedScrollTracker className="bg-[#B96944]" />
+          <div>{children}</div>
+        </CurrencyProvider>
       </body>
     </html>
   )

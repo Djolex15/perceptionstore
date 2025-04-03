@@ -7,6 +7,8 @@ import { Plus, Check, Minus } from "lucide-react"
 import Header from "../../components/header"
 import Footer from "../../components/footer"
 import PriceCalculator from "../../components/price-calculator"
+import PriceDisplay from "@/components/price-display"
+import { useCurrency } from "@/lib/currency-context"
 
 // Define service types
 type ServiceOption = {
@@ -34,6 +36,7 @@ export default function ALaCartePage() {
   const router = useRouter()
   const bookCallRef = useRef<HTMLDivElement | null>(null)
   const footerRef = useRef<HTMLDivElement>(null)
+  const { convertPrice } = useCurrency()
 
   // State for selected services and total price
   const [categories, setCategories] = useState<ServiceCategory[]>([
@@ -379,7 +382,7 @@ export default function ALaCartePage() {
     <div
       className="min-h-screen bg-[#fffae5] text-[#01131F] relative"
       style={{
-        backgroundImage: "url('/backgrounds/pca-light-background.png')",
+        backgroundImage: "url('/backgrounds/pca-light-background.jpg')",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundAttachment: "fixed",
@@ -425,7 +428,11 @@ export default function ALaCartePage() {
 
                       <div className="ml-8 text-sm md:text-base">
                         <p>{option.description}</p>
-                        {option.price > 0 && <p className="font-bold mt-1">(STARTING AT {option.price}€)</p>}
+                        {option.price > 0 && (
+                          <p className="font-bold mt-1">
+                            (STARTING AT <PriceDisplay amount={option.price} />)
+                          </p>
+                        )}
                       </div>
 
                       {/* Choices section */}
@@ -470,7 +477,7 @@ export default function ALaCartePage() {
                                         <Plus size={14} />
                                       </button>
                                       <span className="font-semibold ml-2 w-16 text-right">
-                                        {choice.price * (choice.quantity || 0)}€
+                                        <PriceDisplay amount={choice.price * (choice.quantity || 0)} />
                                       </span>
                                     </div>
                                   </div>
@@ -491,7 +498,9 @@ export default function ALaCartePage() {
                                     >
                                       {choice.name}
                                     </span>
-                                    <span className="font-semibold">{choice.price}€</span>
+                                    <span className="font-semibold">
+                                      <PriceDisplay amount={choice.price} />
+                                    </span>
                                   </>
                                 )}
                               </div>
@@ -515,16 +524,13 @@ export default function ALaCartePage() {
             <div className="mb-12">
               <h2 className="text-2xl md:text-3xl font-bold text-[#01131F] mb-6">WHY IT WORKS:</h2>
               <p className="text-lg md:text-xl">
-                IF YOU&apos;RE A BUSINESSES OWNER WITH SPECIFIC NEEDS & BUDGETS, WE MADE IT EASY FOR YOU TO PICK & CHOOSE
-                WHAT YOU WANT WITHOUT COMMITTING TO BIG PACKAGE
+                IF YOU&apos;RE A BUSINESSES OWNER WITH SPECIFIC NEEDS & BUDGETS, WE MADE IT EASY FOR YOU TO PICK &
+                CHOOSE WHAT YOU WANT WITHOUT COMMITTING TO BIG PACKAGE
               </p>
             </div>
 
             {/* Price Calculator Component - Placed right after Why It Works section */}
-            <PriceCalculator
-              totalPrice={totalPrice}
-              selectedServices={selectedServices}
-            />
+            <PriceCalculator totalPrice={totalPrice} selectedServices={selectedServices} />
 
             {/* Book a Call Button - Add ref here */}
             <div ref={bookCallRef} className="flex flex-col items-center mt-6 mb-6 space-y-6">
