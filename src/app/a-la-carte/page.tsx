@@ -8,7 +8,6 @@ import Header from "../../components/header"
 import Footer from "../../components/footer"
 import PriceCalculator from "../../components/price-calculator"
 import PriceDisplay from "@/components/price-display"
-import { useCurrency } from "@/lib/currency-context"
 
 // Define service types
 type ServiceOption = {
@@ -36,7 +35,6 @@ export default function ALaCartePage() {
   const router = useRouter()
   const bookCallRef = useRef<HTMLDivElement | null>(null)
   const footerRef = useRef<HTMLDivElement>(null)
-  const { convertPrice } = useCurrency()
 
   // State for selected services and total price
   const [categories, setCategories] = useState<ServiceCategory[]>([
@@ -50,9 +48,7 @@ export default function ALaCartePage() {
           price: 1000,
           description: "5 VIDEOS (15-60 SECONDS EACH) TAILORED FOR TIKTOK, INSTAGRAM, OR LINKEDIN",
           selected: false,
-          choices: [
-            { id: "extra-video", name: "Additional Video", price: 200, selected: false, quantity: 0 },
-          ],
+          choices: [{ id: "extra-video", name: "Additional Video", price: 200, selected: false, quantity: 0 }],
         },
         {
           id: "promo",
@@ -68,7 +64,8 @@ export default function ALaCartePage() {
           id: "social-strategy",
           name: "SOCIAL MEDIA STRATEGY",
           price: 500,
-          description: "CUSTOMIZED 3-MONTH STRATEGY FOR 2 PLATFORMS OF YOUR CHOICE (INSTAGRAM, TIKTOK, LINKEDIN, OR FACEBOOK)",
+          description:
+            "CUSTOMIZED 3-MONTH STRATEGY FOR 2 PLATFORMS OF YOUR CHOICE (INSTAGRAM, TIKTOK, LINKEDIN, OR FACEBOOK)",
           selected: false,
         },
       ],
@@ -81,7 +78,8 @@ export default function ALaCartePage() {
           id: "ecommerce",
           name: "E-COMMERCE WEBSITE",
           price: 3500,
-          description: "FULLY FUNCTIONAL ONLINE STORE WITH PRODUCT MANAGEMENT, PAYMENT PROCESSING, AND SHIPPING INTEGRATION",
+          description:
+            "FULLY FUNCTIONAL ONLINE STORE WITH PRODUCT MANAGEMENT, PAYMENT PROCESSING, AND SHIPPING INTEGRATION",
           selected: false,
           choices: [
             { id: "ai-chatbot", name: "AI Chatbot", price: 500, selected: false },
@@ -171,14 +169,16 @@ export default function ALaCartePage() {
           id: "social-ads",
           name: "SOCIAL MEDIA ADS",
           price: 500,
-          description: "AD STRATEGY, SETUP, AND MANAGEMENT FOR PLATFORMS (FACEBOOK, INSTAGRAM, AND LINKEDIN) - INCLUDES 3 CAMPAIGNS/MONTH & AD CREATIVE",
+          description:
+            "AD STRATEGY, SETUP, AND MANAGEMENT FOR PLATFORMS (FACEBOOK, INSTAGRAM, AND LINKEDIN) - INCLUDES 3 CAMPAIGNS/MONTH & AD CREATIVE",
           selected: false,
         },
         {
           id: "google-ads",
           name: "GOOGLE ADS",
           price: 600,
-          description: "SEARCH, DISPLAY, OR SHOPPING AD CAMPAIGNS - INCLUDES KEYWORD RESEARCH, CAMPAIGN CREATION & MONTHLY OPTIMIZATION",
+          description:
+            "SEARCH, DISPLAY, OR SHOPPING AD CAMPAIGNS - INCLUDES KEYWORD RESEARCH, CAMPAIGN CREATION & MONTHLY OPTIMIZATION",
           selected: false,
         },
         {
@@ -190,17 +190,31 @@ export default function ALaCartePage() {
         },
       ],
     },
-  ])  
+  ])
 
   const [totalPrice, setTotalPrice] = useState(0)
+  const [discounts, setDiscounts] = useState<{ id: string; name: string; amount: number }[]>([])
 
   // Calculate total price whenever selections change
   useEffect(() => {
     let total = 0
+    const newDiscounts: { id: string; name: string; amount: number }[] = []
+
+    // Group services by their base type for discount calculation
+    const serviceQuantities: Record<string, { count: number; totalPrice: number; name: string }> = {}
+
     categories.forEach((category) => {
       category.options.forEach((option) => {
         if (option.selected) {
           total += option.price
+
+          // Track quantities for discount calculation
+          const baseServiceId = option.id.split("-")[0] // Get base service type
+          if (!serviceQuantities[baseServiceId]) {
+            serviceQuantities[baseServiceId] = { count: 0, totalPrice: 0, name: option.name }
+          }
+          serviceQuantities[baseServiceId].count += 1
+          serviceQuantities[baseServiceId].totalPrice += option.price
 
           // Add prices from selected choices
           if (option.choices) {
@@ -218,6 +232,27 @@ export default function ALaCartePage() {
         }
       })
     })
+
+    // Calculate discounts for multiple services of the same type
+    Object.entries(serviceQuantities).forEach(([id, data]) => {
+      if (data.count >= 2) {
+        // 10% discount for 2 or more of the same service type
+        const discountRate = 0.1
+        const discountAmount = Math.round(data.totalPrice * discountRate)
+
+        if (discountAmount > 0) {
+          newDiscounts.push({
+            id: `discount-${id}`,
+            name: `Quantity Discount (${data.count}x ${data.name})`,
+            amount: discountAmount,
+          })
+
+          total -= discountAmount
+        }
+      }
+    })
+
+    setDiscounts(newDiscounts)
     setTotalPrice(total)
   }, [categories])
 
@@ -309,39 +344,47 @@ export default function ALaCartePage() {
   }
 
   // Get selected services for display in calculator
-  const selectedServices = categories.flatMap((category) =>
-    category.options
-      .filter((option) => option.selected)
-      .flatMap((option) => {
-        const mainService = {
-          id: option.id,
-          name: option.name,
-          price: option.price,
-        }
+  const selectedServices = [
+    ...categories.flatMap((category) =>
+      category.options
+        .filter((option) => option.selected)
+        .flatMap((option) => {
+          const mainService = {
+            id: option.id,
+            name: option.name,
+            price: option.price,
+          }
 
-        const choiceServices = option.choices
-          ? option.choices
-              .filter((choice) => choice.selected)
-              .map((choice) => {
-                // If the choice has a quantity, include it in the name and multiply the price
-                if (choice.quantity !== undefined && choice.quantity > 0) {
+          const choiceServices = option.choices
+            ? option.choices
+                .filter((choice) => choice.selected)
+                .map((choice) => {
+                  // If the choice has a quantity, include it in the name and multiply the price
+                  if (choice.quantity !== undefined && choice.quantity > 0) {
+                    return {
+                      id: `${option.id}-${choice.id}`,
+                      name: `- ${choice.name} (${choice.quantity})`,
+                      price: choice.price * choice.quantity,
+                    }
+                  }
                   return {
                     id: `${option.id}-${choice.id}`,
-                    name: `- ${choice.name} (${choice.quantity})`,
-                    price: choice.price * choice.quantity,
+                    name: `- ${choice.name}`,
+                    price: choice.price,
                   }
-                }
-                return {
-                  id: `${option.id}-${choice.id}`,
-                  name: `- ${choice.name}`,
-                  price: choice.price,
-                }
-              })
-          : []
+                })
+            : []
 
-        return [mainService, ...choiceServices]
-      }),
-  )
+          return [mainService, ...choiceServices]
+        }),
+    ),
+    // Add discounts as negative price items
+    ...discounts.map((discount) => ({
+      id: discount.id,
+      name: discount.name,
+      price: -discount.amount,
+    })),
+  ]
 
   // Handle booking a call with selected services
   const handleBookCall = () => {
@@ -351,6 +394,7 @@ export default function ALaCartePage() {
       JSON.stringify({
         services: selectedServices,
         totalPrice: totalPrice,
+        discounts: discounts,
       }),
       { expires: 7 },
     )
@@ -362,6 +406,7 @@ export default function ALaCartePage() {
         serviceType: "a-la-carte",
         totalPrice: totalPrice,
         selectedServices: selectedServices,
+        discounts: discounts,
       }),
       { expires: 7 },
     )
@@ -522,7 +567,25 @@ export default function ALaCartePage() {
             </div>
 
             {/* Price Calculator Component - Placed right after Why It Works section */}
-            <PriceCalculator totalPrice={totalPrice} selectedServices={selectedServices} />
+            <PriceCalculator
+              totalPrice={totalPrice}
+              selectedServices={selectedServices}
+              discounts={discounts.length > 0}
+            />
+
+            {discounts.length > 0 && (
+              <div className="bg-[#B96944]/10 p-4 rounded-lg mt-4 mb-6">
+                <h3 className="font-bold text-lg mb-2">Quantity Discounts Applied!</h3>
+                <p className="mb-2">You&apos;re saving money by ordering multiple services:</p>
+                <ul className="list-disc pl-5 space-y-1">
+                  {discounts.map((discount) => (
+                    <li key={discount.id}>
+                      {discount.name}: <PriceDisplay amount={discount.amount} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             {/* Book a Call Button - Add ref here */}
             <div ref={bookCallRef} className="flex flex-col items-center mt-6 mb-6 space-y-6">

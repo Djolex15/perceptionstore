@@ -1,6 +1,4 @@
 "use client"
-
-import type React from "react"
 import { useState, useEffect, useRef } from "react"
 import { Info } from "lucide-react"
 
@@ -13,12 +11,10 @@ type SelectedService = {
 type PriceCalculatorProps = {
   totalPrice: number
   selectedServices: SelectedService[]
+  discounts?: boolean
 }
 
-export default function PriceCalculator({
-  totalPrice,
-  selectedServices,
-}: PriceCalculatorProps) {
+export default function PriceCalculator({ totalPrice, selectedServices, discounts }: PriceCalculatorProps) {
   const calculatorRef = useRef<HTMLDivElement>(null)
   const calculatorContainerRef = useRef<HTMLDivElement>(null)
   const [calculatorHeight, setCalculatorHeight] = useState(0)
@@ -29,7 +25,7 @@ export default function PriceCalculator({
 
   // The exact position where the calculator should become static (91.8552036% from the top)
   const STATIC_POSITION_FROM_TOP = 90.8552036
-  
+
   // Measure the calculator height for positioning
   useEffect(() => {
     if (calculatorRef.current) {
@@ -85,12 +81,15 @@ export default function PriceCalculator({
       className="mx-auto w-full md:w-4/5 max-w-4xl transition-all duration-200"
       style={{ width: `${widthScale * 100}%` }}
     >
-      <div className="bg-[#01131F] text-[#fffae5] py-3 px-4 md:px-6 rounded-full shadow-lg flex flex-col md:flex-row justify-between items-center">
+      <div
+        className={`bg-[#01131F] text-[#fffae5] py-3 px-4 md:px-6 rounded-full shadow-lg flex flex-col md:flex-row justify-between items-center ${discounts ? "border-2 border-[#B96944]" : ""}`}
+      >
         <div className="flex items-center">
           <div>
             <h3 className="text-base md:text-lg font-bold">
               TOTAL: <span className="text-xl md:text-2xl">{totalPrice}€</span>
             </h3>
+            {discounts && <span className="text-xs text-[#B96944] font-semibold">✨ Quantity discounts applied!</span>}
           </div>
 
           {selectedServices.length > 0 && (
@@ -155,3 +154,4 @@ export default function PriceCalculator({
     </div>
   )
 }
+

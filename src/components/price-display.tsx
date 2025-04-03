@@ -17,7 +17,7 @@ export default function PriceDisplay({
   isInstallment = false,
   installmentCount = 3,
 }: PriceDisplayProps) {
-  const { formatPrice, currency, convertPrice } = useCurrency()
+  const { formatPrice, currency } = useCurrency()
 
   // Format large numbers with M suffix for millions
   const formatLargeNumber = (value: number | string): string => {

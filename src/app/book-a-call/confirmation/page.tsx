@@ -22,6 +22,11 @@ type FormData = {
     price: number
   }>
   totalPrice?: number
+  discounts?: Array<{
+    id: string
+    name: string
+    amount: number
+  }>
 }
 
 export default function ConfirmationPage() {
@@ -101,6 +106,40 @@ export default function ConfirmationPage() {
                       <div>
                         <p className="font-semibold">Payment Option:</p>
                         <p>{formData.paymentOption === "one-time" ? "One-time Payment" : "Installments"}</p>
+                      </div>
+                    )}
+
+                    {formData.serviceType === "a-la-carte" && formData.selectedServices && (
+                      <div>
+                        <p className="font-semibold">Selected Services:</p>
+                        <div className="pl-4 mt-1 space-y-1">
+                          {formData.selectedServices.map((service) => (
+                            <div key={service.id} className="flex justify-between">
+                              <span className={service.name.startsWith("-") ? "pl-2 text-[#01131F]/70" : ""}>
+                                {service.name}
+                              </span>
+                              <span>
+                                <PriceDisplay amount={service.price} />
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {formData.discounts && formData.discounts.length > 0 && (
+                      <div>
+                        <p className="font-semibold text-[#B96944]">Discounts Applied:</p>
+                        <div className="pl-4 mt-1 space-y-1">
+                          {formData.discounts.map((discount) => (
+                            <div key={discount.id} className="flex justify-between">
+                              <span>{discount.name}</span>
+                              <span className="text-[#B96944]">
+                                <PriceDisplay amount={discount.amount} />
+                              </span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     )}
 
