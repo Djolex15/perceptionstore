@@ -8,6 +8,7 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import PriceDisplay from "@/components/price-display"
+import { sendBookingConfirmationEmail } from "./actions"
 
 type FormData = {
   firstName: string
@@ -31,6 +32,8 @@ type FormData = {
 
 export default function ConfirmationPage() {
   const [formData, setFormData] = useState<FormData | null>(null)
+  const [emailSent, setEmailSent] = useState(false)
+  const [emailError, setEmailError] = useState<string | null>(null)
 
   useEffect(() => {
     // Load form data from cookies
@@ -45,6 +48,29 @@ export default function ConfirmationPage() {
       }
     }
   }, [])
+
+  useEffect(() => {
+    // Send confirmation email when form data is loaded
+    const sendEmail = async () => {
+      if (formData && !emailSent) {
+        try {
+          const result = await sendBookingConfirmationEmail(formData)
+          if (result.success) {
+            setEmailSent(true)
+            console.log("Email sent successfully")
+          } else {
+            setEmailError("Failed to send confirmation email. We'll still contact you shortly.")
+            console.error("Email sending failed:", result.error)
+          }
+        } catch (error) {
+          setEmailError("Failed to send confirmation email. We'll still contact you shortly.")
+          console.error("Error sending email:", error)
+        }
+      }
+    }
+
+    sendEmail()
+  }, [formData, emailSent])
 
   return (
     <div
@@ -162,8 +188,14 @@ export default function ConfirmationPage() {
               )}
 
               <p className="mb-6">
-                We&apos;ll be in touch shortly to schedule your call. In the meantime, check your email for a
-                confirmation message.
+                We&apos;ll be in touch shortly to schedule your call.
+                {emailSent ? (
+                  " A confirmation email has been sent to your inbox."
+                ) : emailError ? (
+                  <span className="text-amber-600"> {emailError}</span>
+                ) : (
+                  " Sending confirmation email..."
+                )}
               </p>
 
               <div className="flex flex-col sm:flex-row justify-center gap-4">
