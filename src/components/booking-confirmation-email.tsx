@@ -41,7 +41,7 @@ export default function BookingConfirmationEmail({ formData }: BookingConfirmati
           <Heading style={heading}>Your Booking is Confirmed!</Heading>
 
           <Text style={paragraph}>
-            Thank you for booking a call with us, {formData.firstName}! We're excited to speak with you soon.
+            Thank you for booking a call with us, {formData.firstName}! We&apos;re excited to speak with you soon.
           </Text>
 
           <Section style={bookingDetails}>
@@ -123,7 +123,7 @@ export default function BookingConfirmationEmail({ formData }: BookingConfirmati
           </Section>
 
           <Text style={paragraph}>
-            We'll be in touch shortly to schedule your call. If you have any questions in the meantime, please don't
+            We&apos;ll be in touch shortly to schedule your call. If you have any questions in the meantime, please don&apos;t
             hesitate to contact us at info@perceptionuae.com.
           </Text>
 
