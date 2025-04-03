@@ -4,7 +4,7 @@ import type React from "react"
 
 import { useState, useEffect } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
-import { Info } from "lucide-react"
+import { Info, Link } from "lucide-react"
 import Cookies from "js-cookie"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
@@ -373,7 +373,7 @@ export default function BookACallPage() {
                 </Button>
 
                 <p className="text-center text-sm text-[#01131F]/70">
-                  By booking a call, you agree to our Terms of Service and Privacy Policy.
+                  By booking a call, you agree to our <a href="https://www.perceptionuae.com/privacy-policy" className="text-[#01131F]/80 hover:text-[#B96944] transition-colors duration-300 link-underline">Privacy Policy</a>.
                 </p>
               </form>
             </div>
