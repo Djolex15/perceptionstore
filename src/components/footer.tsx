@@ -45,7 +45,7 @@ export default function Footer({ darkMode }: { darkMode?: boolean }) {
         >
           <Link href="https://www.instagram.com/perceptionuae/" target="_blank" className={`${hoverColor} transition-transform duration-300 hover:scale-110`}>
             <Image
-              src={`/social-media/instagram${socialIconSrc}?height=36&width=36`}
+              src={`/social-media/instagram${socialIconSrc}`}
               alt="Instagram"
               width={36}
               height={36}
@@ -54,7 +54,7 @@ export default function Footer({ darkMode }: { darkMode?: boolean }) {
           </Link>
           <Link href="https://wa.me/+971521455129" target="_blank" className={`${hoverColor} transition-transform duration-300 hover:scale-110`}>
             <Image
-              src={`/social-media/whatsup${socialIconSrc}?height=36&width=36`}
+              src={`/social-media/whatsup${socialIconSrc}`}
               alt="WhatsApp"
               width={36}
               height={36}
@@ -63,7 +63,7 @@ export default function Footer({ darkMode }: { darkMode?: boolean }) {
           </Link>
           <Link href="https://www.linkedin.com/in/perception-ca-6000172a4/" target="_blank" className={`${hoverColor} transition-transform duration-300 hover:scale-110`}>
             <Image
-              src={`/social-media/linkedin${socialIconSrc}?height=36&width=36`}
+              src={`/social-media/linkedin${socialIconSrc}`}
               alt="LinkedIn"
               width={36}
               height={36}
