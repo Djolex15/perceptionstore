@@ -218,7 +218,7 @@ export default function StartupGrowthPage() {
           <div className="w-full md:w-4/5 mx-auto flex justify-center py-8">
             <div className="flex items-center justify-center">
               <Image
-                src="/stars/pca-star-dark.png?height=24&width=24"
+                src="/stars/pca-star-dark.png"
                 alt="Divider star"
                 width={20}
                 height={20}
