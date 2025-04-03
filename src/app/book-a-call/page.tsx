@@ -4,7 +4,7 @@ import type React from "react"
 
 import { useState, useEffect } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
-import { Info, Link } from "lucide-react"
+import { Info } from "lucide-react"
 import Cookies from "js-cookie"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
