@@ -50,6 +50,9 @@ export default function ALaCartePage() {
           price: 1000,
           description: "5 VIDEOS (15-60 SECONDS EACH) TAILORED FOR TIKTOK, INSTAGRAM, OR LINKEDIN",
           selected: false,
+          choices: [
+            { id: "extra-video", name: "Additional Video", price: 200, selected: false, quantity: 0 },
+          ],
         },
         {
           id: "promo",
@@ -57,20 +60,16 @@ export default function ALaCartePage() {
           price: 700,
           description: "1 VIDEO (2-3 MINUTES) SHOWCASING YOUR BRAND, PRODUCT, OR SERVICE",
           selected: false,
+          choices: [
+            { id: "extra-promo", name: "Additional Promotional Video", price: 650, selected: false, quantity: 0 },
+          ],
         },
         {
           id: "social-strategy",
           name: "SOCIAL MEDIA STRATEGY",
           price: 500,
-          description:
-            "CUSTOMIZED 3-MONTH STRATEGY FOR 2 PLATFORMS OF YOUR CHOICE (INSTAGRAM, TIKTOK, LINKEDIN, OR FACEBOOK)",
+          description: "CUSTOMIZED 3-MONTH STRATEGY FOR 2 PLATFORMS OF YOUR CHOICE (INSTAGRAM, TIKTOK, LINKEDIN, OR FACEBOOK)",
           selected: false,
-          choices: [
-            { id: "instagram", name: "Instagram", price: 0, selected: false },
-            { id: "tiktok", name: "TikTok", price: 0, selected: false },
-            { id: "linkedin", name: "LinkedIn", price: 0, selected: false },
-            { id: "facebook", name: "Facebook", price: 0, selected: false },
-          ],
         },
       ],
     },
@@ -79,12 +78,30 @@ export default function ALaCartePage() {
       name: "WEB DESIGN & DEVELOPMENT:",
       options: [
         {
-          id: "refresh",
-          name: "WEBSITE REFRESH",
-          price: 900,
-          description: "REFRESHING UP TO 3 PAGES - ADDITIONAL PAGES 100€ EACH",
+          id: "ecommerce",
+          name: "E-COMMERCE WEBSITE",
+          price: 3500,
+          description: "FULLY FUNCTIONAL ONLINE STORE WITH PRODUCT MANAGEMENT, PAYMENT PROCESSING, AND SHIPPING INTEGRATION",
           selected: false,
-          choices: [{ id: "additional-pages", name: "Additional Pages", price: 100, selected: false, quantity: 0 }],
+          choices: [
+            { id: "ai-chatbot", name: "AI Chatbot", price: 500, selected: false },
+            { id: "payment-processing", name: "Payment Processing Integration", price: 400, selected: false },
+            { id: "custom-dashboard", name: "Custom Admin Dashboard", price: 600, selected: false },
+          ],
+        },
+        {
+          id: "blog",
+          name: "BLOG WEBSITE",
+          price: 2600,
+          description: "CUSTOM BLOG DESIGN WITH CMS FOR EASY CONTENT MANAGEMENT",
+          selected: false,
+        },
+        {
+          id: "business-management",
+          name: "BUSINESS MANAGEMENT PLATFORM",
+          price: 5000,
+          description: "CUSTOMIZED PLATFORM FOR CRM, BOOKING SYSTEMS, AND INTERNAL WORKFLOW MANAGEMENT",
+          selected: false,
         },
         {
           id: "custom",
@@ -93,40 +110,10 @@ export default function ALaCartePage() {
           description: "DESIGNING & DEVELOPING UP TO 8 PAGES - ADDITIONAL PAGES 180€ EACH",
           selected: false,
           choices: [
-            { id: "additional-pages-custom", name: "Additional Pages", price: 180, selected: false, quantity: 0 },
+            { id: "ai-chatbot", name: "AI Chatbot", price: 500, selected: false },
+            { id: "payment-processing", name: "Payment Processing Integration", price: 400, selected: false },
+            { id: "custom-dashboard", name: "Custom Admin Dashboard", price: 600, selected: false },
           ],
-        },
-        {
-          id: "web-addons",
-          name: "ADD-ONS",
-          price: 0,
-          description: "E-COMMERCE INTEGRATION, APPOINTMENT BOOKING & NEWSLETTER, OR MULTI-LANGUAGE SETUP",
-          selected: false,
-          choices: [
-            { id: "ecommerce", name: "E-Commerce Integration", price: 200, selected: false },
-            { id: "booking", name: "Appointment Booking & Newsletter", price: 200, selected: false },
-            { id: "multilanguage", name: "Multi-Language Setup", price: 200, selected: false },
-          ],
-        },
-      ],
-    },
-    {
-      id: "graphic",
-      name: "GRAPHIC DESIGN & BRAND IDENTITY:",
-      options: [
-        {
-          id: "logo",
-          name: "LOGO DESIGN",
-          price: 420,
-          description: "3 CONCEPTS",
-          selected: false,
-        },
-        {
-          id: "rebranding",
-          name: "COMPLETE REBRANDING PACKAGE",
-          price: 1200,
-          description: "COLOR PALETTE, TYPOGRAPHY, FASHION & APPAREL, STATIONERY, PACKAGING, AND USAGE GUIDE",
-          selected: false,
         },
       ],
     },
@@ -157,13 +144,20 @@ export default function ALaCartePage() {
           ],
         },
         {
+          id: "custom-app",
+          name: "CUSTOM BUSINESS MANAGEMENT APP",
+          price: 5000,
+          description: "CRM, BOOKING SYSTEMS, AND INTERNAL WORKFLOWS TAILORED TO YOUR BUSINESS NEEDS",
+          selected: false,
+        },
+        {
           id: "app-addons",
           name: "ADD-ONS",
           price: 0,
           description: "API INTEGRATIONS OR ONGOING MAINTENANCE",
           selected: false,
           choices: [
-            { id: "api-integration", name: "API Integration", price: 500, selected: false },
+            { id: "api-integration", name: "API Integration", price: 300, selected: false },
             { id: "maintenance", name: "Ongoing Maintenance (Monthly)", price: 300, selected: false },
           ],
         },
@@ -177,16 +171,14 @@ export default function ALaCartePage() {
           id: "social-ads",
           name: "SOCIAL MEDIA ADS",
           price: 500,
-          description:
-            "AD STRATEGY, SETUP, AND MANAGEMENT FOR PLATFORMS (FACEBOOK, INSTAGRAM, AND LINKEDIN) - INCLUDES 3 CAMPAIGNS/MONTH & AD CREATIVE",
+          description: "AD STRATEGY, SETUP, AND MANAGEMENT FOR PLATFORMS (FACEBOOK, INSTAGRAM, AND LINKEDIN) - INCLUDES 3 CAMPAIGNS/MONTH & AD CREATIVE",
           selected: false,
         },
         {
           id: "google-ads",
           name: "GOOGLE ADS",
           price: 600,
-          description:
-            "SEARCH, DISPLAY, OR SHOPPING AD CAMPAIGNS - INCLUDES KEYWORD RESEARCH, CAMPAIGN CREATION & MONTHLY OPTIMIZATION",
+          description: "SEARCH, DISPLAY, OR SHOPPING AD CAMPAIGNS - INCLUDES KEYWORD RESEARCH, CAMPAIGN CREATION & MONTHLY OPTIMIZATION",
           selected: false,
         },
         {
@@ -198,7 +190,7 @@ export default function ALaCartePage() {
         },
       ],
     },
-  ])
+  ])  
 
   const [totalPrice, setTotalPrice] = useState(0)
 
