@@ -8,6 +8,7 @@ import Header from "../../components/header"
 import Footer from "../../components/footer"
 import PriceCalculator from "../../components/price-calculator"
 import PriceDisplay from "@/components/price-display"
+import { useCurrency } from "@/lib/currency-context"
 
 // Define service types
 type ServiceOption = {
@@ -16,6 +17,7 @@ type ServiceOption = {
   price: number
   description: string
   selected: boolean
+  quantity?: number
   choices?: {
     id: string
     name: string
@@ -35,6 +37,7 @@ export default function ALaCartePage() {
   const router = useRouter()
   const bookCallRef = useRef<HTMLDivElement | null>(null)
   const footerRef = useRef<HTMLDivElement>(null)
+  const { convertPrice } = useCurrency()
 
   // State for selected services and total price
   const [categories, setCategories] = useState<ServiceCategory[]>([
@@ -57,7 +60,7 @@ export default function ALaCartePage() {
           description: "1 VIDEO (2-3 MINUTES) SHOWCASING YOUR BRAND, PRODUCT, OR SERVICE",
           selected: false,
           choices: [
-            { id: "extra-promo", name: "Additional Promotional Video", price: 650, selected: false, quantity: 0 },
+            { id: "extra-promo", name: "Additional Promotional Video", price: 700, selected: false, quantity: 0 },
           ],
         },
         {
@@ -195,67 +198,6 @@ export default function ALaCartePage() {
   const [totalPrice, setTotalPrice] = useState(0)
   const [discounts, setDiscounts] = useState<{ id: string; name: string; amount: number }[]>([])
 
-  // Calculate total price whenever selections change
-  useEffect(() => {
-    let total = 0
-    const newDiscounts: { id: string; name: string; amount: number }[] = []
-
-    // Group services by their base type for discount calculation
-    const serviceQuantities: Record<string, { count: number; totalPrice: number; name: string }> = {}
-
-    categories.forEach((category) => {
-      category.options.forEach((option) => {
-        if (option.selected) {
-          total += option.price
-
-          // Track quantities for discount calculation
-          const baseServiceId = option.id.split("-")[0] // Get base service type
-          if (!serviceQuantities[baseServiceId]) {
-            serviceQuantities[baseServiceId] = { count: 0, totalPrice: 0, name: option.name }
-          }
-          serviceQuantities[baseServiceId].count += 1
-          serviceQuantities[baseServiceId].totalPrice += option.price
-
-          // Add prices from selected choices
-          if (option.choices) {
-            option.choices.forEach((choice) => {
-              if (choice.selected) {
-                // If the choice has a quantity, multiply the price by the quantity
-                if (choice.quantity !== undefined) {
-                  total += choice.price * choice.quantity
-                } else {
-                  total += choice.price
-                }
-              }
-            })
-          }
-        }
-      })
-    })
-
-    // Calculate discounts for multiple services of the same type
-    Object.entries(serviceQuantities).forEach(([id, data]) => {
-      if (data.count >= 2) {
-        // 10% discount for 2 or more of the same service type
-        const discountRate = 0.1
-        const discountAmount = Math.round(data.totalPrice * discountRate)
-
-        if (discountAmount > 0) {
-          newDiscounts.push({
-            id: `discount-${id}`,
-            name: `Quantity Discount (${data.count}x ${data.name})`,
-            amount: discountAmount,
-          })
-
-          total -= discountAmount
-        }
-      }
-    })
-
-    setDiscounts(newDiscounts)
-    setTotalPrice(total)
-  }, [categories])
-
   // Toggle service selection
   const toggleService = (categoryId: string, optionId: string) => {
     setCategories((prevCategories) =>
@@ -265,7 +207,33 @@ export default function ALaCartePage() {
             ...category,
             options: category.options.map((option) => {
               if (option.id === optionId) {
-                return { ...option, selected: !option.selected }
+                // If toggling on, set quantity to 1
+                if (!option.selected) {
+                  return { ...option, selected: true, quantity: 1 }
+                }
+                // If toggling off, reset quantity to 0
+                return { ...option, selected: false, quantity: 0 }
+              }
+              return option
+            }),
+          }
+        }
+        return category
+      }),
+    )
+  }
+
+  // Add a new function to update service quantity
+  const updateServiceQuantity = (categoryId: string, optionId: string, change: number) => {
+    setCategories((prevCategories) =>
+      prevCategories.map((category) => {
+        if (category.id === categoryId) {
+          return {
+            ...category,
+            options: category.options.map((option) => {
+              if (option.id === optionId) {
+                const newQuantity = Math.max(1, (option.quantity || 1) + change)
+                return { ...option, quantity: newQuantity }
               }
               return option
             }),
@@ -343,16 +311,126 @@ export default function ALaCartePage() {
     )
   }
 
+  // Calculate total price whenever selections change
+  useEffect(() => {
+    let total = 0
+    const newDiscounts: { id: string; name: string; amount: number }[] = []
+
+    // Group services by their base type for discount calculation
+    const serviceQuantities: Record<string, { count: number; totalPrice: number; name: string }> = {}
+
+    // Group choices by their type for discount calculation
+    const choiceQuantities: Record<string, { count: number; totalPrice: number; name: string }> = {}
+
+    categories.forEach((category) => {
+      category.options.forEach((option) => {
+        if (option.selected) {
+          // Use quantity for main service price calculation
+          const quantity = option.quantity || 1
+          const optionTotalPrice = option.price * quantity
+          total += optionTotalPrice
+
+          // Track quantities for discount calculation
+          const baseServiceId = option.id
+          if (!serviceQuantities[baseServiceId]) {
+            serviceQuantities[baseServiceId] = { count: 0, totalPrice: 0, name: option.name }
+          }
+          serviceQuantities[baseServiceId].count += quantity
+          serviceQuantities[baseServiceId].totalPrice += optionTotalPrice
+
+          // Add prices from selected choices and track choice quantities
+          if (option.choices) {
+            option.choices.forEach((choice) => {
+              if (choice.selected) {
+                // If the choice has a quantity, multiply the price by the quantity
+                const choiceQuantity = choice.quantity !== undefined ? choice.quantity : 1
+                const choiceTotalPrice = choice.price * choiceQuantity
+                total += choiceTotalPrice
+
+                // Track choice quantities for discount calculation
+                const choiceId = choice.id
+                if (!choiceQuantities[choiceId]) {
+                  choiceQuantities[choiceId] = { count: 0, totalPrice: 0, name: choice.name }
+                }
+                choiceQuantities[choiceId].count += choiceQuantity
+                choiceQuantities[choiceId].totalPrice += choiceTotalPrice
+              }
+            })
+          }
+        }
+      })
+    })
+
+    // Calculate tiered discounts for multiple services of the same type
+    Object.entries(serviceQuantities).forEach(([id, data]) => {
+      // Apply discounts to all services with quantity >= 2
+      let discountRate = 0
+
+      // Tiered discount: 10% for 2-3 items, 20% for 4+ items
+      if (data.count >= 4) {
+        discountRate = 0.2 // 20% discount for 4+ items
+      } else if (data.count >= 2) {
+        discountRate = 0.1 // 10% discount for 2-3 items
+      }
+
+      if (discountRate > 0) {
+        const discountAmount = Math.round(data.totalPrice * discountRate)
+
+        if (discountAmount > 0) {
+          newDiscounts.push({
+            id: `discount-${id}`,
+            name: `Quantity Discount (${data.count}x ${data.name})`,
+            amount: discountAmount,
+          })
+
+          total -= discountAmount
+        }
+      }
+    })
+
+    // Calculate tiered discounts for multiple choices of the same type
+    Object.entries(choiceQuantities).forEach(([id, data]) => {
+      // Apply discounts to all choices with quantity >= 2
+      let discountRate = 0
+
+      // Tiered discount: 10% for 2-3 items, 20% for 4+ items
+      if (data.count >= 4) {
+        discountRate = 0.2 // 20% discount for 4+ items
+      } else if (data.count >= 2) {
+        discountRate = 0.1 // 10% discount for 2-3 items
+      }
+
+      if (discountRate > 0) {
+        const discountAmount = Math.round(data.totalPrice * discountRate)
+
+        if (discountAmount > 0) {
+          newDiscounts.push({
+            id: `discount-choice-${id}`,
+            name: `Quantity Discount (${data.count}x ${data.name})`,
+            amount: discountAmount,
+          })
+
+          total -= discountAmount
+        }
+      }
+    })
+
+    setDiscounts(newDiscounts)
+    setTotalPrice(total)
+  }, [categories])
+
   // Get selected services for display in calculator
   const selectedServices = [
     ...categories.flatMap((category) =>
       category.options
         .filter((option) => option.selected)
         .flatMap((option) => {
+          // Include quantity in the name if more than 1
+          const quantity = option.quantity || 1
           const mainService = {
             id: option.id,
-            name: option.name,
-            price: option.price,
+            name: quantity > 1 ? `${option.name} (${quantity}x)` : option.name,
+            price: option.price * quantity,
           }
 
           const choiceServices = option.choices
@@ -363,7 +441,7 @@ export default function ALaCartePage() {
                   if (choice.quantity !== undefined && choice.quantity > 0) {
                     return {
                       id: `${option.id}-${choice.id}`,
-                      name: `- ${choice.name} (${choice.quantity})`,
+                      name: `- ${choice.name} (${choice.quantity}x)`,
                       price: choice.price * choice.quantity,
                     }
                   }
@@ -454,8 +532,28 @@ export default function ALaCartePage() {
                       <div className="flex items-center mb-2">
                         <span className="text-[#B96944] font-bold text-xl mr-2">{index + 1}.</span>
                         <h3 className="text-xl font-bold flex-1">{option.name}</h3>
+
+                        {option.selected ? (
+                          <div className="flex items-center space-x-2 mr-3">
+                            <button
+                              className="w-8 h-8 rounded-full bg-[#01131F]/10 flex items-center justify-center hover:bg-[#01131F]/20"
+                              onClick={() => updateServiceQuantity(category.id, option.id, -1)}
+                              disabled={(option.quantity || 1) <= 1}
+                            >
+                              <Minus size={16} />
+                            </button>
+                            <span className="w-8 text-center font-semibold">{option.quantity || 1}</span>
+                            <button
+                              className="w-8 h-8 rounded-full bg-[#01131F]/10 flex items-center justify-center hover:bg-[#01131F]/20"
+                              onClick={() => updateServiceQuantity(category.id, option.id, 1)}
+                            >
+                              <Plus size={16} />
+                            </button>
+                          </div>
+                        ) : null}
+
                         <button
-                          className="ml-3 bg-[#01131F] text-[#fffae5] hover:bg-[#B96944] transition-colors w-8 h-8 rounded-full flex items-center justify-center"
+                          className="bg-[#01131F] text-[#fffae5] hover:bg-[#B96944] transition-colors w-8 h-8 rounded-full flex items-center justify-center"
                           onClick={() => toggleService(category.id, option.id)}
                           aria-label={option.selected ? "Remove from calculator" : "Add to calculator"}
                         >
@@ -576,7 +674,7 @@ export default function ALaCartePage() {
             {discounts.length > 0 && (
               <div className="bg-[#B96944]/10 p-4 rounded-lg mt-4 mb-6">
                 <h3 className="font-bold text-lg mb-2">Quantity Discounts Applied!</h3>
-                <p className="mb-2">You&apos;re saving money by ordering multiple services:</p>
+                <p className="mb-2">You're saving money by ordering multiple services:</p>
                 <ul className="list-disc pl-5 space-y-1">
                   {discounts.map((discount) => (
                     <li key={discount.id}>
@@ -584,6 +682,11 @@ export default function ALaCartePage() {
                     </li>
                   ))}
                 </ul>
+                <p className="mt-3 text-sm font-medium">
+                  Our discount tiers for all services and options:
+                  <br />• 10% off when you order 2-3 of the same item
+                  <br />• 20% off when you order 4+ of the same item
+                </p>
               </div>
             )}
 
