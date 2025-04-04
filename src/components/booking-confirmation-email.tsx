@@ -48,49 +48,113 @@ export default function BookingConfirmationEmail({ formData }: BookingConfirmati
 
   return (
     <Html>
-      <Head />
+      <Head>
+        <style>
+          {`
+            @media only screen and (max-width: 600px) {
+              .container {
+                width: 100% !important;
+                padding: 10px !important;
+              }
+              .heading {
+                font-size: 24px !important;
+              }
+              .subheading {
+                font-size: 18px !important;
+              }
+              .row {
+                display: block !important;
+                width: 100% !important;
+              }
+              .column {
+                display: block !important;
+                width: 100% !important;
+                margin-bottom: 8px !important;
+              }
+              .labelColumn {
+                font-weight: 600 !important;
+                margin-bottom: 4px !important;
+              }
+              .serviceRow, .discountRow {
+                padding-left: 0 !important;
+              }
+              .totalRow .column {
+                text-align: left !important;
+                margin-bottom: 0 !important;
+              }
+              .totalValueColumn {
+                text-align: left !important;
+              }
+            }
+            body, .body {
+              background-color: #01131F !important;
+              margin: 0 !important;
+              padding: 0 !important;
+            }
+            .container, .section {
+              background-color: #01131F !important;
+            }
+          `}
+        </style>
+      </Head>
       <Preview>Your booking with Perception UAE has been confirmed!</Preview>
-      <Body style={main}>
-        <Container style={container}>
-          <Heading style={heading}>Your Booking is Confirmed!</Heading>
+      <Body style={{ ...main, backgroundColor: "#01131F" }}>
+        <Container style={container} className="container" bgcolor="#01131F">
+          <Heading style={heading} className="heading">
+            Your Booking is Confirmed!
+          </Heading>
 
           <Text style={paragraph}>
             Thank you for booking a call with us, {formData.firstName}! We&apos;re excited to speak with you soon.
           </Text>
 
-          <Section style={bookingDetails}>
-            <Heading as="h2" style={subheading}>
+          <Section style={bookingDetails} bgcolor="#01131F">
+            <Heading as="h2" style={subheading} className="subheading">
               Booking Details
             </Heading>
 
-            <Row style={row}>
-              <Column style={labelColumn}>Name:</Column>
-              <Column style={valueColumn}>
+            <Row style={row} className="row">
+              <Column style={labelColumn} className="column labelColumn">
+                Name:
+              </Column>
+              <Column style={valueColumn} className="column">
                 {formData.firstName} {formData.lastName}
               </Column>
             </Row>
 
-            <Row style={row}>
-              <Column style={labelColumn}>Email:</Column>
-              <Column style={valueColumn}>{formData.email}</Column>
+            <Row style={row} className="row">
+              <Column style={labelColumn} className="column labelColumn">
+                Email:
+              </Column>
+              <Column style={valueColumn} className="column">
+                {formData.email}
+              </Column>
             </Row>
 
-            <Row style={row}>
-              <Column style={labelColumn}>Phone:</Column>
-              <Column style={valueColumn}>{formData.phone}</Column>
+            <Row style={row} className="row">
+              <Column style={labelColumn} className="column labelColumn">
+                Phone:
+              </Column>
+              <Column style={valueColumn} className="column">
+                {formData.phone}
+              </Column>
             </Row>
 
-            <Row style={row}>
-              <Column style={labelColumn}>Service:</Column>
-              <Column style={valueColumn}>
+            <Row style={row} className="row">
+              <Column style={labelColumn} className="column labelColumn">
+                Service:
+              </Column>
+              <Column style={valueColumn} className="column">
                 {formData.serviceType === "startup-growth" ? "Startup Growth Package" : "A La Carte Options"}
               </Column>
             </Row>
 
             {formData.serviceType === "startup-growth" && (
-              <Row style={row}>
-                <Column style={labelColumn}>Payment Option:</Column>
-                <Column style={valueColumn}>
+              <Row style={row} className="row">
+                <Column style={labelColumn} className="column labelColumn">
+                  Payment Option:
+                </Column>
+                <Column style={valueColumn} className="column">
                   {formData.paymentOption === "one-time" ? "One-time Payment" : "Installments"}
                 </Column>
               </Row>
@@ -98,14 +162,20 @@ export default function BookingConfirmationEmail({ formData }: BookingConfirmati
 
             {formData.serviceType === "a-la-carte" && formData.selectedServices && (
               <>
-                <Row style={row}>
-                  <Column style={labelColumn}>Selected Services:</Column>
-                  <Column style={valueColumn}></Column>
+                <Row style={row} className="row">
+                  <Column style={labelColumn} className="column labelColumn">
+                    Selected Services:
+                  </Column>
+                  <Column style={valueColumn} className="column"></Column>
                 </Row>
                 {formData.selectedServices.map((service) => (
-                  <Row key={service.id} style={serviceRow}>
-                    <Column style={serviceNameColumn}>{service.name}</Column>
-                    <Column style={servicePriceColumn}>{formatPrice(service.price)}</Column>
+                  <Row key={service.id} style={serviceRow} className="row serviceRow">
+                    <Column style={serviceNameColumn} className="column">
+                      {service.name}
+                    </Column>
+                    <Column style={servicePriceColumn} className="column">
+                      {formatPrice(service.price)}
+                    </Column>
                   </Row>
                 ))}
               </>
@@ -113,14 +183,20 @@ export default function BookingConfirmationEmail({ formData }: BookingConfirmati
 
             {formData.discounts && formData.discounts.length > 0 && (
               <>
-                <Row style={row}>
-                  <Column style={labelColumn}>Discounts Applied:</Column>
-                  <Column style={valueColumn}></Column>
+                <Row style={row} className="row">
+                  <Column style={labelColumn} className="column labelColumn">
+                    Discounts Applied:
+                  </Column>
+                  <Column style={valueColumn} className="column"></Column>
                 </Row>
                 {formData.discounts.map((discount) => (
-                  <Row key={discount.id} style={discountRow}>
-                    <Column style={serviceNameColumn}>{discount.name}</Column>
-                    <Column style={discountPriceColumn}>-{formatPrice(discount.amount)}</Column>
+                  <Row key={discount.id} style={discountRow} className="row discountRow">
+                    <Column style={serviceNameColumn} className="column">
+                      {discount.name}
+                    </Column>
+                    <Column style={discountPriceColumn} className="column">
+                      -{formatPrice(discount.amount)}
+                    </Column>
                   </Row>
                 ))}
               </>
@@ -128,9 +204,11 @@ export default function BookingConfirmationEmail({ formData }: BookingConfirmati
 
             <Hr style={divider} />
 
-            <Row style={totalRow}>
-              <Column style={totalLabelColumn}>Total Price:</Column>
-              <Column style={totalValueColumn}>
+            <Row style={totalRow} className="row totalRow">
+              <Column style={totalLabelColumn} className="column labelColumn">
+                Total Price:
+              </Column>
+              <Column style={totalValueColumn} className="column totalValueColumn">
                 {formData.serviceType === "startup-growth" ? formatPrice(5999) : formatPrice(formData.totalPrice || 0)}
               </Column>
             </Row>
@@ -158,11 +236,17 @@ const main = {
   fontFamily:
     '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
   color: "#fffae5",
+  margin: "0",
+  padding: "0",
+  width: "100%",
+  WebkitTextSizeAdjust: "100%",
+  MsTextSizeAdjust: "100%",
 }
 
 const container = {
   margin: "0 auto",
-  padding: "20px 0 48px",
+  padding: "20px",
+  width: "100%",
   maxWidth: "600px",
 }
 
@@ -174,6 +258,7 @@ const heading = {
   color: "#fffae5",
   textAlign: "center" as const,
   padding: "17px 0 0",
+  margin: "0 0 24px",
 }
 
 const paragraph = {
@@ -190,6 +275,7 @@ const bookingDetails = {
   border: "1px solid #fffae520",
   borderRadius: "8px",
   marginBottom: "24px",
+  width: "100%",
 }
 
 const subheading = {
@@ -204,12 +290,16 @@ const subheading = {
 
 const row = {
   marginBottom: "8px",
+  display: "flex" as const,
+  flexDirection: "row" as const,
+  width: "100%",
 }
 
 const labelColumn = {
   width: "40%",
   fontWeight: "500",
   color: "#fffae5",
+  paddingRight: "8px",
 }
 
 const valueColumn = {
@@ -220,11 +310,15 @@ const valueColumn = {
 const serviceRow = {
   marginBottom: "4px",
   paddingLeft: "20px",
+  display: "flex" as const,
+  flexDirection: "row" as const,
+  width: "100%",
 }
 
 const serviceNameColumn = {
   width: "70%",
   color: "#fffae5",
+  paddingRight: "8px",
 }
 
 const servicePriceColumn = {
@@ -236,6 +330,9 @@ const servicePriceColumn = {
 const discountRow = {
   marginBottom: "4px",
   paddingLeft: "20px",
+  display: "flex" as const,
+  flexDirection: "row" as const,
+  width: "100%",
 }
 
 const discountPriceColumn = {
@@ -247,17 +344,22 @@ const discountPriceColumn = {
 const divider = {
   borderColor: "#fffae520",
   margin: "16px 0",
+  width: "100%",
 }
 
 const totalRow = {
   marginTop: "12px",
   fontWeight: "bold",
+  display: "flex" as const,
+  flexDirection: "row" as const,
+  width: "100%",
 }
 
 const totalLabelColumn = {
   width: "40%",
   fontWeight: "600",
   color: "#fffae5",
+  paddingRight: "8px",
 }
 
 const totalValueColumn = {
