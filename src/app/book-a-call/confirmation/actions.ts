@@ -4,8 +4,6 @@ import { Resend } from "resend"
 import BookingConfirmationEmail from "@/components/booking-confirmation-email"
 import AdminNotificationEmail from "@/components/admin-confirmation-email"
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 type FormData = {
   firstName: string
   lastName: string
@@ -33,6 +31,17 @@ type FormData = {
 
 export async function sendBookingConfirmationEmail(formData: FormData) {
   try {
+    // Check if RESEND_API_KEY is available
+    if (!process.env.RESEND_API_KEY) {
+      console.error("RESEND_API_KEY is not defined")
+      return {
+        success: false,
+        error: "Email service configuration is missing",
+      }
+    }
+
+    const resend = new Resend(process.env.RESEND_API_KEY)
+
     // Send confirmation email to the customer
     const customerData = await resend.emails.send({
       from: "Perception Creative Agency <notifications@perceptionuae.store>",
@@ -51,8 +60,17 @@ export async function sendBookingConfirmationEmail(formData: FormData) {
 
     return { success: true, customerData, adminData }
   } catch (error) {
+    // Improved error handling
     console.error("Error sending email:", error)
-    return { success: false, error }
+
+    // Return a sanitized error message
+    return {
+      success: false,
+      error:
+        typeof error === "object" && error !== null && "message" in error
+          ? String(error.message)
+          : "An unknown error occurred while sending email",
+    }
   }
 }
 

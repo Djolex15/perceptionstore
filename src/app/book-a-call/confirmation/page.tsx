@@ -40,6 +40,7 @@ export default function ConfirmationPage() {
   const [formData, setFormData] = useState<FormData | null>(null)
   const [emailSent, setEmailSent] = useState(false)
   const [emailError, setEmailError] = useState<string | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
   const { currency } = useCurrency()
 
   useEffect(() => {
@@ -64,25 +65,28 @@ export default function ConfirmationPage() {
   useEffect(() => {
     // Send confirmation email when form data is loaded
     const sendEmail = async () => {
-      if (formData && !emailSent) {
+      if (formData && !emailSent && !isLoading) {
+        setIsLoading(true)
         try {
           const result = await sendBookingConfirmationEmail(formData)
           if (result.success) {
             setEmailSent(true)
             console.log("Email sent successfully")
           } else {
-            setEmailError("Failed to send confirmation email. We'll still contact you shortly.")
+            setEmailError(result.error || "Failed to send confirmation email. We'll still contact you shortly.")
             console.error("Email sending failed:", result.error)
           }
         } catch (error) {
           setEmailError("Failed to send confirmation email. We'll still contact you shortly.")
           console.error("Error sending email:", error)
+        } finally {
+          setIsLoading(false)
         }
       }
     }
 
     sendEmail()
-  }, [formData, emailSent])
+  }, [formData, emailSent, isLoading])
 
   return (
     <div
@@ -205,8 +209,10 @@ export default function ConfirmationPage() {
                   " A confirmation email has been sent to your inbox."
                 ) : emailError ? (
                   <span className="text-amber-600"> {emailError}</span>
-                ) : (
+                ) : isLoading ? (
                   " Sending confirmation email..."
+                ) : (
+                  " Preparing confirmation email..."
                 )}
               </p>
 
@@ -216,6 +222,18 @@ export default function ConfirmationPage() {
                     Return to Home
                   </Button>
                 </Link>
+
+                {emailError && (
+                  <Button
+                    onClick={() => {
+                      setEmailError(null)
+                      setEmailSent(false)
+                    }}
+                    className="w-full sm:w-auto bg-[#B96944] hover:bg-[#B96944]/90 text-[#fffae5]"
+                  >
+                    Retry Sending Email
+                  </Button>
+                )}
               </div>
             </div>
           </section>
