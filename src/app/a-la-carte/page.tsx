@@ -540,8 +540,8 @@ export default function ALaCartePage() {
                 Custom-Built to Drive Revenue. Scaled to Match Ambition.
               </p>
               <p className="text-lg md:text-lg mt-6 w-full mx-auto">
-                We've deconstructed the most powerful growth systems in the world - from viral video campaigns to
-                e-commerce empires and business automation. Now, we've made them accessible, modular, and instantly
+                We&apos;ve deconstructed the most powerful growth systems in the world - from viral video campaigns to
+                e-commerce empires and business automation. Now, we&apos;ve made them accessible, modular, and instantly
                 executable for founders, CMOs, and growth teams who demand speed, ROI, and clarity.
               </p>
             </section>
@@ -802,11 +802,11 @@ export default function ALaCartePage() {
                     :
                   </h2>
                   <blockquote className="text-lg italic text-center">
-                    "If you're serious about growth, stop piecing things together.
+                    &quot;If you&apos;re serious about growth, stop piecing things together.
                     <br />
                     We took the billion-dollar systems and made them modular, fast, and built to perform.
                     <br />
-                    Whether you're a startup, scale-up, or market leader, this is your next unfair advantage."
+                    Whether you&apos;re a startup, scale-up, or market leader, this is your next unfair advantage.&quot;
                   </blockquote>
                 </div>
               </div>
@@ -840,14 +840,14 @@ export default function ALaCartePage() {
               {/* Book a Call Button */}
               <div ref={bookCallRef} className="flex flex-col items-center mt-6 mb-6 space-y-6">
                 <h2 className="text-2xl md:text-3xl font-bold text-center">READY TO BUILD YOUR NEXT GROWTH ENGINE?</h2>
-                <p className="text-center text-lg">Start with what you need. Scale when you're ready.</p>
+                <p className="text-center text-lg">Start with what you need. Scale when you&apos;re ready.</p>
                 <button
                   onClick={handleBookCall}
                   className="bg-[#B96944] text-[#fffae5] px-8 py-4 rounded-full uppercase font-bold hover:bg-opacity-90 transition-all text-center"
                 >
                   BOOK A CALL NOW
                 </button>
-                <p className="text-center text-[#01131F] italic">Let's Build What Everyone Else Will Copy Tomorrow.</p>
+                <p className="text-center text-[#01131F] italic">Let&apos;s Build What Everyone Else Will Copy Tomorrow.</p>
               </div>
             </section>
 

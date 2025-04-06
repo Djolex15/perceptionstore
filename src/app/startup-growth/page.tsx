@@ -188,7 +188,7 @@ export default function StartupGrowthPage() {
                     MARKETING & MONETIZATION CONSULTING:
                   </h3>
                   <p className="ml-11 mt-2 text-lg">
-                    We don't just give you the tools - we show you how to scale them to revenue.
+                    We don&apos;t just give you the tools - we show you how to scale them to revenue.
                   </p>
                   <ul className="space-y-3 ml-11 mt-4">
                     <li className="flex items-start">
@@ -223,7 +223,7 @@ export default function StartupGrowthPage() {
                 ROI-FOCUSED INVESTMENT TIERS:
               </h2>
               <p className="text-center text-lg mb-8">
-                You're not buying services. You're buying market entry speed and a system for sustainable sales.
+                You&apos;re not buying services. You&apos;re buying market entry speed and a system for sustainable sales.
               </p>
 
               <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
