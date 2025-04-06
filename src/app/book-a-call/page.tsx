@@ -9,6 +9,7 @@ import Cookies from "js-cookie"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import PhoneInput from "@/components/phone-input"
+import Head from "next/head"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -157,6 +158,24 @@ export default function BookACallPage() {
   }
 
   return (
+    <>
+    <Head>
+        <title>Book A Call | Perception Creative Agency Store</title>
+        <meta
+          name="description"
+          content="Buy yourself and your business time with expert branding, web development, and marketing strategies. Perception Creative Agency drives online growth for entrepreneurs and startups worldwide."
+          />
+        <meta name="keywords" content="branding, web development, marketing, startups, entrepreneurs, online growth" />
+        <meta name="author" content="Perception Creative Agency" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.perceptionuae.store" />
+        <meta property="og:title" content="Perception Creative Agency Store" />
+        <meta
+          property="og:description"
+          content="Buy yourself and your business time with expert branding, web development, and marketing strategies. Perception Creative Agency drives online growth for entrepreneurs and startups worldwide."
+          />
+        <meta property="og:image" content="https://www.perceptionuae.store/open-graph/pca-open-graph.png" />
+    </Head>
     <div
       className="min-h-screen bg-[#fffae5] text-[#01131F] relative"
       style={{
@@ -383,6 +402,7 @@ export default function BookACallPage() {
         <Footer darkMode={true} />
       </div>
     </div>
+    </>
   )
 }
 

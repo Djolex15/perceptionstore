@@ -330,46 +330,45 @@ body {
   transform: scale(1.5);
 }
 
-.link-underline {
-          position: relative;
-          display: inline-block;
-        }
+.link-underline2 {
+  position: relative;
+  display: inline-block;
+}
 
-        .link-underline::after {
-          content: '';
-          position: absolute;
-          width: 0;
-          height: 1px;
-          bottom: -2px;
-          left: 0;
-          background-color: #B96944;
-          transition: width 0.3s ease;
-        }
+.link-underline2::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px; /* Increased height for a bold underline */
+  bottom: -2px;
+  left: 0;
+  background-color: #B96944;
+  transition: width 0.3s ease;
+}
 
-        .link-underline:hover::after {
-          width: 100%;
-        }
+.link-underline2:hover::after {
+  width: 100%;
+}
 
-        .link-underline-accent {
-          position: relative;
-          display: inline-block;
-        }
+.link-underline2-accent {
+  position: relative;
+  display: inline-block;
+}
 
-        .link-underline-accent::after {
-          content: '';
-          position: absolute;
-          width: 0;
-          height: 1px;
-          bottom: -2px;
-          left: 0;
-          background-color: #B96944;
-          transition: width 0.3s ease;
-        }
+.link-underline2-accent::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px; /* Increased height for a bold underline */
+  bottom: -2px;
+  left: 0;
+  background-color: #B96944;
+  transition: width 0.3s ease;
+}
 
-        .link-underline-accent:hover::after {
-          width: 100%;
-        }
-
+.link-underline2-accent:hover::after {
+  width: 100%;
+}
 /* Text animations */
 .animated-text {
   position: relative;

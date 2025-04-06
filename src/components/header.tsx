@@ -14,7 +14,7 @@ export default function Header({ darkMode }: { darkMode?: boolean }) {
   // Mobile detection
   useEffect(() => {
     const checkIfMobile = () => {
-      setIsMobile(window.innerWidth < 768)
+      setIsMobile(window.innerWidth < 1050)
     }
 
     checkIfMobile()
