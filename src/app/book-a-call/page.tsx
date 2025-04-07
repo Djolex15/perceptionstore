@@ -159,12 +159,12 @@ export default function BookACallPage() {
 
   return (
     <>
-    <Head>
+      <Head>
         <title>Book A Call | Perception Creative Agency Store</title>
         <meta
           name="description"
           content="Buy yourself and your business time with expert branding, web development, and marketing strategies. Perception Creative Agency drives online growth for entrepreneurs and startups worldwide."
-          />
+        />
         <meta name="keywords" content="branding, web development, marketing, startups, entrepreneurs, online growth" />
         <meta name="author" content="Perception Creative Agency" />
         <meta property="og:type" content="website" />
@@ -173,235 +173,242 @@ export default function BookACallPage() {
         <meta
           property="og:description"
           content="Buy yourself and your business time with expert branding, web development, and marketing strategies. Perception Creative Agency drives online growth for entrepreneurs and startups worldwide."
-          />
+        />
         <meta property="og:image" content="https://www.perceptionuae.store/open-graph/pca-open-graph.png" />
-    </Head>
-    <div
-      className="min-h-screen bg-[#fffae5] text-[#01131F] relative"
-      style={{
-        backgroundImage: "url('/backgrounds/pca-light-background.jpg')",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundAttachment: "fixed",
-        backgroundPosition: "center",
-      }}
-    >
-      <div className="relative z-10">
-        <Header darkMode={true} />
+      </Head>
+      <div
+        className="min-h-screen bg-[#fffae5] text-[#01131F] relative"
+        style={{
+          backgroundImage: "url('/backgrounds/pca-light-background.jpg')",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundAttachment: "fixed",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="relative z-10">
+          <Header darkMode={true} />
 
-        <main className="container mx-auto px-4 pt-32 md:pt-36 pb-12 md:pb-24">
-          <section className="w-full max-w-3xl mx-auto py-8 md:py-12">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-wide leading-tight text-[#01131F] text-center mb-8">
-              BOOK A CALL
-            </h1>
+          <main className="container mx-auto px-4 pt-24 sm:pt-28 md:pt-36 pb-8 sm:pb-10 md:pb-24">
+            <section className="w-full max-w-3xl mx-auto py-4 sm:py-6 md:py-12">
+              <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-wide leading-tight text-[#01131F] text-center mb-4 sm:mb-6 md:mb-8">
+                BOOK A CALL
+              </h1>
 
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-lg">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Personal Information */}
-                <div className="space-y-4">
-                  <h2 className="text-xl md:text-2xl font-bold">Personal Information</h2>
+              <div className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-8 shadow-lg">
+                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5 md:space-y-6">
+                  {/* Personal Information */}
+                  <div className="space-y-3 sm:space-y-4">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold">Personal Information</h2>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="firstName">First Name</Label>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+                      <div className="space-y-1 sm:space-y-2">
+                        <Label htmlFor="firstName">First Name</Label>
+                        <Input
+                          id="firstName"
+                          name="firstName"
+                          value={formData.firstName}
+                          onChange={handleInputChange}
+                          placeholder="Enter your first name"
+                          required
+                        />
+                      </div>
+
+                      <div className="space-y-1 sm:space-y-2">
+                        <Label htmlFor="lastName">Last Name</Label>
+                        <Input
+                          id="lastName"
+                          name="lastName"
+                          value={formData.lastName}
+                          onChange={handleInputChange}
+                          placeholder="Enter your last name"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-1 sm:space-y-2">
+                      <Label htmlFor="email">Email</Label>
                       <Input
-                        id="firstName"
-                        name="firstName"
-                        value={formData.firstName}
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={formData.email}
                         onChange={handleInputChange}
-                        placeholder="Enter your first name"
+                        placeholder="Enter your email address"
                         required
                       />
                     </div>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="lastName">Last Name</Label>
-                      <Input
-                        id="lastName"
-                        name="lastName"
-                        value={formData.lastName}
-                        onChange={handleInputChange}
-                        placeholder="Enter your last name"
-                        required
-                      />
+                    <div className="space-y-1 sm:space-y-2">
+                      <Label htmlFor="phone">Phone Number</Label>
+                      <PhoneInput value={formData.phone} onChange={handlePhoneChange} />
                     </div>
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Email</Label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      placeholder="Enter your email address"
-                      required
-                    />
-                  </div>
+                  {/* Service Selection */}
+                  <div className="space-y-3 sm:space-y-4 pt-3 sm:pt-4 border-t border-[#01131F]/10">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold">Service Selection</h2>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="phone">Phone Number</Label>
-                    <PhoneInput value={formData.phone} onChange={handlePhoneChange} />
-                  </div>
-                </div>
-
-                {/* Service Selection */}
-                <div className="space-y-4 pt-4 border-t border-[#01131F]/10">
-                  <h2 className="text-xl md:text-2xl font-bold">Service Selection</h2>
-
-                  <div className="space-y-3">
-                    <div className="flex items-center space-x-2">
-                      <input
-                        type="radio"
-                        id="startup-growth"
-                        name="serviceType"
-                        value="startup-growth"
-                        checked={formData.serviceType === "startup-growth"}
-                        onChange={handleServiceTypeChange}
-                        className="w-4 h-4 text-[#B96944] focus:ring-[#B96944]"
-                      />
-                      <Label htmlFor="startup-growth" className="cursor-pointer">
-                        Startup Growth Package
-                      </Label>
-                    </div>
-
-                    {formData.serviceType === "startup-growth" && (
-                      <div className="ml-6 space-y-3 pl-4 border-l-2 border-[#01131F]/10">
-                        <div className="flex items-center space-x-2">
-                          <input
-                            type="radio"
-                            id="one-time"
-                            name="paymentOption"
-                            value="one-time"
-                            checked={formData.paymentOption === "one-time"}
-                            onChange={handlePaymentOptionChange}
-                            className="w-4 h-4 text-[#B96944] focus:ring-[#B96944]"
-                          />
-                          <Label htmlFor="one-time" className="cursor-pointer">
-                            One-time Payment (<PriceDisplay amount={5999} />)
-                          </Label>
-                        </div>
-
-                        <div className="flex items-center space-x-2">
-                          <input
-                            type="radio"
-                            id="installments"
-                            name="paymentOption"
-                            value="installments"
-                            checked={formData.paymentOption === "installments"}
-                            onChange={handlePaymentOptionChange}
-                            className="w-4 h-4 text-[#B96944] focus:ring-[#B96944]"
-                          />
-                          <Label htmlFor="installments" className="cursor-pointer">
-                            Installments (<PriceDisplay amount={5999} isInstallment={true} installmentCount={3} />)
-                          </Label>
-                        </div>
+                    <div className="space-y-2 sm:space-y-3">
+                      <div className="flex items-center space-x-2">
+                        <input
+                          type="radio"
+                          id="startup-growth"
+                          name="serviceType"
+                          value="startup-growth"
+                          checked={formData.serviceType === "startup-growth"}
+                          onChange={handleServiceTypeChange}
+                          className="w-4 h-4 text-[#B96944] focus:ring-[#B96944]"
+                        />
+                        <Label htmlFor="startup-growth" className="cursor-pointer">
+                          Startup Growth Package
+                        </Label>
                       </div>
-                    )}
 
-                    <div className="flex items-center space-x-2">
-                      <input
-                        type="radio"
-                        id="a-la-carte"
-                        name="serviceType"
-                        value="a-la-carte"
-                        checked={formData.serviceType === "a-la-carte"}
-                        onChange={handleServiceTypeChange}
-                        className="w-4 h-4 text-[#B96944] focus:ring-[#B96944]"
-                      />
-                      <Label htmlFor="a-la-carte" className="cursor-pointer">
-                        A La Carte Options
-                      </Label>
-                    </div>
+                      {formData.serviceType === "startup-growth" && (
+                        <div className="ml-4 sm:ml-5 md:ml-6 space-y-2 sm:space-y-3 pl-3 sm:pl-4 border-l-2 border-[#01131F]/10">
+                          <div className="flex items-center space-x-2">
+                            <input
+                              type="radio"
+                              id="one-time"
+                              name="paymentOption"
+                              value="one-time"
+                              checked={formData.paymentOption === "one-time"}
+                              onChange={handlePaymentOptionChange}
+                              className="w-4 h-4 text-[#B96944] focus:ring-[#B96944]"
+                            />
+                            <Label htmlFor="one-time" className="cursor-pointer">
+                              One-time Payment (<PriceDisplay amount={5999} />)
+                            </Label>
+                          </div>
 
-                    {formData.serviceType === "a-la-carte" && formData.selectedServices && (
-                      <div className="ml-6 pl-4 border-l-2 border-[#01131F]/10">
-                        <div className="flex items-center justify-between">
-                          <p className="font-medium">
-                            Total: <PriceDisplay amount={formData.totalPrice || 0} />
-                          </p>
-
-                          <Popover open={showServiceDetails} onOpenChange={setShowServiceDetails}>
-                            <PopoverTrigger asChild>
-                              <Button variant="outline" size="sm" className="h-8 px-2 border-[#01131F]/20">
-                                <Info size={16} className="mr-1" />
-                                <span>View Details</span>
-                              </Button>
-                            </PopoverTrigger>
-                            <PopoverContent className="w-80 max-h-80 overflow-y-auto">
-                              <h3 className="font-bold mb-2">Selected Services:</h3>
-                              <div className="space-y-1">
-                                {formData.selectedServices.map((service) => (
-                                  <div key={service.id} className="flex justify-between">
-                                    <span className={service.name.startsWith("-") ? "pl-2 text-[#01131F]/70" : ""}>
-                                      {service.name}
-                                    </span>
-                                    <span>
-                                      <PriceDisplay amount={service.price} />
-                                    </span>
-                                  </div>
-                                ))}
-                              </div>
-                            </PopoverContent>
-                          </Popover>
+                          <div className="flex items-center space-x-2">
+                            <input
+                              type="radio"
+                              id="installments"
+                              name="paymentOption"
+                              value="installments"
+                              checked={formData.paymentOption === "installments"}
+                              onChange={handlePaymentOptionChange}
+                              className="w-4 h-4 text-[#B96944] focus:ring-[#B96944]"
+                            />
+                            <Label htmlFor="installments" className="cursor-pointer">
+                              Installments (<PriceDisplay amount={5999} isInstallment={true} installmentCount={3} />)
+                            </Label>
+                          </div>
                         </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* Order Summary */}
-                <div className="bg-[#01131F] text-[#fffae5] p-4 rounded-xl mt-6">
-                  <h3 className="font-bold text-lg mb-2">Order Summary</h3>
-                  <div className="flex justify-between">
-                    <span>Service:</span>
-                    <span>
-                      {formData.serviceType === "startup-growth" ? "Startup Growth Package" : "A La Carte Options"}
-                    </span>
-                  </div>
-                  {formData.serviceType === "startup-growth" && (
-                    <div className="flex justify-between">
-                      <span>Payment:</span>
-                      <span>{formData.paymentOption === "one-time" ? "One-time Payment" : "Installments"}</span>
-                    </div>
-                  )}
-                  <div className="flex justify-between font-bold mt-2 pt-2 border-t border-[#fffae5]/20">
-                    <span>Total:</span>
-                    <span>
-                      {formData.serviceType === "startup-growth" ? (
-                        formData.paymentOption === "one-time" ? (
-                          <PriceDisplay amount={5999} />
-                        ) : (
-                          <PriceDisplay amount={5999} isInstallment={true} installmentCount={3} />
-                        )
-                      ) : (
-                        <PriceDisplay amount={formData.totalPrice || 0} />
                       )}
-                    </span>
+
+                      <div className="flex items-center space-x-2">
+                        <input
+                          type="radio"
+                          id="a-la-carte"
+                          name="serviceType"
+                          value="a-la-carte"
+                          checked={formData.serviceType === "a-la-carte"}
+                          onChange={handleServiceTypeChange}
+                          className="w-4 h-4 text-[#B96944] focus:ring-[#B96944]"
+                        />
+                        <Label htmlFor="a-la-carte" className="cursor-pointer">
+                          A La Carte Options
+                        </Label>
+                      </div>
+
+                      {formData.serviceType === "a-la-carte" && formData.selectedServices && (
+                        <div className="ml-4 sm:ml-5 md:ml-6 pl-3 sm:pl-4 border-l-2 border-[#01131F]/10">
+                          <div className="flex items-center justify-between">
+                            <p className="font-medium">
+                              Total: <PriceDisplay amount={formData.totalPrice || 0} />
+                            </p>
+
+                            <Popover open={showServiceDetails} onOpenChange={setShowServiceDetails}>
+                              <PopoverTrigger asChild>
+                                <Button variant="outline" size="sm" className="h-7 sm:h-8 px-2 border-[#01131F]/20">
+                                  <Info size={16} className="mr-1" />
+                                  <span>View Details</span>
+                                </Button>
+                              </PopoverTrigger>
+                              <PopoverContent className="w-72 sm:w-80 max-h-60 sm:max-h-80 overflow-y-auto">
+                                <h3 className="font-bold mb-2">Selected Services:</h3>
+                                <div className="space-y-1">
+                                  {formData.selectedServices.map((service) => (
+                                    <div key={service.id} className="flex justify-between">
+                                      <span className={service.name.startsWith("-") ? "pl-2 text-[#01131F]/70" : ""}>
+                                        {service.name}
+                                      </span>
+                                      <span>
+                                        <PriceDisplay amount={service.price} />
+                                      </span>
+                                    </div>
+                                  ))}
+                                </div>
+                              </PopoverContent>
+                            </Popover>
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
 
-                {/* Submit Button */}
-                <Button
-                  type="submit"
-                  className="w-full bg-[#B96944] hover:bg-[#B96944]/90 text-[#fffae5] py-6 rounded-full text-lg font-bold"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? "Processing..." : "BOOK YOUR CALL"}
-                </Button>
+                  {/* Order Summary */}
+                  <div className="bg-[#01131F] text-[#fffae5] p-3 sm:p-4 rounded-lg sm:rounded-xl mt-4 sm:mt-6">
+                    <h3 className="font-bold text-base sm:text-lg mb-2">Order Summary</h3>
+                    <div className="flex justify-between text-sm sm:text-base">
+                      <span>Service:</span>
+                      <span>
+                        {formData.serviceType === "startup-growth" ? "Startup Growth Package" : "A La Carte Options"}
+                      </span>
+                    </div>
+                    {formData.serviceType === "startup-growth" && (
+                      <div className="flex justify-between text-sm sm:text-base">
+                        <span>Payment:</span>
+                        <span>{formData.paymentOption === "one-time" ? "One-time Payment" : "Installments"}</span>
+                      </div>
+                    )}
+                    <div className="flex justify-between font-bold mt-2 pt-2 border-t border-[#fffae5]/20 text-sm sm:text-base">
+                      <span>Total:</span>
+                      <span>
+                        {formData.serviceType === "startup-growth" ? (
+                          formData.paymentOption === "one-time" ? (
+                            <PriceDisplay amount={5999} />
+                          ) : (
+                            <PriceDisplay amount={5999} isInstallment={true} installmentCount={3} />
+                          )
+                        ) : (
+                          <PriceDisplay amount={formData.totalPrice || 0} />
+                        )}
+                      </span>
+                    </div>
+                  </div>
 
-                <p className="text-center text-sm text-[#01131F]/70">
-                  By booking a call, you agree to our <a href="https://www.perceptionuae.com/privacy-policy" className="text-[#01131F]/80 hover:text-[#B96944] transition-colors duration-300 link-underline">Privacy Policy</a>.
-                </p>
-              </form>
-            </div>
-          </section>
-        </main>
+                  {/* Submit Button */}
+                  <Button
+                    type="submit"
+                    className="w-full bg-[#B96944] hover:bg-[#B96944]/90 text-[#fffae5] py-4 sm:py-5 md:py-6 rounded-full text-base sm:text-lg font-bold"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Processing..." : "BOOK YOUR CALL"}
+                  </Button>
 
-        <Footer darkMode={true} />
+                  <p className="text-center text-xs sm:text-sm text-[#01131F]/70">
+                    By booking a call, you agree to our{" "}
+                    <a
+                      href="https://www.perceptionuae.com/privacy-policy"
+                      className="text-[#01131F]/80 hover:text-[#B96944] transition-colors duration-300 link-underline"
+                    >
+                      Privacy Policy
+                    </a>
+                    .
+                  </p>
+                </form>
+              </div>
+            </section>
+          </main>
+
+          <Footer darkMode={true} />
+        </div>
       </div>
-    </div>
     </>
   )
 }

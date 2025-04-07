@@ -137,18 +137,18 @@ export default function LandingPage() {
         <div className="relative z-10">
           <Header darkMode={false} />
           {/* Main Content - Adjusted to account for fixed navbar */}
-          <main className="container mx-auto px-4 pt-26 md:pt-32">
+          <main className="container mx-auto px-4 pt-24 sm:pt-24 md:pt-32">
             {/* Hero Section */}
-            <section className="w-full md:w-full mx-auto py-8 md:py-8 text-center">
-              <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-wide leading-tight">
+            <section className="w-full mx-auto py-4 sm:py-6 md:py-8 text-center">
+              <h2 className="text-xl sm:text-2xl md:text-5xl font-bold tracking-wide leading-tight">
                 <span className="text-[#B96944]">BUY</span> YOURSELF & YOUR BUSINESS{" "}
                 <span className="text-[#B96944]">TIME!</span>
               </h2>
             </section>
 
             {/* Pricing Cards - Using the new AnimatedCard component */}
-            <section className="w-full md:w-[80%] lg:w-[60%] mx-auto py-1">
-              <div className="flex flex-col md:flex-row gap-6 md:gap-[4.036vw] justify-center">
+            <section className="w-full md:w-4/5 lg:w-3/5 mx-auto py-1">
+              <div className="flex flex-col md:flex-row gap-6 md:gap-12 justify-center items-stretch">
                 {/* Startup Growth Package */}
                 <AnimatedCard
                   href="/startup-growth"
@@ -158,59 +158,59 @@ export default function LandingPage() {
                   description="PERFECT FOR STARTUPS AND ENTREPRENEURS LOOKING TO ESTABLISH OR SCALE THEIR BRAND"
                   highlightType="shimmer"
                 >
-                  <div className="flex flex-col justify-center mx-auto space-y-2 md:space-y-4">
+                  <div className="flex flex-col justify-center mx-auto space-y-2 md:space-y-2">
                     <div className="flex items-center group-hover:translate-x-1 transition-transform duration-500 ease-in-out">
-                      <span className="text-[#B96944] mr-2 text-[5vw] sm:text-base md:text-[1.385vw]">•</span>
-                      <span className="text-[#B96944] uppercase font-bold text-[5vw] sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw]">
+                      <span className="text-[#B96944] mr-2 text-sm sm:text-lg">•</span>
+                      <span className="text-[#B96944] uppercase font-bold text-sm sm:text-lg leading-tight">
                         FRESH
                       </span>
-                      <span className="uppercase font-bold text-[#01131F] text-[5vw] sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] ml-1">
+                      <span className="uppercase font-bold text-[#01131F] text-sm sm:text-lg leading-tight ml-1">
                         LOGO
                       </span>
                     </div>
                     <div className="flex items-center group-hover:translate-x-1 transition-transform duration-500 ease-in-out delay-75">
-                      <span className="text-[#B96944] mr-2 text-[5vw] sm:text-base md:text-[1.385vw]">•</span>
-                      <span className="text-[#B96944] uppercase font-bold text-[5vw] sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw]">
+                      <span className="text-[#B96944] mr-2 text-sm sm:text-lg">•</span>
+                      <span className="text-[#B96944] uppercase font-bold text-sm sm:text-lg leading-tight">
                         FRESH
                       </span>
-                      <span className="uppercase font-bold text-[#01131F] text-[5vw] sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] ml-1">
+                      <span className="uppercase font-bold text-[#01131F] text-sm sm:text-lg leading-tight ml-1">
                         BRANDING
                       </span>
                     </div>
                     <div className="flex items-center group-hover:translate-x-1 transition-transform duration-500 ease-in-out delay-100">
-                      <span className="text-[#B96944] mr-2 text-[5vw] sm:text-base md:text-[1.385vw]">•</span>
-                      <span className="text-[#B96944] uppercase font-bold text-[5vw] sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw]">
+                      <span className="text-[#B96944] mr-2 text-sm sm:text-lg">•</span>
+                      <span className="text-[#B96944] uppercase font-bold text-sm sm:text-lg leading-tight">
                         FRESH
                       </span>
-                      <span className="uppercase font-bold text-[#01131F] text-[5vw] sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] ml-1">
+                      <span className="uppercase font-bold text-[#01131F] text-sm sm:text-lg leading-tight ml-1">
                         WEBSITE
                       </span>
                     </div>
                     <div className="flex items-center group-hover:translate-x-1 transition-transform duration-500 ease-in-out delay-150">
-                      <span className="text-[#B96944] mr-2 text-[5vw] sm:text-base md:text-[1.385vw]">•</span>
-                      <span className="text-[#B96944] uppercase font-bold text-[5vw] sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw]">
+                      <span className="text-[#B96944] mr-2 text-sm sm:text-lg">•</span>
+                      <span className="text-[#B96944] uppercase font-bold text-sm sm:text-lg leading-tight">
                         FRESH
                       </span>
-                      <span className="uppercase font-bold text-[#01131F] text-[5vw] sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] ml-1">
+                      <span className="uppercase font-bold text-[#01131F] text-sm sm:text-lg leading-tight ml-1">
                         SOCIALS
                       </span>
                     </div>
                     <div className="flex items-center group-hover:translate-x-1 transition-transform duration-500 ease-in-out delay-200">
-                      <span className="text-[#B96944] mr-2 text-[5vw] sm:text-base md:text-[1.385vw]">•</span>
-                      <span className="text-[#B96944] uppercase font-bold text-[5vw] sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw]">
+                      <span className="text-[#B96944] mr-2 text-sm sm:text-lg">•</span>
+                      <span className="text-[#B96944] uppercase font-bold text-sm sm:text-lg leading-tight">
                         FRESH
                       </span>
-                      <span className="uppercase font-bold text-[#01131F] text-[5vw] sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] ml-1">
+                      <span className="uppercase font-bold text-[#01131F] text-sm sm:text-lg leading-tight ml-1">
                         STRATEGY
                       </span>
                     </div>
                   </div>
 
-                  <div className="text-center w-full mt-3 md:mt-6 mb-3 md:mb-6">
-                    <h4 className="text-[10vw] sm:text-2xl md:text-[2.5vw] leading-tight md:leading-[2.5vw] font-bold text-[#01131F]">
+                  <div className="text-center w-full mt-2 md:mt-2 mb-3 md:mb-6">
+                    <h4 className="text-xl sm:text-2xl md:text-4xl leading-tight font-bold text-[#01131F]">
                       <PriceDisplay amount={5999} />
                     </h4>
-                    <p className="uppercase text-[4vw] sm:text-sm md:text-[1.3vw] leading-tight md:leading-[1.3vw] mt-1 md:mt-[0.5vw] text-[#01131F] font-bold">
+                    <p className="uppercase text-xs sm:text-sm md:text-lg mt-1 text-[#01131F] font-bold">
                       ONE TIME PAYMENT
                     </p>
                   </div>
@@ -226,35 +226,35 @@ export default function LandingPage() {
                   highlightType="shimmer"
                 >
                   <div className="flex flex-col justify-center flex-1 mb-3 md:mb-6">
-                    <div className="flex flex-col space-y-3.5 sm:space-y-6 md:space-y-8.5 w-full h-auto">
-                      <div className="uppercase font-bold text-center text-[4.5vw] sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
+                    <div className="flex flex-col space-y-3 sm:space-y-4 md:space-y-5 w-full h-auto">
+                      <div className="uppercase font-bold text-center text-xs sm:text-sm md:text-lg leading-tight text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
                         VIDEO PRODUCTION
                       </div>
-                      <div className="uppercase font-bold text-center text-[4.5vw] sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
+                      <div className="uppercase font-bold text-center text-xs sm:text-sm md:text-lg leading-tight text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
                         WEB DESIGN{" "}
                         <span className="text-[#B96944] hover:text-[#01131F] transition-colors duration-300 ease-in-out">
                           &
                         </span>{" "}
                         DEVELOPMENT
                       </div>
-                      <div className="uppercase font-bold text-center text-[4.5vw] sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
-                        GRAPHIC DESIGN{" "}
+                      <div className="uppercase font-bold text-center text-xs sm:text-sm md:text-lg leading-tight text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
+                        GRAPHIC DESIGN<br/>
                         <span className="text-[#B96944] hover:text-[#01131F] transition-colors duration-300 ease-in-out">
                           &
                         </span>{" "}
                         DEVELOPMENT
                       </div>
-                      <div className="uppercase font-bold text-center text-[4.5vw] sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
+                      <div className="uppercase font-bold text-center text-xs sm:text-sm md:text-lg leading-tight text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
                         APP DESIGN{" "}
                         <span className="text-[#B96944] hover:text-[#01131F] transition-colors duration-300 ease-in-out">
                           &
                         </span>{" "}
                         DEVELOPMENT
                       </div>
-                      <div className="uppercase font-bold text-center text-[4.5vw] sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
+                      <div className="uppercase font-bold text-center text-xs sm:text-sm md:text-lg leading-tight text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
                         MARKETING CONSULTING
                       </div>
-                      <div className="uppercase font-bold text-center text-[4.5vw] sm:text-base md:text-[1.385vw] leading-tight md:leading-[1.385vw] text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
+                      <div className="uppercase font-bold text-center text-xs sm:text-sm md:text-lg leading-tight text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
                         PAID ADS MANAGEMENT
                       </div>
                     </div>
@@ -265,59 +265,61 @@ export default function LandingPage() {
 
             {/* Divider */}
             <div className="w-full md:w-4/5 mx-auto flex justify-center py-4 md:py-8">
-              <div className="flex space-x-3 md:space-x-4">
+              <div className="flex space-x-2 sm:space-x-3 md:space-x-4">
                 <Image
                   src="/stars/pca-star-light.png"
                   alt="Divider star"
                   width={20}
                   height={20}
-                  className="w-5 h-5 md:w-6 md:h-6"
+                  className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6"
                 />
                 <Image
                   src="/stars/pca-star-light.png"
                   alt="Divider star"
                   width={20}
                   height={20}
-                  className="w-5 h-5 md:w-6 md:h-6"
+                  className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6"
                 />
                 <Image
                   src="/stars/pca-star-light.png"
                   alt="Divider star"
                   width={20}
                   height={20}
-                  className="w-5 h-5 md:w-6 md:h-6"
+                  className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6"
                 />
               </div>
             </div>
 
             {/* Results Section */}
             <section className="w-full md:w-4/5 mx-auto py-4 md:py-8 text-center">
-              <h2 className="text-xl sm:text-2xl md:text-4xl font-bold uppercase mb-4 md:mb-12">Results in 2024</h2>
+              <h2 className="text-lg sm:text-xl md:text-4xl font-bold uppercase mb-3 sm:mb-4 md:mb-12">
+                Results in 2024
+              </h2>
 
-              <div className="grid grid-cols-1 gap-4 md:gap-12 mb-6 md:mb-12">
+              <div className="grid grid-cols-1 gap-3 sm:gap-4 md:gap-12 mb-4 sm:mb-6 md:mb-12">
                 <div>
-                  <h3 className="text-3xl sm:text-4xl md:text-6xl font-bold">200K+</h3>
-                  <p className="text-[#B96944] uppercase text-sm sm:text-base">Followers on Socials</p>
+                  <h3 className="text-2xl sm:text-3xl md:text-6xl font-bold">200K+</h3>
+                  <p className="text-[#B96944] uppercase text-xs sm:text-sm md:text-base">Followers on Socials</p>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 mb-6 md:mb-12">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-12 mb-4 sm:mb-6 md:mb-12">
                 <div>
-                  <h3 className="text-3xl sm:text-4xl md:text-6xl font-bold">
+                  <h3 className="text-2xl sm:text-3xl md:text-6xl font-bold">
                     <PriceDisplay amount={52500000} className="font-bold" />
                   </h3>
-                  <p className="text-[#B96944] uppercase text-sm sm:text-base">Client Growth Revenue</p>
+                  <p className="text-[#B96944] uppercase text-xs sm:text-sm md:text-base">Client Growth Revenue</p>
                 </div>
                 <div>
-                  <h3 className="text-3xl sm:text-4xl md:text-6xl font-bold">20+</h3>
-                  <p className="text-[#B96944] uppercase text-sm sm:text-base">Happy Clients Worldwide</p>
+                  <h3 className="text-2xl sm:text-3xl md:text-6xl font-bold">20+</h3>
+                  <p className="text-[#B96944] uppercase text-xs sm:text-sm md:text-base">Happy Clients Worldwide</p>
                 </div>
               </div>
 
               <Link
                 href={"https://www.perceptionuae.com"}
                 target="_blank"
-                className="bg-[#fffae5] text-[#01131F] uppercase font-bold py-1.5 sm:py-2 px-4 sm:px-6 rounded-full btn-secondary text-sm sm:text-base"
+                className="bg-[#fffae5] text-[#01131F] uppercase font-bold py-1 sm:py-1.5 md:py-2 px-3 sm:px-4 md:px-6 rounded-full btn-secondary text-xs sm:text-sm md:text-base"
               >
                 Check Our Perception
               </Link>
@@ -325,44 +327,46 @@ export default function LandingPage() {
 
             {/* Divider */}
             <div className="w-full md:w-4/5 mx-auto flex justify-center py-4 md:py-8">
-              <div className="flex space-x-3 md:space-x-4">
+              <div className="flex space-x-2 sm:space-x-3 md:space-x-4">
                 <Image
                   src="/stars/pca-star-light.png"
                   alt="Divider star"
                   width={20}
                   height={20}
-                  className="w-5 h-5 md:w-6 md:h-6"
+                  className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6"
                 />
                 <Image
                   src="/stars/pca-star-light.png"
                   alt="Divider star"
                   width={20}
                   height={20}
-                  className="w-5 h-5 md:w-6 md:h-6"
+                  className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6"
                 />
                 <Image
                   src="/stars/pca-star-light.png"
                   alt="Divider star"
                   width={20}
                   height={20}
-                  className="w-5 h-5 md:w-6 md:h-6"
+                  className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6"
                 />
               </div>
             </div>
 
             {/* References Section */}
             <section className="w-full md:w-4/5 mx-auto py-4 md:py-8 text-center">
-              <h2 className="text-xl sm:text-2xl md:text-4xl font-bold uppercase mb-4 md:mb-12">Our References</h2>
+              <h2 className="text-lg sm:text-xl md:text-4xl font-bold uppercase mb-3 sm:mb-4 md:mb-12">
+                Our References
+              </h2>
 
               {/* Using the new ReferenceCarousel component with matching background */}
               <div className="bg-transparent rounded-xl overflow-hidden">
-                <ReferenceCarousel references={references} className="mb-6 md:mb-12" />
+                <ReferenceCarousel references={references} className="mb-4 sm:mb-6 md:mb-12" />
               </div>
 
               <Link
                 href={"https://www.perceptionuae.com/our-work"}
                 target="_blank"
-                className="bg-[#fffae5] text-[#01131F] uppercase font-bold py-1.5 sm:py-2 px-4 sm:px-6 rounded-full btn-secondary text-sm sm:text-base"
+                className="bg-[#fffae5] text-[#01131F] uppercase font-bold py-1 sm:py-1.5 md:py-2 px-3 sm:px-4 md:px-6 rounded-full btn-secondary text-xs sm:text-sm md:text-base"
               >
                 Check Our Portfolio
               </Link>
@@ -376,7 +380,7 @@ export default function LandingPage() {
                   alt="Divider star"
                   width={20}
                   height={20}
-                  className="w-5 h-5 md:w-6 md:h-6"
+                  className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6"
                 />
               </div>
             </div>

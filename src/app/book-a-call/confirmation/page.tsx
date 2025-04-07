@@ -102,24 +102,24 @@ export default function ConfirmationPage() {
       <div className="relative z-10">
         <Header darkMode={true} />
 
-        <main className="container mx-auto px-4 pt-32 md:pt-36 pb-12 md:pb-24">
-          <section className="w-full max-w-3xl mx-auto py-8 md:py-12 text-center">
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-lg">
-              <div className="flex justify-center mb-6">
-                <CheckCircle size={80} className="text-[#B96944]" />
+        <main className="container mx-auto px-4 pt-24 sm:pt-28 md:pt-36 pb-8 sm:pb-12 md:pb-24">
+          <section className="w-full max-w-2xl sm:max-w-3xl mx-auto py-4 sm:py-8 md:py-12 text-center">
+            <div className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg">
+              <div className="flex justify-center mb-4 sm:mb-6">
+                <CheckCircle size={60} className="sm:w-20 sm:h-20 md:w-20 md:h-20 text-[#B96944]" />
               </div>
 
-              <h1 className="text-3xl sm:text-4xl font-bold tracking-wide leading-tight text-[#01131F] mb-4">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide leading-tight text-[#01131F] mb-3 sm:mb-4">
                 BOOKING CONFIRMED
               </h1>
 
-              <p className="text-xl mb-8">Thank you for booking a call with us!</p>
+              <p className="text-lg sm:text-xl mb-4 sm:mb-6 md:mb-8">Thank you for booking a call with us!</p>
 
               {formData && (
-                <div className="bg-[#01131F]/5 p-6 rounded-xl mb-8 text-left">
-                  <h2 className="text-xl font-bold mb-4 text-center">Booking Details</h2>
+                <div className="bg-[#01131F]/5 p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl mb-4 sm:mb-6 md:mb-8 text-left">
+                  <h2 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-center">Booking Details</h2>
 
-                  <div className="space-y-3">
+                  <div className="space-y-2 sm:space-y-3">
                     <div>
                       <p className="font-semibold">Name:</p>
                       <p>
@@ -154,9 +154,9 @@ export default function ConfirmationPage() {
                     {formData.serviceType === "a-la-carte" && formData.selectedServices && (
                       <div>
                         <p className="font-semibold">Selected Services:</p>
-                        <div className="pl-4 mt-1 space-y-1">
+                        <div className="pl-3 sm:pl-4 mt-1 space-y-1">
                           {formData.selectedServices.map((service) => (
-                            <div key={service.id} className="flex justify-between">
+                            <div key={service.id} className="flex justify-between text-sm sm:text-base">
                               <span className={service.name.startsWith("-") ? "pl-2 text-[#01131F]/70" : ""}>
                                 {service.name}
                               </span>
@@ -172,9 +172,9 @@ export default function ConfirmationPage() {
                     {formData.discounts && formData.discounts.length > 0 && (
                       <div>
                         <p className="font-semibold text-[#B96944]">Discounts Applied:</p>
-                        <div className="pl-4 mt-1 space-y-1">
+                        <div className="pl-3 sm:pl-4 mt-1 space-y-1">
                           {formData.discounts.map((discount) => (
-                            <div key={discount.id} className="flex justify-between">
+                            <div key={discount.id} className="flex justify-between text-sm sm:text-base">
                               <span>{discount.name}</span>
                               <span className="text-[#B96944]">
                                 <PriceDisplay amount={discount.amount} />
@@ -203,7 +203,7 @@ export default function ConfirmationPage() {
                 </div>
               )}
 
-              <p className="mb-6">
+              <p className="mb-4 sm:mb-6 text-sm sm:text-base">
                 We&apos;ll be in touch shortly to schedule your call.
                 {emailSent ? (
                   " A confirmation email has been sent to your inbox."
@@ -216,7 +216,7 @@ export default function ConfirmationPage() {
                 )}
               </p>
 
-              <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
                 <Link href="/">
                   <Button variant="outline" className="w-full sm:w-auto">
                     Return to Home

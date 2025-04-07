@@ -530,16 +530,16 @@ export default function ALaCartePage() {
           {/* Pass darkMode prop to Header for light background pages */}
           <Header darkMode={true} />
 
-          <main className="container mx-auto px-4 pt-32 md:pt-36 pb-12 md:pb-12">
+          <main className="container mx-auto px-4 pt-24 sm:pt-28 md:pt-36 pb-8 md:pb-12">
             {/* Hero Section */}
-            <section className="w-full md:w-4/5 mx-auto py-8 md:py-8 text-center">
+            <section className="w-full md:w-4/5 mx-auto py-4 sm:py-6 md:py-8 text-center">
               <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold tracking-wide leading-tight text-[#01131F]">
                 A LA CARTE GROWTH SOLUTIONS
               </h1>
-              <p className="text-xl md:text-2xl text-[#B96944] font-bold mt-4">
+              <p className="text-lg sm:text-xl md:text-2xl text-[#B96944] font-bold mt-3 md:mt-4">
                 Custom-Built to Drive Revenue. Scaled to Match Ambition.
               </p>
-              <p className="text-lg md:text-lg mt-6 w-full mx-auto">
+              <p className="text-sm sm:text-base md:text-lg mt-4 sm:mt-5 md:mt-6 w-full mx-auto">
                 We&apos;ve deconstructed the most powerful growth systems in the world - from viral video campaigns to
                 e-commerce empires and business automation. Now, we&apos;ve made them accessible, modular, and instantly
                 executable for founders, CMOs, and growth teams who demand speed, ROI, and clarity.
@@ -547,50 +547,56 @@ export default function ALaCartePage() {
             </section>
 
             {/* Services Sections */}
-            <section className="w-full md:w-4/5 mx-auto py-4">
+            <section className="w-full md:w-4/5 mx-auto py-2 sm:py-3 md:py-4">
               {categories.map((category) => (
-                <div key={category.id} className="mb-12">
-                  <h2 className="text-2xl md:text-3xl font-bold text-[#01131F] mb-6">{category.name}</h2>
+                <div key={category.id} className="mb-8 sm:mb-10 md:mb-12">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#01131F] mb-4 sm:mb-5 md:mb-6">
+                    {category.name}
+                  </h2>
 
-                  <div className="space-y-8">
+                  <div className="space-y-4 sm:space-y-6 md:space-y-8">
                     {category.options.map((option, index) => (
                       <div
                         key={option.id}
-                        className="rounded-xl bg-white/50 p-4 hover:bg-white/80 transition-colors shadow-sm"
+                        className="rounded-lg sm:rounded-xl bg-white/50 p-3 sm:p-4 hover:bg-white/80 transition-colors shadow-sm"
                       >
                         <div className="flex items-center mb-2">
-                          <span className="text-[#B96944] font-bold text-xl mr-2">{index + 1}.</span>
-                          <h3 className="text-xl font-bold flex-1">{option.name}</h3>
+                          <span className="text-[#B96944] font-bold text-lg sm:text-xl mr-2">{index + 1}.</span>
+                          <h3 className="text-lg sm:text-xl font-bold flex-1">{option.name}</h3>
 
                           {option.selected ? (
-                            <div className="flex items-center space-x-2 mr-3">
+                            <div className="flex items-center space-x-1 sm:space-x-2 mr-2 sm:mr-3 price-input-container">
                               <button
-                                className="w-8 h-8 rounded-full bg-[#01131F]/10 flex items-center justify-center hover:bg-[#01131F]/20"
+                                className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-[#01131F]/10 flex items-center justify-center hover:bg-[#01131F]/20"
                                 onClick={() => updateServiceQuantity(category.id, option.id, -1)}
                                 disabled={(option.quantity || 1) <= 1}
                               >
-                                <Minus size={16} />
+                                <Minus size={14} className="sm:w-4 sm:h-4" />
                               </button>
-                              <span className="w-8 text-center font-semibold">{option.quantity || 1}</span>
+                              <span className="w-6 sm:w-8 text-center font-semibold">{option.quantity || 1}</span>
                               <button
-                                className="w-8 h-8 rounded-full bg-[#01131F]/10 flex items-center justify-center hover:bg-[#01131F]/20"
+                                className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-[#01131F]/10 flex items-center justify-center hover:bg-[#01131F]/20"
                                 onClick={() => updateServiceQuantity(category.id, option.id, 1)}
                               >
-                                <Plus size={16} />
+                                <Plus size={14} className="sm:w-4 sm:h-4" />
                               </button>
                             </div>
                           ) : null}
 
                           <button
-                            className="bg-[#01131F] text-[#fffae5] hover:bg-[#B96944] transition-colors w-8 h-8 rounded-full flex items-center justify-center"
+                            className="bg-[#01131F] text-[#fffae5] hover:bg-[#B96944] transition-colors w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center"
                             onClick={() => toggleService(category.id, option.id)}
                             aria-label={option.selected ? "Remove from calculator" : "Add to calculator"}
                           >
-                            {option.selected ? <Check size={16} /> : <Plus size={16} />}
+                            {option.selected ? (
+                              <Check size={14} className="sm:w-4 sm:h-4" />
+                            ) : (
+                              <Plus size={14} className="sm:w-4 sm:h-4" />
+                            )}
                           </button>
                         </div>
 
-                        <div className="ml-8 text-sm md:text-base">
+                        <div className="ml-6 sm:ml-8 text-xs sm:text-sm md:text-base">
                           <p>{option.description}</p>
                           {option.price === 0 && (
                             <p className="font-bold mt-1 text-[#B96944]">(Click to select options below)</p>
@@ -604,7 +610,7 @@ export default function ALaCartePage() {
 
                         {/* Choices section */}
                         {option.selected && option.choices && option.choices.length > 0 && (
-                          <div className="mt-4 ml-8 pl-4 border-l-2 border-[#01131F]/10">
+                          <div className="mt-3 sm:mt-4 ml-6 sm:ml-8 pl-3 sm:pl-4 border-l-2 border-[#01131F]/10">
                             <h4 className="font-semibold mb-2">Options:</h4>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                               {option.choices.map((choice) => (
@@ -615,61 +621,42 @@ export default function ALaCartePage() {
                                   }`}
                                 >
                                   {/* For choices with quantity */}
-                                  {choice.quantity !== undefined ? (
-                                    <div className="flex items-center justify-between w-full">
-                                      <div className="flex items-center">
-                                        <div
-                                          className={`w-5 h-5 rounded-full mr-2 flex items-center justify-center ${
-                                            choice.selected ? "bg-[#B96944] text-white" : "border border-[#01131F]/30"
-                                          }`}
-                                          onClick={() => toggleChoice(category.id, option.id, choice.id)}
-                                        >
-                                          {choice.selected && <Check size={12} />}
-                                        </div>
-                                        <span>{choice.name}</span>
-                                      </div>
-                                      <div className="flex items-center space-x-2">
-                                        <button
-                                          className="w-6 h-6 rounded-full bg-[#01131F]/10 flex items-center justify-center hover:bg-[#01131F]/20"
-                                          onClick={() => updateChoiceQuantity(category.id, option.id, choice.id, -1)}
-                                          disabled={!choice.selected || (choice.quantity || 0) <= 1}
-                                        >
-                                          <Minus size={14} />
-                                        </button>
-                                        <span className="w-8 text-center">{choice.quantity}</span>
-                                        <button
-                                          className="w-6 h-6 rounded-full bg-[#01131F]/10 flex items-center justify-center hover:bg-[#01131F]/20"
-                                          onClick={() => updateChoiceQuantity(category.id, option.id, choice.id, 1)}
-                                        >
-                                          <Plus size={14} />
-                                        </button>
-                                        <span className="font-semibold ml-2 w-16 text-right">
-                                          <PriceDisplay amount={choice.price * (choice.quantity || 0)} />
-                                        </span>
-                                      </div>
-                                    </div>
-                                  ) : (
-                                    // For regular choices without quantity
-                                    <>
+                                  <div className="flex items-center justify-between w-full">
+                                    <div className="flex items-center">
                                       <div
-                                        className={`w-5 h-5 rounded-full mr-2 flex items-center justify-center ${
+                                        className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full mr-2 flex items-center justify-center ${
                                           choice.selected ? "bg-[#B96944] text-white" : "border border-[#01131F]/30"
                                         }`}
                                         onClick={() => toggleChoice(category.id, option.id, choice.id)}
                                       >
-                                        {choice.selected && <Check size={12} />}
+                                        {choice.selected && <Check size={10} className="sm:w-3 sm:h-3" />}
                                       </div>
-                                      <span
-                                        className="flex-1"
-                                        onClick={() => toggleChoice(category.id, option.id, choice.id)}
+                                      <span className="text-xs sm:text-sm">{choice.name}</span>
+                                    </div>
+                                    <div className="flex items-center space-x-1 sm:space-x-2 quantity-controls">
+                                      <button
+                                        className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-[#01131F]/10 flex items-center justify-center hover:bg-[#01131F]/20"
+                                        onClick={() => updateChoiceQuantity(category.id, option.id, choice.id, -1)}
+                                        disabled={!choice.selected || (choice.quantity || 0) <= 1}
                                       >
-                                        {choice.name}
+                                        <Minus size={10} className="sm:w-3 sm:h-3" />
+                                      </button>
+                                      <span className="w-6 sm:w-8 text-center text-xs sm:text-sm">
+                                        {choice.quantity}
                                       </span>
-                                      <span className="font-semibold">
-                                        <PriceDisplay amount={choice.price} />
-                                      </span>
-                                    </>
-                                  )}
+                                      <button
+                                        className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-[#01131F]/10 flex items-center justify-center hover:bg-[#01131F]/20"
+                                        onClick={() => updateChoiceQuantity(category.id, option.id, choice.id, 1)}
+                                      >
+                                        <Plus size={10} className="sm:w-3 sm:h-3" />
+                                      </button>
+                                      <div className="flex">
+                                        <span className="flex-grow text-right text-xs sm:text-sm">
+                                          <PriceDisplay amount={choice.price * (choice.quantity || 0)} />
+                                        </span>
+                                      </div>
+                                    </div>
+                                  </div>
                                 </div>
                               ))}
                             </div>
@@ -682,33 +669,35 @@ export default function ALaCartePage() {
               ))}
 
               {/* Timeline Section */}
-              <div className="mb-12">
-                <h2 className="text-2xl md:text-3xl font-bold text-[#01131F] mb-6">DELIVERY TIMELINE:</h2>
-                <p className="text-xl">• 8-16 Weeks for Full Execution</p>
-                <p className="text-lg mt-2">• Modular projects may be delivered in 2–4 weeks.</p>
+              <div className="mb-8 sm:mb-10 md:mb-12">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#01131F] mb-3 sm:mb-4 md:mb-6">
+                  DELIVERY TIMELINE:
+                </h2>
+                <p className="text-lg sm:text-xl">• 8-16 Weeks for Full Execution</p>
+                <p className="text-base sm:text-lg mt-2">• Modular projects may be delivered in 2–4 weeks.</p>
               </div>
 
               {/* Why It Works Section */}
-              <div className="mb-12">
-                <h2 className="text-2xl md:text-3xl font-bold text-[#01131F] mb-6">
+              <div className="mb-8 sm:mb-10 md:mb-12">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#01131F] mb-3 sm:mb-4 md:mb-6">
                   WHY THIS WORKS FOR HIGH-PERFORMANCE COMPANIES:
                 </h2>
-                <ul className="space-y-3 ml-2">
+                <ul className="space-y-2 sm:space-y-3 ml-2">
                   <li className="flex items-start">
-                    <span className="text-[#B96944] mr-2 text-xl">•</span>
-                    <span className="text-lg">
+                    <span className="text-[#B96944] mr-2 text-lg sm:text-xl">•</span>
+                    <span className="text-sm sm:text-base md:text-lg">
                       Modular = Scalable - Only pay for what accelerates your growth right now
                     </span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-[#B96944] mr-2 text-xl">•</span>
-                    <span className="text-lg">
+                    <span className="text-[#B96944] mr-2 text-lg sm:text-xl">•</span>
+                    <span className="text-sm sm:text-base md:text-lg">
                       Speed + Specialization - Our team of experts delivers faster than traditional agencies
                     </span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-[#B96944] mr-2 text-xl">•</span>
-                    <span className="text-lg">
+                    <span className="text-[#B96944] mr-2 text-lg sm:text-xl">•</span>
+                    <span className="text-sm sm:text-base md:text-lg">
                       Results Obsessed - Every deliverable is designed to move your KPI forward: traffic, conversion,
                       retention, revenue.
                     </span>
@@ -717,46 +706,48 @@ export default function ALaCartePage() {
               </div>
 
               {/* The Multiplier Model Section */}
-              <div className="mb-12">
-                <h2 className="text-2xl md:text-3xl font-bold text-[#01131F] mb-6 text-center">
+              <div className="mb-8 sm:mb-10 md:mb-12">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#01131F] mb-3 sm:mb-4 md:mb-6 text-center">
                   THE MULTIPLIER MODEL - STACK FOR GROWTH
                 </h2>
-                <p className="text-lg mb-4">When combined, services deliver exponential-not additive-results.</p>
+                <p className="text-sm sm:text-base md:text-lg mb-3 sm:mb-4">
+                  When combined, services deliver exponential-not additive-results.
+                </p>
 
                 <div className="overflow-x-auto">
                   <table className="min-w-full bg-white/70 rounded-lg overflow-hidden">
                     <thead className="bg-[#B96944] text-white">
                       <tr>
-                        <th className="px-4 py-3 text-left">Service Stack</th>
-                        <th className="px-4 py-3 text-left">Projected Growth</th>
-                        <th className="px-4 py-3 text-left">Timeline</th>
-                        <th className="px-4 py-3 text-left">Net ROI Potential</th>
+                        <th className="px-3 py-2 sm:px-4 sm:py-3 text-left text-xs sm:text-sm">Service Stack</th>
+                        <th className="px-3 py-2 sm:px-4 sm:py-3 text-left text-xs sm:text-sm">Projected Growth</th>
+                        <th className="px-3 py-2 sm:px-4 sm:py-3 text-left text-xs sm:text-sm">Timeline</th>
+                        <th className="px-3 py-2 sm:px-4 sm:py-3 text-left text-xs sm:text-sm">Net ROI Potential</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200">
                       <tr className="hover:bg-white/90">
-                        <td className="px-4 py-3">Short-Form Video + Paid Ads</td>
-                        <td className="px-4 py-3">3-5x Revenue</td>
-                        <td className="px-4 py-3">4-6 Weeks</td>
-                        <td className="px-4 py-3">€10k-€50k+ /mo</td>
+                        <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">Short-Form Video + Paid Ads</td>
+                        <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">3-5x Revenue</td>
+                        <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">4-6 Weeks</td>
+                        <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">€10k-€50k+ /mo</td>
                       </tr>
                       <tr className="hover:bg-white/90">
-                        <td className="px-4 py-3">Website + Promo Video</td>
-                        <td className="px-4 py-3">2-4x Conversion</td>
-                        <td className="px-4 py-3">6-8 Weeks</td>
-                        <td className="px-4 py-3">€20k+ ARR Boost</td>
+                        <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">Website + Promo Video</td>
+                        <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">2-4x Conversion</td>
+                        <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">6-8 Weeks</td>
+                        <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">€20k+ ARR Boost</td>
                       </tr>
                       <tr className="hover:bg-white/90">
-                        <td className="px-4 py-3">App + Ads + Strategy</td>
-                        <td className="px-4 py-3">5-10x Market Penetration</td>
-                        <td className="px-4 py-3">8-12 Weeks</td>
-                        <td className="px-4 py-3">€100k-€500k Scaling Ceiling</td>
+                        <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">App + Ads + Strategy</td>
+                        <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">5-10x Market Penetration</td>
+                        <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">8-12 Weeks</td>
+                        <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">€100k-€500k Scaling Ceiling</td>
                       </tr>
                       <tr className="hover:bg-white/90">
-                        <td className="px-4 py-3">Business Platform + Custom App</td>
-                        <td className="px-4 py-3">3x Margin</td>
-                        <td className="px-4 py-3">8-6 Weeks</td>
-                        <td className="px-4 py-3">€200k-€1M Saved & Scaled</td>
+                        <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">Business Platform + Custom App</td>
+                        <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">3x Margin</td>
+                        <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">8-6 Weeks</td>
+                        <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">€200k-€1M Saved & Scaled</td>
                       </tr>
                     </tbody>
                   </table>
@@ -764,9 +755,9 @@ export default function ALaCartePage() {
               </div>
 
               {/* CEO Quote Section */}
-              <div className="mb-12 bg-[#01131F] text-white p-8 rounded-xl">
+              <div className="mb-8 sm:mb-10 md:mb-12 bg-[#01131F] text-white p-4 sm:p-6 md:p-8 rounded-lg sm:rounded-xl">
                 <div className="relative group">
-                  <h2 className="text-xl md:text-2xl font-bold mb-6 text-center">
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 md:mb-6 text-center">
                     FROM CEO{" "}
                     <span
                       className="relative inline-block cursor-pointer text-[#B96944] font-bold link-underline2"
@@ -778,8 +769,8 @@ export default function ALaCartePage() {
                           <Image
                             src="/uros.jpg"
                             alt="Uros Vuckovic"
-                            width={200}
-                            height={200}
+                            width={150}
+                            height={150}
                             className="rounded-lg shadow-lg cursor-pointer animate-slideIn"
                             onClick={(e) => {
                               e.stopPropagation()
@@ -787,13 +778,13 @@ export default function ALaCartePage() {
                             }}
                             onError={(e) => {
                               const target = e.target as HTMLImageElement
-                              target.src = "/placeholder.svg?height=200&width=200"
+                              target.src = "/placeholder.svg?height=150&width=150"
                             }}
                             style={{
                               animation: "slideIn 0.5s ease-out forwards",
                             }}
                           />
-                          <div className="absolute rounded-b-lg bottom-0 left-0 right-0 bg-[#01131F]/90 text-white text-center py-2 text-sm font-bold">
+                          <div className="absolute rounded-b-lg bottom-0 left-0 right-0 bg-[#01131F]/90 text-white text-center py-1 sm:py-2 text-xs sm:text-sm font-bold">
                             CEO OF PERCEPTION
                           </div>
                         </div>
@@ -801,7 +792,7 @@ export default function ALaCartePage() {
                     </span>
                     :
                   </h2>
-                  <blockquote className="text-lg italic text-center">
+                  <blockquote className="text-sm sm:text-base md:text-lg italic text-center">
                     &quot;If you&apos;re serious about growth, stop piecing things together.
                     <br />
                     We took the billion-dollar systems and made them modular, fast, and built to perform.
@@ -819,17 +810,17 @@ export default function ALaCartePage() {
               />
 
               {discounts.length > 0 && (
-                <div className="bg-[#B96944]/10 p-4 rounded-lg mt-4 mb-6">
-                  <h3 className="font-bold text-lg mb-2">Quantity Discounts Applied!</h3>
-                  <p className="mb-2">You&apos;re saving money by ordering multiple services:</p>
-                  <ul className="list-disc pl-5 space-y-1">
+                <div className="bg-[#B96944]/10 p-3 sm:p-4 rounded-lg mt-3 sm:mt-4 mb-4 sm:mb-6">
+                  <h3 className="font-bold text-base sm:text-lg mb-2">Quantity Discounts Applied!</h3>
+                  <p className="mb-2 text-sm sm:text-base">You&apos;re saving money by ordering multiple services:</p>
+                  <ul className="list-disc pl-4 sm:pl-5 space-y-1">
                     {discounts.map((discount) => (
-                      <li key={discount.id}>
+                      <li key={discount.id} className="text-sm sm:text-base">
                         {discount.name}: <PriceDisplay amount={discount.amount} />
                       </li>
                     ))}
                   </ul>
-                  <p className="mt-3 text-sm font-medium">
+                  <p className="mt-2 sm:mt-3 text-xs sm:text-sm font-medium">
                     Our discount tiers for all services and options:
                     <br />• 10% off when you order 2-3 of the same item
                     <br />• 20% off when you order 4+ of the same item
@@ -838,23 +829,38 @@ export default function ALaCartePage() {
               )}
 
               {/* Book a Call Button */}
-              <div ref={bookCallRef} className="flex flex-col items-center mt-6 mb-6 space-y-6">
-                <h2 className="text-2xl md:text-3xl font-bold text-center">READY TO BUILD YOUR NEXT GROWTH ENGINE?</h2>
-                <p className="text-center text-lg">Start with what you need. Scale when you&apos;re ready.</p>
+              <div
+                ref={bookCallRef}
+                className="flex flex-col items-center mt-4 sm:mt-6 mb-4 sm:mb-6 space-y-3 sm:space-y-6"
+              >
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center">
+                  READY TO BUILD YOUR NEXT GROWTH ENGINE?
+                </h2>
+                <p className="text-center text-sm sm:text-base md:text-lg">
+                  Start with what you need. Scale when you&apos;re ready.
+                </p>
                 <button
                   onClick={handleBookCall}
-                  className="bg-[#B96944] text-[#fffae5] px-8 py-4 rounded-full uppercase font-bold hover:bg-opacity-90 transition-all text-center"
+                  className="bg-[#B96944] text-[#fffae5] px-6 sm:px-8 py-3 sm:py-4 rounded-full uppercase font-bold hover:bg-opacity-90 transition-all text-center text-sm sm:text-base"
                 >
                   BOOK A CALL NOW
                 </button>
-                <p className="text-center text-[#01131F] italic">Let&apos;s Build What Everyone Else Will Copy Tomorrow.</p>
+                <p className="text-center text-[#01131F] italic text-xs sm:text-sm">
+                  Let&apos;s Build What Everyone Else Will Copy Tomorrow.
+                </p>
               </div>
             </section>
 
             {/* Divider */}
             <div className="w-full md:w-4/5 mx-auto flex justify-center">
               <div className="flex items-center justify-center">
-                <Image src="/stars/pca-star-dark.png" alt="Divider star" width={20} height={20} className="w-8 h-8" />
+                <Image
+                  src="/stars/pca-star-dark.png"
+                  alt="Divider star"
+                  width={20}
+                  height={20}
+                  className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8"
+                />
               </div>
             </div>
           </main>

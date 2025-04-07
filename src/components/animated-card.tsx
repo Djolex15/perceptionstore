@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useRef, useEffect } from "react"
+import { useRef } from "react"
 import Link from "next/link"
 
 interface AnimatedCardProps {
@@ -26,32 +26,6 @@ export function AnimatedCard({
 }: AnimatedCardProps) {
   const cardRef = useRef<HTMLDivElement>(null)
 
-  // Pre-load the animation to avoid first-hover jank
-  useEffect(() => {
-    const card = cardRef.current
-    if (!card) return
-
-    // Create and append a hidden pseudo-element to preload the gradient
-    const preloader = document.createElement("div")
-    preloader.style.position = "absolute"
-    preloader.style.width = "0"
-    preloader.style.height = "0"
-    preloader.style.opacity = "0"
-    preloader.style.background = "linear-gradient(45deg, #b96944, transparent, #b96944, transparent, #b96944)"
-    preloader.style.backgroundSize = "400% 400%"
-    preloader.style.zIndex = "-9999"
-    preloader.style.visibility = "hidden"
-
-    card.appendChild(preloader)
-
-    return () => {
-      if (card.contains(preloader)) {
-        card.removeChild(preloader)
-      }
-    }
-  }, [])
-
-  // Get the appropriate CSS class based on the highlight type
   const getHighlightClass = () => {
     switch (highlightType) {
       case "gradient-border":
@@ -70,11 +44,8 @@ export function AnimatedCard({
   }
 
   return (
-    <div className="flex flex-col items-center w-full md:w-[50%]">
-      <Link
-        href={href}
-        className="block w-[80vw] md:w-[26vw] h-auto aspect-[26/36.5] md:h-[36.5vw] ml-auto mr-auto group"
-      >
+    <div className="flex flex-col items-center w-full h-full">
+      <Link href={href} className="block w-full max-w-xs sm:max-w-sm md:max-w-md group">
         <div
           ref={cardRef}
           style={{
@@ -84,28 +55,28 @@ export function AnimatedCard({
             backgroundAttachment: "fixed",
             backgroundPosition: "center",
           }}
-          className={`bg-gradient-to-br from-[#fffae5]/30 to-[#f0e8d0]/10 text-[#01131F] rounded-2xl sm:rounded-3xl p-8 sm:p-4 md:p-6 border-[3px] sm:border-[4px] md:border-[6px] border-[#B96944] flex flex-col w-full h-full cursor-pointer ${getHighlightClass()}` }
+          className={`bg-gradient-to-br from-[#fffae5]/30 to-[#f0e8d0]/10 text-[#01131F] rounded-2xl sm:rounded-3xl md:rounded-4xl p-4 sm:p-6 md:p-8 border-2 sm:border-3 md:border-4 lg:border-6 border-[#B96944] flex flex-col w-full h-full min-h-[400px] cursor-pointer ${getHighlightClass()}`}
         >
-          <div className="text-center mb-2 sm:mb-4 md:mb-8">
-            <h1 className="text-[6vw] sm:text-xl md:text-[1.773vw] leading-tight md:leading-[1.773vw] font-bold uppercase text-[#01131F]">
-              {title}
-            </h1>
-            <h2 className="uppercase text-[5vw] sm:text-xl md:text-[1.773vw] leading-tight md:leading-[1.773vw] font-medium text-[#01131F]">
-              {subtitle}
-            </h2>
+          {/* Title and Subtitle */}
+          <div className="text-center mb-4 sm:mb-6 md:mb-8">
+            <h1 className="text-base sm:text-lg md:text-2xl font-bold uppercase text-[#01131F]">{title}</h1>
+            <h2 className="uppercase text-sm sm:text-base md:text-xl font-medium text-[#01131F]">{subtitle}</h2>
           </div>
 
-          {/* Content area */}
-          <div className="flex flex-col justify-around flex-1 scale-90 sm:scale-100">{children}</div>
+          {/* Content Area */}
+          <div className="flex flex-col justify-around flex-1 gap-1">{children}</div>
 
-          <div className="flex justify-center">
-            <button className="bg-[#B96944] text-[#fffae5] uppercase font-bold text-xs sm:text-sm md:text-base w-[58vw] h-[9vw] md:w-[17.031vw] py-1.5 sm:py-2 md:h-[3vw] flex items-center justify-center rounded-full btn-simple">
+          {/* Button */}
+          <div className="flex justify-center mt-1 sm:mt-1 md:mt-1">
+            <button className="bg-[#B96944] text-[#fffae5] uppercase font-bold text-xs sm:text-xs md:text-base w-[90%] max-w-xs py-2 sm:py-3 md:py-3 flex items-center justify-center rounded-full btn-simple">
               {buttonText}
             </button>
           </div>
         </div>
       </Link>
-      <div className="text-[10px] xs:text-xs md:text-[0.79vw] text-center mt-1 md:mt-1 w-[80vw] md:w-[26vw] text-[#fffae5] uppercase">
+
+      {/* Description */}
+      <div className="text-xs sm:text-xs md:text-xs text-center mt-4 w-[115%] max-w-xs sm:max-w-sm md:max-w-md text-[#fffae5] uppercase">
         {description}
       </div>
     </div>

@@ -7,13 +7,21 @@ export default function Footer({ darkMode }: { darkMode?: boolean }) {
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
-    const checkIfMobile = () => {
-      setIsMobile(window.innerWidth < 768)
+    // Function to check if viewport is mobile width using media query
+    const mediaQuery = window.matchMedia("(max-width: 48rem)") // 768px in rem
+
+    // Initial check
+    setIsMobile(mediaQuery.matches)
+
+    // Add listener for changes
+    const handleResize = (e: MediaQueryListEvent) => {
+      setIsMobile(e.matches)
     }
 
-    checkIfMobile()
-    window.addEventListener("resize", checkIfMobile)
-    return () => window.removeEventListener("resize", checkIfMobile)
+    mediaQuery.addEventListener("change", handleResize)
+
+    // Cleanup event listener on component unmount
+    return () => mediaQuery.removeEventListener("change", handleResize)
   }, [])
 
   // Determine text and border colors based on darkMode prop
@@ -23,9 +31,10 @@ export default function Footer({ darkMode }: { darkMode?: boolean }) {
   const socialIconSrc = darkMode ? "-dark.png" : "-light.png"
 
   return (
-    <footer className={`relative container mx-auto px-4 py-6 md:py-8 border-t ${borderColor}`}>
+    <footer className={`relative container mx-auto px-4 py-4 md:py-6 border-t ${borderColor}`}>
       <div className="flex flex-col md:flex-row justify-between items-start w-full font-medium">
-        <div className="w-full md:w-auto text-left mb-6 md:mb-0 order-2 md:order-1">
+        {/* Contact information */}
+        <div className="w-full md:w-auto text-left mb-4 md:mb-0 order-2 md:order-1">
           <Link
             href="mailto:INFO@PERCEPTIONUAE.COM"
             className={`text-xs sm:text-sm ${textColor} ${hoverColor} transition-colors duration-300 block`}
@@ -40,38 +49,57 @@ export default function Footer({ darkMode }: { darkMode?: boolean }) {
           </Link>
         </div>
 
+        {/* Social media links */}
         <div
-          className={`flex space-x-6 mb-6 md:mb-0 order-1 md:order-2 ${isMobile ? "w-full justify-center" : "absolute left-1/2 transform -translate-x-1/2"}`}
+          className={`flex space-x-4 md:space-x-6 mb-4 md:mb-0 order-1 md:order-2 ${
+            isMobile ? "w-full justify-center" : "absolute left-1/2 transform -translate-x-1/2"
+          }`}
         >
-          <Link href="https://www.instagram.com/perceptionuae/" target="_blank" className={`${hoverColor} transition-transform duration-300 hover:scale-110`}>
+          <Link
+            href="https://www.instagram.com/perceptionuae/"
+            target="_blank"
+            className={`${hoverColor} transition-transform duration-300 hover:scale-110`}
+            aria-label="Instagram"
+          >
             <Image
               src={`/social-media/instagram${socialIconSrc}`}
               alt="Instagram"
               width={36}
               height={36}
-              className="w-8 h-8"
+              className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8"
             />
           </Link>
-          <Link href="https://wa.me/+971521455129" target="_blank" className={`${hoverColor} transition-transform duration-300 hover:scale-110`}>
+          <Link
+            href="https://wa.me/+971521455129"
+            target="_blank"
+            className={`${hoverColor} transition-transform duration-300 hover:scale-110`}
+            aria-label="WhatsApp"
+          >
             <Image
               src={`/social-media/whatsup${socialIconSrc}`}
               alt="WhatsApp"
               width={36}
               height={36}
-              className="w-8 h-8"
+              className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8"
             />
           </Link>
-          <Link href="https://www.linkedin.com/in/perception-ca-6000172a4/" target="_blank" className={`${hoverColor} transition-transform duration-300 hover:scale-110`}>
+          <Link
+            href="https://www.linkedin.com/in/perception-ca-6000172a4/"
+            target="_blank"
+            className={`${hoverColor} transition-transform duration-300 hover:scale-110`}
+            aria-label="LinkedIn"
+          >
             <Image
               src={`/social-media/linkedin${socialIconSrc}`}
               alt="LinkedIn"
               width={36}
               height={36}
-              className="w-8 h-8"
+              className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8"
             />
           </Link>
         </div>
 
+        {/* Copyright information */}
         <div className={`w-full md:w-auto ${textColor} text-right order-3 mt-4 md:mt-0`}>
           <p className="text-xs sm:text-sm">ALL RIGHTS RESERVED</p>
           <p className="text-xs sm:text-sm">COPYRIGHT©{new Date().getFullYear()} PERCEPTION CREATIVE AGENCY</p>
