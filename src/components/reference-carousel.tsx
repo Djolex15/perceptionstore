@@ -20,7 +20,7 @@ interface ReferenceCarouselProps {
 
 export function ReferenceCarousel({ references, className = "" }: ReferenceCarouselProps) {
   return (
-    <div className={`relative w-full overflow-hidden h-32 sm:h-40 md:h-56 bg-transparent ${className}`}>
+    <div className={`relative w-full overflow-hidden h-20 sm:h-40 md:h-56 bg-transparent ${className}`}>
       <div className="references-carousel">
         <div className="references-track">
           {references.map((reference, index) => (

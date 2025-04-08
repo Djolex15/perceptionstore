@@ -33,25 +33,27 @@ export default function Footer({ darkMode }: { darkMode?: boolean }) {
   return (
     <footer className={`relative container mx-auto px-4 py-4 md:py-6 border-t ${borderColor}`}>
       <div className="flex flex-col md:flex-row justify-between items-start w-full font-medium">
-        {/* Contact information */}
-        <div className="w-full md:w-auto text-left mb-4 md:mb-0 order-2 md:order-1">
+       {/* Contact information */}
+        <div className={`w-full md:w-auto mb-4 md:mb-0 order-2 md:order-1 ${
+          isMobile ? "text-center" : "text-left"
+        }`}>
           <Link
             href="mailto:INFO@PERCEPTIONUAE.COM"
-            className={`text-xs sm:text-sm ${textColor} ${hoverColor} transition-colors duration-300 block`}
+            className={`text-xs sm:text-sm ${textColor} ${hoverColor} transition-colors duration-300 block mb-2`}
           >
             <p>INFO@PERCEPTIONUAE.COM</p>
           </Link>
           <Link
             href="/privacy-policy"
-            className={`text-xs sm:text-sm ${textColor} ${hoverColor} transition-colors duration-300 block mt-2`}
+            className={`text-xs sm:text-sm ${textColor} ${hoverColor} transition-colors duration-300 block`}
           >
             PRIVACY POLICY
           </Link>
         </div>
 
-        {/* Social media links */}
-        <div
-          className={`flex space-x-4 md:space-x-6 mb-4 md:mb-0 order-1 md:order-2 ${
+         {/* Social media links */}
+         <div
+          className={`flex space-x-4 md:space-x-6 mb-6 md:mb-0 order-1 md:order-2 ${
             isMobile ? "w-full justify-center" : "absolute left-1/2 transform -translate-x-1/2"
           }`}
         >
@@ -66,7 +68,7 @@ export default function Footer({ darkMode }: { darkMode?: boolean }) {
               alt="Instagram"
               width={36}
               height={36}
-              className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8"
+              className="w-7 h-7 sm:w-7 sm:h-7 md:w-8 md:h-8"
             />
           </Link>
           <Link
@@ -80,7 +82,7 @@ export default function Footer({ darkMode }: { darkMode?: boolean }) {
               alt="WhatsApp"
               width={36}
               height={36}
-              className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8"
+              className="w-7 h-7 sm:w-7 sm:h-7 md:w-8 md:h-8"
             />
           </Link>
           <Link
@@ -94,18 +96,26 @@ export default function Footer({ darkMode }: { darkMode?: boolean }) {
               alt="LinkedIn"
               width={36}
               height={36}
-              className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8"
+              className="w-7 h-7 sm:w-7 sm:h-7 md:w-8 md:h-8"
             />
           </Link>
         </div>
 
         {/* Copyright information */}
-        <div className={`w-full md:w-auto ${textColor} text-right order-3 mt-4 md:mt-0`}>
-          <p className="text-xs sm:text-sm">ALL RIGHTS RESERVED</p>
-          <p className="text-xs sm:text-sm">COPYRIGHT©{new Date().getFullYear()} PERCEPTION CREATIVE AGENCY</p>
+        <div 
+          className={`w-full order-3 mt-4 md:mt-0 md:ml-4 ${
+            isMobile 
+              ? "fixed bottom-0 left-0 right-0 bg-[#B96944] py-1 px-4 flex justify-between items-center text-[#fffae5] space-x-2" 
+              : `${textColor} text-right space-y-2`
+          }`}
+        >
+          <p className="text-[10px] sm:text-xs md:text-sm">ALL RIGHTS RESERVED</p>
+          <p className="text-[10px] sm:text-xs md:text-sm">
+            COPYRIGHT©{new Date().getFullYear()} PERCEPTION CREATIVE AGENCY
+          </p>
         </div>
       </div>
     </footer>
-  )
+)
 }
 

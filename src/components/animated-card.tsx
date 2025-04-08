@@ -55,12 +55,12 @@ export function AnimatedCard({
             backgroundAttachment: "fixed",
             backgroundPosition: "center",
           }}
-          className={`bg-gradient-to-br from-[#fffae5]/30 to-[#f0e8d0]/10 text-[#01131F] rounded-2xl sm:rounded-3xl md:rounded-4xl p-4 sm:p-6 md:p-8 border-2 sm:border-5 md:border-4 lg:border-6 border-[#B96944] flex flex-col w-full h-full min-h-[400px] cursor-pointer ${getHighlightClass()}`}
+          className={`bg-gradient-to-br from-[#fffae5]/30 to-[#f0e8d0]/10 text-[#01131F] rounded-3xl sm:rounded-3xl md:rounded-4xl p-4 sm:p-6 md:p-8 border-4 sm:border-5 md:border-4 lg:border-6 border-[#B96944] flex flex-col w-full h-full min-h-[400px] cursor-pointer ${getHighlightClass()}`}
         >
           {/* Title and Subtitle */}
-          <div className="text-center mb-4 sm:mb-6 md:mb-4 lg:mb-8">
-            <h1 className="text-base sm:text-2xl md:text-xl lg:text-2xl font-bold uppercase text-[#01131F]">{title}</h1>
-            <h2 className="uppercase text-sm sm:text-lg md:text-lg lg:text-xl font-medium text-[#01131F]">{subtitle}</h2>
+          <div className="text-center mb-1 sm:mb-6 md:mb-4 lg:mb-8">
+            <h1 className="text-xl sm:text-2xl md:text-xl lg:text-2xl font-bold uppercase text-[#01131F]">{title}</h1>
+            <h2 className="uppercase text-base sm:text-lg md:text-lg lg:text-xl font-medium text-[#01131F]">{subtitle}</h2>
           </div>
 
           {/* Content Area */}
@@ -68,7 +68,7 @@ export function AnimatedCard({
 
           {/* Button */}
           <div className="flex justify-center mt-1 sm:mt-1 md:mt-0 lg:mt-1">
-            <button className="bg-[#B96944] text-[#fffae5] uppercase font-bold text-xs sm:text-base md:text-base w-[90%] max-w-xs py-2 sm:py-3 md:py-3 flex items-center justify-center rounded-full btn-simple">
+            <button className="bg-[#B96944] text-[#fffae5] uppercase font-bold text-base sm:text-base md:text-base w-[90%] max-w-xs py-2 sm:py-3 md:py-3 flex items-center justify-center rounded-full btn-simple">
               {buttonText}
             </button>
           </div>
@@ -76,7 +76,7 @@ export function AnimatedCard({
       </Link>
 
       {/* Description */}
-      <div className="text-xs sm:text-xs md:text-xs text-center mt-4 sm:mt-3 md:mt-4 w-[115%] max-w-xs sm:max-w-sm md:max-w-md text-[#fffae5] uppercase">
+      <div className="text-xs sm:text-xs md:text-xs text-center mt-2 sm:mt-3 md:mt-4 w-[115%] max-w-xs sm:max-w-sm md:max-w-md text-[#fffae5] uppercase">
         {description}
       </div>
     </div>
