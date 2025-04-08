@@ -147,8 +147,8 @@ export default function LandingPage() {
             </section>
 
             {/* Pricing Cards - Using the new AnimatedCard component */}
-            <section className="w-full md:w-4/5 lg:w-3/5 mx-auto py-1">
-              <div className="flex flex-col md:flex-row gap-6 md:gap-12 justify-center items-stretch">
+            <section className="w-full sm:w-4/5 md:w-4/5 lg:w-3/5 mx-auto py-1">
+              <div className="flex flex-col md:flex-row gap-6 md:gap-6 lg:gap-12 justify-center items-stretch">
                 {/* Startup Growth Package */}
                 <AnimatedCard
                   href="/startup-growth"
@@ -160,57 +160,57 @@ export default function LandingPage() {
                 >
                   <div className="flex flex-col justify-center mx-auto space-y-2 md:space-y-2">
                     <div className="flex items-center group-hover:translate-x-1 transition-transform duration-500 ease-in-out">
-                      <span className="text-[#B96944] mr-2 text-sm sm:text-lg">•</span>
-                      <span className="text-[#B96944] uppercase font-bold text-sm sm:text-lg leading-tight">
+                      <span className="text-[#B96944] mr-2 text-sm sm:text-lg md:text-sm lg:text-lg">•</span>
+                      <span className="text-[#B96944] uppercase font-bold text-sm sm:text-lg md:text-sm lg:text-lg leading-tight">
                         FRESH
                       </span>
-                      <span className="uppercase font-bold text-[#01131F] text-sm sm:text-lg leading-tight ml-1">
+                      <span className="uppercase font-bold text-[#01131F] text-sm sm:text-lg md:text-sm lg:text-lg leading-tight ml-1">
                         LOGO
                       </span>
                     </div>
                     <div className="flex items-center group-hover:translate-x-1 transition-transform duration-500 ease-in-out delay-75">
-                      <span className="text-[#B96944] mr-2 text-sm sm:text-lg">•</span>
-                      <span className="text-[#B96944] uppercase font-bold text-sm sm:text-lg leading-tight">
+                      <span className="text-[#B96944] mr-2 text-sm sm:text-lg md:text-sm lg:text-lg">•</span>
+                      <span className="text-[#B96944] uppercase font-bold text-sm sm:text-lg leading-tight md:text-sm lg:text-lg">
                         FRESH
                       </span>
-                      <span className="uppercase font-bold text-[#01131F] text-sm sm:text-lg leading-tight ml-1">
+                      <span className="uppercase font-bold text-[#01131F] text-sm sm:text-lg md:text-sm lg:text-lg leading-tight ml-1">
                         BRANDING
                       </span>
                     </div>
                     <div className="flex items-center group-hover:translate-x-1 transition-transform duration-500 ease-in-out delay-100">
-                      <span className="text-[#B96944] mr-2 text-sm sm:text-lg">•</span>
-                      <span className="text-[#B96944] uppercase font-bold text-sm sm:text-lg leading-tight">
+                      <span className="text-[#B96944] mr-2 text-sm sm:text-lg md:text-sm lg:text-lg">•</span>
+                      <span className="text-[#B96944] uppercase font-bold text-sm sm:text-lg md:text-sm lg:text-lg leading-tight">
                         FRESH
                       </span>
-                      <span className="uppercase font-bold text-[#01131F] text-sm sm:text-lg leading-tight ml-1">
+                      <span className="uppercase font-bold text-[#01131F] text-sm sm:text-lg md:text-sm lg:text-lg leading-tight ml-1">
                         WEBSITE
                       </span>
                     </div>
                     <div className="flex items-center group-hover:translate-x-1 transition-transform duration-500 ease-in-out delay-150">
-                      <span className="text-[#B96944] mr-2 text-sm sm:text-lg">•</span>
-                      <span className="text-[#B96944] uppercase font-bold text-sm sm:text-lg leading-tight">
+                      <span className="text-[#B96944] mr-2 text-sm sm:text-lg md:text-sm lg:text-lg">•</span>
+                      <span className="text-[#B96944] uppercase font-bold text-sm sm:text-lg md:text-sm lg:text-lg leading-tight">
                         FRESH
                       </span>
-                      <span className="uppercase font-bold text-[#01131F] text-sm sm:text-lg leading-tight ml-1">
+                      <span className="uppercase font-bold text-[#01131F] text-sm sm:text-lg md:text-sm lg:text-lg leading-tight ml-1">
                         SOCIALS
                       </span>
                     </div>
                     <div className="flex items-center group-hover:translate-x-1 transition-transform duration-500 ease-in-out delay-200">
-                      <span className="text-[#B96944] mr-2 text-sm sm:text-lg">•</span>
-                      <span className="text-[#B96944] uppercase font-bold text-sm sm:text-lg leading-tight">
+                      <span className="text-[#B96944] mr-2 text-sm sm:text-lg md:text-sm lg:text-lg">•</span>
+                      <span className="text-[#B96944] uppercase font-bold text-sm sm:text-lg md:text-sm lg:text-lg leading-tight">
                         FRESH
                       </span>
-                      <span className="uppercase font-bold text-[#01131F] text-sm sm:text-lg leading-tight ml-1">
+                      <span className="uppercase font-bold text-[#01131F] text-sm sm:text-lg md:text-sm lg:text-lg leading-tight ml-1">
                         STRATEGY
                       </span>
                     </div>
                   </div>
 
-                  <div className="text-center w-full mt-2 md:mt-2 mb-3 md:mb-6">
-                    <h4 className="text-xl sm:text-2xl md:text-4xl leading-tight font-bold text-[#01131F]">
+                  <div className="text-center w-full mt-2 md:mt-2 mb-3 md:mb-3 lg:mb-6">
+                    <h4 className="text-xl sm:text-3xl md:text-3xl lg:text-4xl leading-tight font-bold text-[#01131F]">
                       <PriceDisplay amount={5999} />
                     </h4>
-                    <p className="uppercase text-xs sm:text-sm md:text-lg mt-1 text-[#01131F] font-bold">
+                    <p className="uppercase text-xs sm:text-sm md:text-base lg:text-lg mt-1 text-[#01131F] font-bold">
                       ONE TIME PAYMENT
                     </p>
                   </div>
@@ -226,35 +226,35 @@ export default function LandingPage() {
                   highlightType="shimmer"
                 >
                   <div className="flex flex-col justify-center flex-1 mb-3 md:mb-6">
-                    <div className="flex flex-col space-y-3 sm:space-y-4 md:space-y-5 w-full h-auto">
-                      <div className="uppercase font-bold text-center text-xs sm:text-sm md:text-lg leading-tight text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
+                    <div className="flex flex-col space-y-3 sm:space-y-4 md:space-y-4 lg:space-y-5 w-full h-auto">
+                      <div className="uppercase font-bold text-center text-xs sm:text-sm md:text-sm lg:text-lg leading-tight text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
                         VIDEO PRODUCTION
                       </div>
-                      <div className="uppercase font-bold text-center text-xs sm:text-sm md:text-lg leading-tight text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
+                      <div className="uppercase font-bold text-center text-xs sm:text-sm md:text-sm lg:text-lg leading-tight text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
                         WEB DESIGN{" "}
                         <span className="text-[#B96944] hover:text-[#01131F] transition-colors duration-300 ease-in-out">
                           &
                         </span>{" "}
                         DEVELOPMENT
                       </div>
-                      <div className="uppercase font-bold text-center text-xs sm:text-sm md:text-lg leading-tight text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
+                      <div className="uppercase font-bold text-center text-xs sm:text-sm md:text-sm lg:text-lg leading-tight text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
                         GRAPHIC DESIGN<br/>
                         <span className="text-[#B96944] hover:text-[#01131F] transition-colors duration-300 ease-in-out">
                           &
                         </span>{" "}
                         DEVELOPMENT
                       </div>
-                      <div className="uppercase font-bold text-center text-xs sm:text-sm md:text-lg leading-tight text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
+                      <div className="uppercase font-bold text-center text-xs sm:text-sm md:text-sm lg:text-lg leading-tight text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
                         APP DESIGN{" "}
                         <span className="text-[#B96944] hover:text-[#01131F] transition-colors duration-300 ease-in-out">
                           &
                         </span>{" "}
                         DEVELOPMENT
                       </div>
-                      <div className="uppercase font-bold text-center text-xs sm:text-sm md:text-lg leading-tight text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
+                      <div className="uppercase font-bold text-center text-xs sm:text-sm md:text-sm lg:text-lg leading-tight text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
                         MARKETING CONSULTING
                       </div>
-                      <div className="uppercase font-bold text-center text-xs sm:text-sm md:text-lg leading-tight text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
+                      <div className="uppercase font-bold text-center text-xs sm:text-sm md:text-sm lg:text-lg leading-tight text-[#01131F] hover:text-[#B96944] transition-colors duration-300 ease-in-out group-hover:scale-103">
                         PAID ADS MANAGEMENT
                       </div>
                     </div>
