@@ -10,6 +10,7 @@ import Footer from "../../components/footer"
 import PriceCalculator from "../../components/price-calculator"
 import PriceDisplay from "@/components/price-display"
 
+
 // Define service types
 type ServiceOption = {
   id: string
@@ -729,25 +730,33 @@ export default function ALaCartePage() {
                         <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">Short-Form Video + Paid Ads</td>
                         <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">3-5x Revenue</td>
                         <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">4-6 Weeks</td>
-                        <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">€10k-€50k+ /mo</td>
+                        <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">
+                          <PriceDisplay amount="10000" />-<PriceDisplay amount="50000" /> /mo
+                        </td>
                       </tr>
                       <tr className="hover:bg-white/90">
                         <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">Website + Promo Video</td>
                         <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">2-4x Conversion</td>
                         <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">6-8 Weeks</td>
-                        <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">€20k+ ARR Boost</td>
+                        <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">
+                          <PriceDisplay amount="20000" /> ARR Boost
+                        </td>
                       </tr>
                       <tr className="hover:bg-white/90">
                         <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">App + Ads + Strategy</td>
                         <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">5-10x Market Penetration</td>
                         <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">8-12 Weeks</td>
-                        <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">€100k-€500k Scaling Ceiling</td>
+                        <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">
+                          <PriceDisplay amount="100000" />-<PriceDisplay amount="500000" /> Scaling Ceiling
+                        </td>
                       </tr>
                       <tr className="hover:bg-white/90">
                         <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">Business Platform + Custom App</td>
                         <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">3x Margin</td>
-                        <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">8-6 Weeks</td>
-                        <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">€200k-€1M Saved & Scaled</td>
+                        <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">8-16 Weeks</td>
+                        <td className="px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm">
+                          <PriceDisplay amount="200000" />-<PriceDisplay amount="1000000" /> Saved & Scaled
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -760,7 +769,7 @@ export default function ALaCartePage() {
                   <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 md:mb-6 text-center">
                     FROM CEO{" "}
                     <span
-                      className="relative inline-block cursor-pointer text-[#B96944] font-bold link-underline2"
+                      className="relative inline-block cursor-pointer text-[#B96944] font-bold link-underline"
                       onClick={() => window.open("https://www.linkedin.com/in/uros-vuckovic-a2463a33a/", "_blank")}
                     >
                       UROS VUCKOVIC
@@ -841,7 +850,7 @@ export default function ALaCartePage() {
                 </p>
                 <button
                   onClick={handleBookCall}
-                  className="bg-[#B96944] text-[#fffae5] px-6 sm:px-8 py-3 sm:py-4 rounded-full uppercase font-bold hover:bg-opacity-90 transition-all text-center text-sm sm:text-base"
+                  className="bg-[#B96944] text-[#fffae5] px-6 sm:px-8 py-3 sm:py-4 rounded-full uppercase font-bold hover:bg-[#B96944]/90 transition-all text-center text-sm sm:text-base"
                 >
                   BOOK A CALL NOW
                 </button>

@@ -44,6 +44,18 @@ export default function PriceDisplay({
       return formattedValue
     }
 
+    if (convertedAmount >= 1000) {
+      const inThousands = convertedAmount / 1000
+      const formattedValue =
+        currency.code === "AED"
+          ? `${Math.round(inThousands * 10) / 10}K ${currency.symbol}`
+          : `${currency.symbol}${(inThousands).toLocaleString(undefined, {
+              minimumFractionDigits: 1,
+              maximumFractionDigits: 1,
+            })}K`
+      return formattedValue
+    }
+
     // For smaller amounts, use the regular formatPrice function
     return formatPrice(value)
   }

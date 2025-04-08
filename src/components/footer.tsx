@@ -105,7 +105,7 @@ export default function Footer({ darkMode }: { darkMode?: boolean }) {
         <div 
           className={`w-full order-3 mt-4 md:mt-0 md:ml-4 ${
             isMobile 
-              ? "fixed bottom-0 left-0 right-0 bg-[#B96944] py-1 px-4 flex justify-between items-center text-[#fffae5] space-x-2" 
+              ? "bottom-0 left-0 right-0 bg-[#B96944] py-1 px-4 flex justify-between items-center text-[#fffae5] space-x-2" 
               : `${textColor} text-right space-y-2`
           }`}
         >
